@@ -1,0 +1,15 @@
+{
+    "exclude": [
+      "dist",
+      "node_modules",
+      "test"
+    ],
+
+    "compilerOptions": {
+        "target": "ES2018",
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "module": "CommonJS"
+  
+      }
+  }
