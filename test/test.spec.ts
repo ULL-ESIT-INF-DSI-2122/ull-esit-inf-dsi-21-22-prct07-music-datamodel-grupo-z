@@ -146,7 +146,7 @@ describe("ARTIST TEST", () => {
 
 
 
-describe("ARTIST TEST", () => {
+describe("ALBUM TEST", () => {
 
     it("getName() test", () => {
 
