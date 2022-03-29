@@ -13,6 +13,10 @@ export class Genre {
         private songs: Song[]
     ) {}
 
+    /**
+     * Devuelve el nombre del género musical
+     * @returns 
+     */
     public getName(): string {
         return this.name;
     }

@@ -22,6 +22,10 @@ export class Group extends BasicSinger {
         return this.artists;
     }
 
+    /**
+     * Devuelve el año de creación del grupo
+     * @returns number
+     */
     public getYear(): number {
         return this.year;
     }

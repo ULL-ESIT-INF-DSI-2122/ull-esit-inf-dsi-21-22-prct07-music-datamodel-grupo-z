@@ -10,6 +10,10 @@ export abstract class BasicSinger{
         private listeners: number
     ) {}
 
+    /**
+     * Devuelve el nombre del basicSinger (grupo o artista)
+     * @returns string
+     */
     public getName(): string {
         return this.name;
     }
@@ -18,6 +22,10 @@ export abstract class BasicSinger{
         return this.genres;
     }
 
+    /**
+     * Devuelve el número de oyentes
+     * @returns number
+     */
     public getListeners(): number {
         return this.listeners;
     }

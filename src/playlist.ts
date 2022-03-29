@@ -14,6 +14,10 @@ export class Playlist {
         private genres: Genre[]
     ) {}
 
+    /**
+     * Devuelve el nombre de la playlist
+     * @returns string
+     */
     public getName(): string {
         return this.name;
     }
@@ -22,10 +26,18 @@ export class Playlist {
         return this.songs;
     }
 
+    /**
+     * Devuelve la duración de la playlist en horas
+     * @returns number
+     */
     public getHours(): number {
         return this.duration.hours;
     }
 
+    /**
+     * Devuelve la duración de la playlist en minutos
+     * @returns number
+     */
     public getMinutes(): number {
         return this.duration.minutes;
     }

@@ -16,6 +16,10 @@ export class Album {
         private songs: Song[]
     ) {}
 
+    /**
+     * Devuelve el nombre del album
+     * @returns string
+     */
     public getName(): string {
         return this.name;
     }
@@ -24,6 +28,10 @@ export class Album {
         return this.creator;
     }
 
+    /**
+     * Devuelve el año de lanzamiento del album
+     * @returns number
+     */
     public getYear(): number {
         return this.year;
     }
