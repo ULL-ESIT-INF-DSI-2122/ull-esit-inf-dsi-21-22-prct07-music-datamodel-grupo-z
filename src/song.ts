@@ -2,6 +2,9 @@ import { Artist } from './artist'
 import { Time } from './durationType';
 import { Genre } from './genre';
 
+/**
+ * Clase que define una canción con sus atributos y métodos
+ */
 export class Song {
     private duration: Time;
     constructor(

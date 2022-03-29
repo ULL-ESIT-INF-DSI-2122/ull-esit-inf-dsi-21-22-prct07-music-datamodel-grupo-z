@@ -2,6 +2,9 @@ import { Album } from "./album";
 import { BasicSinger } from "./basicSinger";
 import { Song } from "./song";
 
+/**
+ * Clase que define un género musical con sus atributos y métodos
+ */
 export class Genre {
     constructor(
         private name: string,

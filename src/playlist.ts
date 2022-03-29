@@ -2,6 +2,9 @@ import { Time } from "./durationType";
 import { Genre } from "./genre";
 import { Song } from "./song";
 
+/**
+ * Clase que define una playlist con sus atributos y métodos
+ */
 export class Playlist {
     constructor(
         private name: string,

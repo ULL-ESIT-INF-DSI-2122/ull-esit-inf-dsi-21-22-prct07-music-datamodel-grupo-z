@@ -4,6 +4,9 @@ import { Genre } from "./genre";
 import { Group } from "./group";
 import { Song } from "./song";
 
+/**
+ * Clase que define un artista con sus atributos y métodos. Hereda de basicSinger
+ */
 export class Artist extends BasicSinger {
     constructor(
         name: string,

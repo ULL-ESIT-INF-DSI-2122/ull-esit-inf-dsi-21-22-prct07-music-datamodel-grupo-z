@@ -4,6 +4,9 @@ import { Genre } from "./genre";
 import { Group } from "./group";
 import { Song } from "./song";
 
+/**
+ * Clase que define un album con sus atributos y métodos
+ */
 export class Album {
     constructor(
         private name: string,
