@@ -1,3 +1,4 @@
+import { Album } from "./album";
 import { Artist } from "./artist";
 import { Genre } from "./genre";
 import { Group } from "./group";
@@ -8,6 +9,7 @@ class musicDataBase {
     private artists: Set<Artist>;
     private groups: Set<Group>;
     private genres: Set<Genre>;
+    private albums: Set<Album>;
 
     constructor() {
         this.genres = new Set<Genre>([
@@ -28,10 +30,20 @@ class musicDataBase {
         this.artists.add(newArtist);
     }
 
+    public addGroup(newGroup: Group) {
+        this.groups.add(newGroup);
+    }
+
+    public addGenre(newGenre: string) {
+        this.genres.add(new Genre(newGenre));
+    }
+
     public addSong(newSong: Song) {
         this.songs.add(newSong);
         
-        let myArtist: Artist | Group = newSong.getArtist();
+        let myArtist: Artist | Group = newSong.getCreator();
+        let myGenre: Genre = newSong.getGenre();
+
 
         this.artists.forEach((item: Artist) => {
             if(item == myArtist) {
@@ -39,6 +51,19 @@ class musicDataBase {
                 item.addSong(newSong);
                 item.updateListeners(newSong.getTimesListened());
             }
-        })
+        });
+
+        this.genres.forEach((item: Genre) => {
+            if(item == myGenre) {
+                item.addArtist(newSong.getCreator());
+                item.addSong(newSong);
+            }
+        });
+    }
+
+    public addAlbum(newAlbum: Album) {
+        this.albums.add(newAlbum);
+
+        
     }
 }

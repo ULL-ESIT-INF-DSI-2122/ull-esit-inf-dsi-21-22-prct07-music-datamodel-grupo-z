@@ -9,13 +9,13 @@ import { Song } from "./song";
 export class Group {
     private genres: Set<Genre>;
     private listeners: number;
-    private artists: Set<Artist>;
     private albums: Set<Album>;
     private songs: Set<Song>;
 
     constructor(
         private name: string,
         private year: number,
+        private artists: Set<Artist>,
     ) {}
 
     public getArtist(): Set<Artist> {

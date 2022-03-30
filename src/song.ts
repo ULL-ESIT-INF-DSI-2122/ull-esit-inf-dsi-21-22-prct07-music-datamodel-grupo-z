@@ -28,7 +28,7 @@ export class Song {
         return this.name;
     }
 
-    public getArtist(): Artist | Group {
+    public getCreator(): Artist | Group {
         return this.creator;
     }
 

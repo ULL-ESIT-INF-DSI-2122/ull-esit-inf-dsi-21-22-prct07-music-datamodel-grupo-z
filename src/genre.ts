@@ -10,7 +10,7 @@ export class Genre {
 
     private components: Set<Artist | Group>;
     private albums: Album[];
-    private songs: Song[]
+    private songs: Set<Song>
 
     constructor(
         private name: string,
@@ -32,7 +32,15 @@ export class Genre {
         return this.albums;
     }
 
-    public getSongs(): Song[] {
+    public getSongs(): Set<Song> {
         return this.songs
+    }
+
+    public addArtist(newArtit: Artist | Group) {
+        this.components.add(newArtit)
+    }
+
+    public addSong(newSong: Song) {
+        this.songs.add(newSong);
     }
 }

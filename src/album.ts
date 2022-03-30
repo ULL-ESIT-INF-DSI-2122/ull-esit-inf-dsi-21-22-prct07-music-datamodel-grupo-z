@@ -14,7 +14,11 @@ export class Album {
         private creator: Artist | Group,
         private year: number,
         private songs: Song[]
-    ) {}
+    ) {
+        songs.forEach((item: Song) => {
+            this.genres.add(item.getGenre());
+        });
+    }
 
     /**
      * Devuelve el nombre del album
