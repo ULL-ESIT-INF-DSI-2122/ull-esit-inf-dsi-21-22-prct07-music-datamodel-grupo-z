@@ -7,11 +7,11 @@ import { Song } from "./song";
  * Clase que define un artista con sus atributos y métodos. Hereda de basicSinger
  */
 export class Artist {
-    private genres: Genre[];
+    private genres: Set<Genre>;
     private listeners: number;
     private groups: Group[];
     private albums: Album[];
-    private songs: Song[];
+    private songs: Set<Song>;
 
     constructor(
         private name: string
@@ -25,14 +25,14 @@ export class Artist {
         return this.albums;
     }
 
-    public getSongs(): Song[] {
+    public getSongs(): Set<Song> {
         return this.songs;
     }
     public getName(): string {
         return this.name;
     }
 
-    public getGenres(): Genre[] {
+    public getGenres(): Set<Genre> {
         return this.genres;
     }
 
@@ -42,5 +42,17 @@ export class Artist {
      */
     public getListeners(): number {
         return this.listeners;
+    }
+
+    public addGenre(newGenre: Genre) {
+        this.genres.add(newGenre);
+    }
+
+    public addSong(newSong: Song) {
+        this.songs.add(newSong);
+    }
+
+    public updateListeners(newData: number) {
+        this.listeners += newData;
     }
 }
