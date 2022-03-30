@@ -1,5 +1,4 @@
 import { Album } from "./album";
-import { BasicSinger } from "./basicSinger";
 import { Genre } from "./genre";
 import { Group } from "./group";
 import { Song } from "./song";
@@ -7,17 +6,16 @@ import { Song } from "./song";
 /**
  * Clase que define un artista con sus atributos y métodos. Hereda de basicSinger
  */
-export class Artist extends BasicSinger {
+export class Artist {
+    private genres: Genre[];
+    private listeners: number;
+    private groups: Group[];
+    private albums: Album[];
+    private songs: Song[];
+
     constructor(
-        name: string,
-        genres: Genre[],
-        listeners: number,
-        private groups: Group[],
-        private albums: Album[],
-        private songs: Song[]
-    ) {
-        super(name, genres, listeners);
-    }
+        private name: string
+    ) {}
 
     public getGroups(): Group[] {
         return this.groups;
@@ -30,6 +28,19 @@ export class Artist extends BasicSinger {
     public getSongs(): Song[] {
         return this.songs;
     }
+    public getName(): string {
+        return this.name;
+    }
 
+    public getGenres(): Genre[] {
+        return this.genres;
+    }
 
+    /**
+     * Devuelve el número de oyentes
+     * @returns number
+     */
+    public getListeners(): number {
+        return this.listeners;
+    }
 }

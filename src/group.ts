@@ -1,24 +1,22 @@
 import { Album } from "./album";
 import { Artist } from "./artist";
-import { BasicSinger } from "./basicSinger";
 import { Genre } from "./genre";
 
 /**
  * Clase que define un grupo de cantantes con sus atributos y métodos. Hereda de basicSinger
  */
-export class Group extends BasicSinger {
-    constructor(
-        name: string,
-        genres: Genre[],
-        listeners: number,
-        private artists: Artist[],
-        private year: number,
-        private albums: Album[]
-    ) {
-        super(name, genres, listeners)
-    }
+export class Group {
+    private genres: Set<Genre>;
+    private listeners: number;
+    private artists: Set<Artist>;
+    private albums: Set<Album>;
 
-    public getArtist(): Artist[] {
+    constructor(
+        private name: string,
+        private year: number,
+    ) {}
+
+    public getArtist(): Set<Artist> {
         return this.artists;
     }
 
@@ -30,7 +28,27 @@ export class Group extends BasicSinger {
         return this.year;
     }
 
-    public getAlbums(): Album[] {
+    public getAlbums(): Set<Album> {
         return this.albums;
+    }
+
+    /**
+    * Devuelve el nombre del basicSinger (grupo o artista)
+    * @returns string
+    */
+    public getName(): string {
+        return this.name;
+    }
+
+    public getGenres(): Set<Genre> {
+        return this.genres;
+    }
+
+    /**
+     * Devuelve el número de oyentes
+     * @returns number
+     */
+    public getListeners(): number {
+        return this.listeners;
     }
 };

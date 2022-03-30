@@ -1,16 +1,19 @@
 import { Album } from "./album";
-import { BasicSinger } from "./basicSinger";
+import { Artist } from "./artist";
+import { Group } from "./group";
 import { Song } from "./song";
 
 /**
  * Clase que define un género musical con sus atributos y métodos
  */
 export class Genre {
+
+    private components: Set<Artist | Group>;
+    private albums: Album[];
+    private songs: Song[]
+
     constructor(
         private name: string,
-        private componets: BasicSinger[],
-        private albums: Album[],
-        private songs: Song[]
     ) {}
 
     /**
@@ -21,8 +24,8 @@ export class Genre {
         return this.name;
     }
 
-    public getComponents(): BasicSinger[] {
-        return this.componets;
+    public getComponents(): Set<Artist | Group> {
+        return this.components;
     }
 
     public getAlbums(): Album[] {

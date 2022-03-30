@@ -2,11 +2,15 @@ import 'mocha'
 import { expect } from 'chai'
 import { Artist } from '../src/artist';
 import { Song } from '../src/song'
-
-
+import { Genre } from '../src/genre';
 
 describe("SONG TEST", () => {
-
+    let Reggaeton: Genre = new Genre("Reaggeton", [], [], []);
+    let Shakrira: Artist = new Artist("Shakira", [], 100000, [], [], []);
+    {
+        let WAKAWAKA: Song = new Song("WakaWaka", Shakrira, Reggaeton, true, 25, 140);
+        Shakrira.addSong(WakaWaka);
+    }
     it("getName() test", () => {
         expect(songTest1.getName()).to.eq();
         expect(songTest2.getName()).to.eq();

@@ -1,5 +1,4 @@
 import { Artist } from "./artist";
-import { BasicSinger } from "./basicSinger";
 import { Genre } from "./genre";
 import { Group } from "./group";
 import { Song } from "./song";
@@ -8,11 +7,12 @@ import { Song } from "./song";
  * Clase que define un album con sus atributos y métodos
  */
 export class Album {
+    private genres: Set<Genre>;
+
     constructor(
         private name: string,
-        private creator: BasicSinger,
+        private creator: Artist | Group,
         private year: number,
-        private genres: Genre[],
         private songs: Song[]
     ) {}
 
@@ -24,7 +24,7 @@ export class Album {
         return this.name;
     }
 
-    public getCreator(): BasicSinger {
+    public getCreator(): Artist | Group {
         return this.creator;
     }
 
@@ -36,7 +36,7 @@ export class Album {
         return this.year;
     }
 
-    public getGenres(): Genre[] {
+    public getGenres(): Set<Genre> {
         return this.genres;
     }
 

@@ -6,12 +6,12 @@ import { Song } from "./song";
  * Clase que define una playlist con sus atributos y métodos
  */
 export class Playlist {
+    private songs: Set<Song>;
+    private duration: Time = {seconds: 0, minutes: 0, hours: 0}
+    private genres: Genre[] = [];
 
     constructor(
         private name: string,
-        private songs: Song[],
-        private duration: Time,
-        private genres: Genre[]
     ) {}
 
     /**

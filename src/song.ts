@@ -1,6 +1,7 @@
 import { Artist } from './artist'
 import { Time } from './durationType';
 import { Genre } from './genre';
+import { Group } from './group';
 
 /**
  * Clase que define una canción con sus atributos y métodos
@@ -10,7 +11,7 @@ export class Song {
 
     constructor(
         private name: string,
-        private artist: Artist,
+        private creator: Artist | Group,
         private genre: Genre,
         private isSingle: boolean,
         private timesListened: number,
@@ -27,8 +28,8 @@ export class Song {
         return this.name;
     }
 
-    public getArtist(): Artist {
-        return this.artist;
+    public getArtist(): Artist | Group {
+        return this.creator;
     }
 
     public getGenre(): Genre {
