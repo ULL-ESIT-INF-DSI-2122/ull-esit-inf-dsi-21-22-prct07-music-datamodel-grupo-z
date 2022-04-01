@@ -4,7 +4,7 @@ import { Genre } from "./genre";
 import { Group } from "./group";
 import { Song } from "./song";
 
-class musicDataBase {
+export class MusicDataBase {
     private songs: Set<Song>;
     private artists: Set<Artist>;
     private groups: Set<Group>;
@@ -24,6 +24,11 @@ class musicDataBase {
             new Genre("Reggae"),
             new Genre("Trap")      
         ]);
+        this.songs = new Set <Song>();
+        this.artists = new Set <Artist>();
+        this.groups = new Set <Group>();
+        this.genres = new Set <Genre>();
+        this.albums = new Set <Album>();
     }
 
     public addArtist(newArtist: Artist) {
@@ -62,8 +67,29 @@ class musicDataBase {
     }
 
     public addAlbum(newAlbum: Album) {
-        this.albums.add(newAlbum);
-
-        
+        this.albums.add(newAlbum);       
     }
+
+
+    public getArtists(): Set<Artist> {
+        return this.artists;
+    }
+
+
+    public getSongs(): Set<Song> {
+        return this.songs;
+    }
+
+    public getGroups(): Set<Group> {
+        return this.groups;
+    }
+
+    public getAlbum(): Set<Album> {
+        return this.albums;
+    }
+
+    public getGenres(): Set<Genre> {
+        return this.genres;
+    }
+
 }

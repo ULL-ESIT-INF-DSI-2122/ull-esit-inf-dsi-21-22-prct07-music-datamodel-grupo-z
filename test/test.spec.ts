@@ -3,14 +3,141 @@ import { expect } from 'chai'
 import { Artist } from '../src/artist';
 import { Song } from '../src/song'
 import { Genre } from '../src/genre';
+import { MusicDataBase } from '../src/musicDataBase'
+import { Group } from '../src/group';
+import { Album } from '../src/album';
+import {compareSets} from '../src/compareSet';
 
 describe("SONG TEST", () => {
-    let Reggaeton: Genre = new Genre("Reaggeton", [], [], []);
-    let Shakrira: Artist = new Artist("Shakira", [], 100000, [], [], []);
-    {
-        let WAKAWAKA: Song = new Song("WakaWaka", Shakrira, Reggaeton, true, 25, 140);
-        Shakrira.addSong(WakaWaka);
-    }
+
+    let myDataBase: MusicDataBase = new MusicDataBase;
+
+    it("Se espera que al crear una base de datos, no tenga artistas", () => {
+        let emptySet: Set<Artist>;
+        expect(myDataBase.getArtists()).to.be.eql(emptySet);
+    });
+
+    it("Se espera que al crear una base de datos, no tenga canciones", () => {
+        let emptySet: Set<Song>;
+        expect(myDataBase.getSongs()).to.be.eql(emptySet);
+    });
+
+    it("Se espera que al crear una base de datos, no tenga grupos", () => {
+        let emptySet: Set<Group>;
+        expect(myDataBase.getGroups()).to.be.eql(emptySet);
+    });
+
+    it("Se espera que al crear una base de datos, no tenga albumes", () => {
+        let emptySet: Set<Album>;
+        expect(myDataBase.getAlbum()).to.be.eql(emptySet);
+    });
+
+    it("Se espera que al crear una base de datos, tenga los géneros por defecto", () => {
+        let defaultGenres: Set<Genre> = new Set<Genre>([
+            new Genre("Reggaeton"),
+            new Genre("Electronica"),
+            new Genre("Bachata"),
+            new Genre("Pop"),
+            new Genre("Rock"),
+            new Genre("Heavy Metal"),
+            new Genre("Salsa"),
+            new Genre("Rap"),
+            new Genre("Reggae"),
+            new Genre("Trap")      
+        ]);
+        
+        let nameDefaultGenres: string[] = [];
+        let myDataBaseNameGenres: string[] = [];
+
+        defaultGenres.forEach((item: Genre) => {
+            nameDefaultGenres.push(item.getName());
+        });
+
+        myDataBase.getGenres().forEach((item: Genre) => {
+            myDataBaseNameGenres.push(item.getName());
+        });
+
+        expect(nameDefaultGenres.sort()).to.be.eql(myDataBaseNameGenres.sort());
+    });
+
+
+    let Anuel: Artist = new Artist("Anuel");
+    let Maluma: Artist = new Artist("Maluma");
+    let BobMarley: Artist = new Artist("Bob Marley");
+    let DavidGuetta: Artist = new Artist("David Guetta");
+
+
+    it("Se espera que al crear un artista, se pueda obtener su nombre con el método getName()", () => {
+        expect(Anuel.getName()).to.be.equal("Anuel");
+        expect(Maluma.getName()).to.be.equal("Maluma");
+        expect(BobMarley.getName()).to.be.equal("Bob Marley");
+        expect(DavidGuetta.getName()).to.be.equal("David Guetta");
+    });
+
+    it("Se espera que al crear un artista, no tenga ningún género relacionado", () => {
+        let emptySet: Set<Genre>;
+        expect(Anuel.getGenres()).to.be.eql(emptySet);
+        expect(Maluma.getGenres()).to.be.eql(emptySet);
+        expect(BobMarley.getGenres()).to.be.eql(emptySet);
+        expect(DavidGuetta.getGenres()).to.be.eql(emptySet);
+    });
+
+    it("Se espera que al crear un artista, no tenga canciones", () => {
+        let emptySet: Set<Song>;
+        expect(Anuel.getSongs()).to.be.eql(emptySet);
+        expect(Maluma.getSongs()).to.be.eql(emptySet);
+        expect(BobMarley.getSongs()).to.be.eql(emptySet);
+        expect(DavidGuetta.getSongs()).to.be.eql(emptySet);
+    });
+
+    it("Se espera que al crear un artista, sus oyentes sean cero", () => {
+        expect(Anuel.getListeners()).to.be.equal(0);
+        expect(Maluma.getListeners()).to.be.equal(0);
+        expect(BobMarley.getListeners()).to.be.equal(0);
+        expect(DavidGuetta.getListeners()).to.be.equal(0);
+    });
+
+    it("Se espera que al crear un artista, no pertenezca a ningún grupo", () => {
+        let emptySet: Set<Group>
+        expect(Anuel.getGroups()).to.be.eql(emptySet);
+        expect(Maluma.getGroups()).to.be.eql(emptySet);
+        expect(BobMarley.getGroups()).to.be.eql(emptySet);
+        expect(DavidGuetta.getGroups()).to.be.eql(emptySet);
+    });
+    
+
+    it("Se espera que al crear un artista, no tenga albumes", () => {
+        let emptySet: Set<Album>;
+        expect(Anuel.getAlbums()).to.be.eql(emptySet);
+        expect(Maluma.getAlbums()).to.be.eql(emptySet);
+        expect(BobMarley.getAlbums()).to.be.eql(emptySet);
+        expect(DavidGuetta.getAlbums()).to.be.eql(emptySet);
+    });
+    
+    myDataBase.addArtist(Anuel);
+    myDataBase.addArtist(Maluma);
+    myDataBase.addArtist(BobMarley);
+    myDataBase.addArtist(DavidGuetta);   
+    
+    it("Se espera que se puedan añadir artistas a la base de datos", () => {
+       let expectedArtist: Set<Artist> = new Set <Artist> ([Anuel, Maluma, BobMarley, DavidGuetta]);
+        /*
+        let nameExpectedArtist: string[] = [];
+        let myDataBaseNameArtist: string[] = [];
+
+        expectedArtist.forEach((item: Artist) => {
+            nameExpectedArtist.push(item.getName());
+        });
+
+        myDataBase.getArtists().forEach((item: Artist) => {
+            myDataBaseNameArtist.push(item.getName());
+        });*/
+
+        expect(compareSets(expectedArtist, myDataBase.getArtists())).to.be.equal(true);
+    });
+});
+/*  
+
     it("getName() test", () => {
         expect(songTest1.getName()).to.eq();
         expect(songTest2.getName()).to.eq();
@@ -95,7 +222,13 @@ describe("PLAYLIST TEST", () => {
     it("getSongs() test", () => {
         expect(playlistTest1.getSongs()).to.eq();
         expect(playlistTest2.getSongs()).to.eq();
-    });
+    });describe("ARTIST TEST", () => {
+
+        it("getName() test", () => {
+            expect(artistTest1.getName()).to.eq();
+            expect(artistTest2.getName()).to.eq();
+            expect(artistTest3.getName()).to.eq();
+            expect(artistTest4.getName()).to.eq();
     
 });
 
@@ -267,4 +400,4 @@ describe("ALBUM TEST", () => {
         expect(albumTest3.getSongs()).to.eq();
     });
     
-});
+});*/

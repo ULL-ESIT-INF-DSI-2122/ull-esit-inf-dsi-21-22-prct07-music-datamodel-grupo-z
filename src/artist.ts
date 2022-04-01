@@ -8,7 +8,7 @@ import { Song } from "./song";
  */
 export class Artist {
     private genres: Set<Genre>;
-    private listeners: number;
+    private listeners: number = 0;
     private groups: Group[];
     private albums: Album[];
     private songs: Set<Song>;
