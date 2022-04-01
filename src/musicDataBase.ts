@@ -5,11 +5,11 @@ import { Group } from "./group";
 import { Song } from "./song";
 
 export class MusicDataBase {
-    private songs: Set<Song>;
-    private artists: Set<Artist>;
-    private groups: Set<Group>;
-    private genres: Set<Genre>;
-    private albums: Set<Album>;
+    private songs: Set<Song> = new Set <Song>();
+    private artists: Set<Artist>= new Set <Artist>();
+    private groups: Set<Group> = new Set <Group>();
+    private genres: Set<Genre>= new Set <Genre>();
+    private albums: Set<Album> = new Set <Album>();
 
     constructor() {
         this.genres = new Set<Genre>([
@@ -24,12 +24,7 @@ export class MusicDataBase {
             new Genre("Reggae"),
             new Genre("Trap")      
         ]);
-        this.songs = new Set <Song>();
-        this.artists = new Set <Artist>();
-        this.groups = new Set <Group>();
-        this.genres = new Set <Genre>();
-        this.albums = new Set <Album>();
-    }
+    };
 
     public addArtist(newArtist: Artist) {
         this.artists.add(newArtist);
@@ -74,7 +69,6 @@ export class MusicDataBase {
     public getArtists(): Set<Artist> {
         return this.artists;
     }
-
 
     public getSongs(): Set<Song> {
         return this.songs;

@@ -7,13 +7,13 @@ import { Song } from "./song";
  * Clase que define un album con sus atributos y métodos
  */
 export class Album {
-    private genres: Set<Genre>;
+    private genres: Set<Genre> = new Set<Genre> ();
 
     constructor(
         private name: string,
         private creator: Artist | Group,
         private year: number,
-        private songs: Song[]
+        private songs: Set<Song> = new Set<Song> ()
     ) {
         songs.forEach((item: Song) => {
             this.genres.add(item.getGenre());
@@ -44,7 +44,7 @@ export class Album {
         return this.genres;
     }
 
-    public getSongs(): Song[] {
+    public getSongs(): Set<Song> {
         return this.songs;
     }
 };

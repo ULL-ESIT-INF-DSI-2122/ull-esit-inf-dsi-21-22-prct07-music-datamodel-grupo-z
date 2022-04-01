@@ -8,9 +8,9 @@ import { Song } from "./song";
  */
 export class Genre {
 
-    private components: Set<Artist | Group>;
-    private albums: Album[];
-    private songs: Set<Song>
+    private components: Set<Artist | Group> = new Set<Artist | Group> ();
+    private albums: Set<Album> = new Set<Album>();
+    private songs: Set<Song> = new Set<Song> ();
 
     constructor(
         private name: string,
@@ -28,7 +28,7 @@ export class Genre {
         return this.components;
     }
 
-    public getAlbums(): Album[] {
+    public getAlbums(): Set<Album> {
         return this.albums;
     }
 

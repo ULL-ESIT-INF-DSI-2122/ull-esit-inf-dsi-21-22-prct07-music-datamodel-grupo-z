@@ -7,21 +7,21 @@ import { Song } from "./song";
  * Clase que define un artista con sus atributos y métodos. Hereda de basicSinger
  */
 export class Artist {
-    private genres: Set<Genre>;
+    private genres: Set<Genre> = new Set<Genre> ();
     private listeners: number = 0;
-    private groups: Group[];
-    private albums: Album[];
-    private songs: Set<Song>;
+    private groups: Set <Group> = new Set<Group>();
+    private albums: Set <Album> = new Set<Album>();
+    private songs: Set<Song> = new Set<Song>();
 
     constructor(
         private name: string
     ) {}
 
-    public getGroups(): Group[] {
+    public getGroups(): Set<Group> {
         return this.groups;
     }
 
-    public getAlbums(): Album[] {
+    public getAlbums(): Set<Album> {
         return this.albums;
     }
 
