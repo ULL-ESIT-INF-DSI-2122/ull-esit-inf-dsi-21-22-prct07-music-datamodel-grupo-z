@@ -8,14 +8,14 @@ import { Song } from "./song";
  */
 export class Group {
     private genres: Set<Genre> = new Set<Genre>();
-    private listeners: number;
     private albums: Set<Album> = new Set<Album>();
     private songs: Set<Song> = new Set<Song>();
 
     constructor(
         private name: string,
         private year: number,
-        private artists: Set<Artist> = new Set <Artist>()
+        private artists: Set<Artist> = new Set <Artist>(),
+        private listeners: number
     ) {}
 
     public getArtist(): Set<Artist> {
