@@ -6,9 +6,9 @@ import { Song } from "./song";
  * Clase que define una playlist con sus atributos y métodos
  */
 export class Playlist {
-    private songs: Set<Song>;
+    private songs: Set<Song> = new Set<Song>();
     private duration: Time = {seconds: 0, minutes: 0, hours: 0}
-    private genres: Genre[] = [];
+    private genres: Set<Genre> = new Set<Genre>();
 
     constructor(
         private name: string,
@@ -22,7 +22,7 @@ export class Playlist {
         return this.name;
     }
 
-    public getSongs(): Song[] {
+    public getSongs(): Set<Song> {
         return this.songs;
     }
 
@@ -42,7 +42,7 @@ export class Playlist {
         return this.duration.minutes;
     }
 
-    public getGenres(): Genre[] {
+    public getGenres(): Set<Genre> {
         return this.genres;
     }
 } 

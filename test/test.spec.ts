@@ -7,7 +7,8 @@ import { MusicDataBase } from '../src/musicDataBase'
 import { Group } from '../src/group';
 import { Album } from '../src/album';
 import { compareSets } from '../src/compareSet';
-/*
+
+
 describe("DATABASE EMPTY TEST", () => {
 
     let myDataBase: MusicDataBase = new MusicDataBase;
@@ -29,7 +30,7 @@ describe("DATABASE EMPTY TEST", () => {
 
     it("Se espera que al crear una base de datos, no tenga albumes", () => {
         let emptySet: Set<Album> = new Set<Album>();
-        expect(compareSets(myDataBase.getAlbum(), emptySet)).to.be.equal(true)
+        expect(compareSets(myDataBase.getAlbums(), emptySet)).to.be.equal(true)
     });
 
     it("Se espera que al crear una base de datos, tenga los géneros por defecto", () => {
@@ -49,7 +50,7 @@ describe("DATABASE EMPTY TEST", () => {
         expect(compareSets(defaultGenres, myDataBase.getGenres())).to.be.eql(true);
     });
 });
-*/
+
 
 describe("ARTIST EMPTY TEST", () => {
 

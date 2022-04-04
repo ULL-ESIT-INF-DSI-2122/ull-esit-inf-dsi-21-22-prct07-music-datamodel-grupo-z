@@ -4,15 +4,42 @@ import { Genre } from "./genre";
 import { Group } from "./group";
 import { Song } from "./song";
 
-class MusicDataBase {
+import { LowSync, JSONFileSync } from 'lowdb'
+
+export class MusicDataBase {
+    private db;
     
-private low = require('lowdb')
-private FileSync = require('lowdb/adapters/FileSync')
-
-private adapter = new this.FileSync('db.json')
-private db = this.low(this.adapter)
-
-    addArtist() {
-
+    initializeDb() {
+        this.db = new LowSync(new JSONFileSync('file.json'));
+        this.db.songs =  new Set<Song>();
+        this.db.artist =  new Set<Artist>(); 
+        this.db.groups =  new Set<Group>(); 
+        this.db.album =  new Set<Album>();
+        this.db.genre =  new Set<Genre>();
     }
+
+    constructor() {
+        this.initializeDb;
+    }
+
+    public getSongs(): Set<Song> {
+        return this.db.songs;
+    }
+
+    public getAlbums(): Set<Album> {
+        return this.db.albums;
+    }
+
+    public getArtists(): Set<Artist> {
+        return this.db.artist;
+    }
+
+    public getGroups(): Set<Group> {
+        return this.db.group;
+    }
+
+    public getGenres(): Set<Genre> {
+        return this.db.genres;
+    }
+
 }
