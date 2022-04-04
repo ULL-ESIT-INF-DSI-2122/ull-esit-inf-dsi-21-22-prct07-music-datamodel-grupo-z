@@ -9,6 +9,14 @@ import { Song } from "./song";
 export class Album {
     private genres: Set<Genre> = new Set<Genre> ();
 
+    /**
+     * Constructor de la clase album. Recibe el nombre, creador, año y canciones. Los géneros asociados
+     * se calculan a partir de las canciones
+     * @param name string
+     * @param creator Artist | Song
+     * @param year number
+     * @param songs Set<Song>
+     */
     constructor(
         private name: string,
         private creator: Artist | Group,
@@ -28,6 +36,10 @@ export class Album {
         return this.name;
     }
 
+    /**
+     * Devuelve el creador del album. Artista o grupo
+     * @returns 
+     */
     public getCreator(): Artist | Group {
         return this.creator;
     }
@@ -40,10 +52,18 @@ export class Album {
         return this.year;
     }
 
+    /**
+     * Devuelve los géneros del album
+     * @returns Set<Genre>
+     */
     public getGenres(): Set<Genre> {
         return this.genres;
     }
 
+    /**
+     * Devuelve las canciones del album
+     * @returns Set<Song>
+     */
     public getSongs(): Set<Song> {
         return this.songs;
     }

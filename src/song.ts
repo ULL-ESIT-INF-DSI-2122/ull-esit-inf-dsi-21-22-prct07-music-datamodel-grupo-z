@@ -9,6 +9,15 @@ import { Group } from './group';
 export class Song {
     private duration: Time;
 
+    /**
+     * Constructor de la clase Song. Recibe el nombre, creador, género, veces que ha sido escuchada, duración y si es un single o no
+     * @param name string
+     * @param creator Artist | Group
+     * @param genre Genre
+     * @param isSingle boolean
+     * @param timesListened number
+     * @param durationInSeconds number
+     */
     constructor(
         private name: string,
         private creator: Artist | Group,
@@ -28,10 +37,18 @@ export class Song {
         return this.name;
     }
 
+    /**
+     * Devuelve el creador de la canción: Artista o Grupo
+     * @returns Artist | Group
+     */
     public getCreator(): Artist | Group {
         return this.creator;
     }
 
+    /**
+     * Devuelve el género de la canción
+     * @returns Genre
+     */
     public getGenre(): Genre {
         return this.genre;
     }
