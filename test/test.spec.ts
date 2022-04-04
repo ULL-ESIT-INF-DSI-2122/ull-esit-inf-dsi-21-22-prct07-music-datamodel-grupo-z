@@ -231,6 +231,11 @@ describe("GROUP TEST", () => {
         expect(compareSets(Estopa.getSongs(), new Set<Song>())).to.be.equal(true);
     });
 
+    it ("Se espera que al crear el grupo no tengan ningun género asociado", () => {
+        expect(compareSets(WisinYYandel.getGenres(), new Set<Genre>())).to.be.equal(true);
+        expect(compareSets(Estopa.getGenres(), new Set<Genre>())).to.be.equal(true);
+    });
+
     it ("Se espera que se pueda acceder a los oyentes del grupo con el método getListeners()", () => {
         expect(WisinYYandel.getListeners()).to.be.equal(2545);
         expect(Estopa.getListeners()).to.be.equal(745);
@@ -240,6 +245,11 @@ describe("GROUP TEST", () => {
         expect(compareSets(WisinYYandel.getAlbums(), new Set<Album>())).to.be.equal(true);
         expect(compareSets(Estopa.getAlbums(), new Set<Album>())).to.be.equal(true);
     });
+
+    it("Se espera que se pueda obtener el año de un grupo con el método getYear", () => {
+        expect(WisinYYandel.getYear()).to.be.equal(2001);
+        expect(WisinYYandel.getYear()).to.be.equal(2004);
+    })
 });
 
 
