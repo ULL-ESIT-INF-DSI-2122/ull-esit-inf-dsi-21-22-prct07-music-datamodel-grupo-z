@@ -7,7 +7,7 @@ import { MusicDataBase } from '../src/musicDataBase'
 import { Group } from '../src/group';
 import { Album } from '../src/album';
 import { compareSets } from '../src/compareSet';
-
+/*
 describe("DATABASE EMPTY TEST", () => {
 
     let myDataBase: MusicDataBase = new MusicDataBase;
@@ -49,7 +49,7 @@ describe("DATABASE EMPTY TEST", () => {
         expect(compareSets(defaultGenres, myDataBase.getGenres())).to.be.eql(true);
     });
 });
-
+*/
 
 describe("ARTIST EMPTY TEST", () => {
 
@@ -286,7 +286,7 @@ describe("ALBUM TEST", () => {
     });
 
 });
-
+/*
 describe("INCLUDE ARTIST IN DATA BASE  TEST", () => {
 
     let myDataBase: MusicDataBase = new MusicDataBase;
@@ -295,14 +295,14 @@ describe("INCLUDE ARTIST IN DATA BASE  TEST", () => {
     let Maluma: Artist = new Artist("Maluma");
     let BobMarley: Artist = new Artist("Bob Marley");
     let DavidGuetta: Artist = new Artist("David Guetta");
-/*
+
     myDataBase.addArtist(Anuel);
     myDataBase.addArtist(Maluma);
     myDataBase.addArtist(BobMarley);
     myDataBase.addArtist(DavidGuetta);   
-*/
+
     it("Se espera que se puedan añadir artistas a la base de datos", () => {
         let expectedArtist: Set<Artist> = new Set <Artist> ([Anuel, Maluma, BobMarley, DavidGuetta]);
         expect(compareSets(expectedArtist, myDataBase.getArtists())).to.be.equal(true);
     });
-});
+});*/
