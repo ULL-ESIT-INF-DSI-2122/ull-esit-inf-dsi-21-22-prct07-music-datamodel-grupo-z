@@ -13,7 +13,35 @@ export class MusicDataBase {
     
     initializeDb() {
         this.db = new LowSync(new JSONFileSync('file.json'));
-        this.db.data = { (new Set<Song>()) }
+        this.db.songs =  new Set<Song>();
+        this.db.artists =  new Set<Artist>(); 
+        this.db.groups =  new Set<Group>(); 
+        this.db.album =  new Set<Album>();
+        this.db.genre =  new Set<Genre>();
+    }
+
+    constructor() {
+        this.initializeDb;
+    }
+
+    public getSongs(): Set<Song> {
+        return this.db.songs;
+    }
+
+    public getAlbums(): Set<Album> {
+        return this.db.albums;
+    }
+
+    public getArtists(): Set<Artist> {
+        return this.db.artists;
+    }
+
+    public getGroups(): Set<Group> {
+        return this.db.group;
+    }
+
+    public getGenres(): Set<Genre> {
+        return this.db.genres;
     }
 
 }
