@@ -295,12 +295,12 @@ describe("INCLUDE ARTIST IN DATA BASE  TEST", () => {
     let Maluma: Artist = new Artist("Maluma");
     let BobMarley: Artist = new Artist("Bob Marley");
     let DavidGuetta: Artist = new Artist("David Guetta");
-
+/*
     myDataBase.addArtist(Anuel);
     myDataBase.addArtist(Maluma);
     myDataBase.addArtist(BobMarley);
     myDataBase.addArtist(DavidGuetta);   
-    
+*/
     it("Se espera que se puedan añadir artistas a la base de datos", () => {
         let expectedArtist: Set<Artist> = new Set <Artist> ([Anuel, Maluma, BobMarley, DavidGuetta]);
         expect(compareSets(expectedArtist, myDataBase.getArtists())).to.be.equal(true);
