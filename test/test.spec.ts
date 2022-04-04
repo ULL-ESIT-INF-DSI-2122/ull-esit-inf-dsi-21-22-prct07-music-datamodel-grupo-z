@@ -10,7 +10,7 @@ import { compareSets } from '../src/compareSet';
 
 describe("DATABASE EMPTY TEST", () => {
 
-    let myDataBase: MusicDataBase = new MusicDataBase;
+    let myDataBase: MusicDataBase = new MusicDataBase();
 /*
     it("Se espera que al crear una base de datos, no tenga artistas", () => {
         let emptySet: Set<Artist> = new Set<Artist> ();

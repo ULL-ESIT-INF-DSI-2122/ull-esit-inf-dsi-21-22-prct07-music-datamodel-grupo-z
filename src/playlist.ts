@@ -22,7 +22,7 @@ export class Playlist {
         return this.name;
     }
 
-    public getSongs(): Song[] {
+    public getSongs(): Set<Song> {
         return this.songs;
     }
 
