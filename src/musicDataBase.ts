@@ -7,21 +7,22 @@ import { Song } from "./song";
 import { LowSync, JSONFileSync } from 'lowdb'
 
 export class MusicDataBase {
-    private db;
+    private db = new LowSync(new JSONFileSync('file.json'));
     
     initializeDb() {
-        this.db = new LowSync(new JSONFileSync('file.json'));
-        this.db.songs =  new Set<Song>();
-        this.db.artist =  new Set<Artist>(); 
+        this.db.read();
+        this.db.write();
+       /* this.db.songs =  new Set<Song>();
+        this.db.artists =  new Set<Artist>(); 
         this.db.groups =  new Set<Group>(); 
         this.db.album =  new Set<Album>();
-        this.db.genre =  new Set<Genre>();
+        this.db.genre =  new Set<Genre>();*/
     }
 
     constructor() {
         this.initializeDb;
     }
-
+/*
     public getSongs(): Set<Song> {
         return this.db.songs;
     }
@@ -31,7 +32,7 @@ export class MusicDataBase {
     }
 
     public getArtists(): Set<Artist> {
-        return this.db.artist;
+        return this.db.artists;
     }
 
     public getGroups(): Set<Group> {
@@ -40,6 +41,6 @@ export class MusicDataBase {
 
     public getGenres(): Set<Genre> {
         return this.db.genres;
-    }
+    }*/
 
 }

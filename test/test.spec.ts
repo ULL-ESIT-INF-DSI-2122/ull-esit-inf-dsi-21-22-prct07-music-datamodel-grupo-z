@@ -8,11 +8,10 @@ import { Group } from '../src/group';
 import { Album } from '../src/album';
 import { compareSets } from '../src/compareSet';
 
-
 describe("DATABASE EMPTY TEST", () => {
 
-    let myDataBase: MusicDataBase = new MusicDataBase;
-
+    let myDataBase: MusicDataBase = new MusicDataBase();
+/*
     it("Se espera que al crear una base de datos, no tenga artistas", () => {
         let emptySet: Set<Artist> = new Set<Artist> ();
         expect(compareSets(myDataBase.getArtists(), emptySet)).to.be.equal(true)
@@ -48,7 +47,7 @@ describe("DATABASE EMPTY TEST", () => {
         ]);
 
         expect(compareSets(defaultGenres, myDataBase.getGenres())).to.be.eql(true);
-    });
+    });*/
 });
 
 
