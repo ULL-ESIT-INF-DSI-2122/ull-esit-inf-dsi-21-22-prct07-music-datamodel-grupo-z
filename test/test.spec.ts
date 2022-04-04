@@ -248,7 +248,7 @@ describe("GROUP TEST", () => {
 
     it("Se espera que se pueda obtener el año de un grupo con el método getYear", () => {
         expect(WisinYYandel.getYear()).to.be.equal(2001);
-        expect(WisinYYandel.getYear()).to.be.equal(2004);
+        expect(Estopa.getYear()).to.be.equal(2004);
     })
 });
 
