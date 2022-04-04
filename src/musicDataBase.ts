@@ -4,16 +4,15 @@ import { Genre } from "./genre";
 import { Group } from "./group";
 import { Song } from "./song";
 
-import { LowSync, JSONFileSync } from 'lowdb'
-
-
-
-export class MusicDataBase {
-    private db;
+class MusicDataBase {
     
-    initializeDb() {
-        this.db = new LowSync(new JSONFileSync('file.json'));
-        this.db.data = { (new Set<Song>()) }
-    }
+private low = require('lowdb')
+private FileSync = require('lowdb/adapters/FileSync')
 
+private adapter = new this.FileSync('db.json')
+private db = this.low(this.adapter)
+
+    addArtist() {
+
+    }
 }
