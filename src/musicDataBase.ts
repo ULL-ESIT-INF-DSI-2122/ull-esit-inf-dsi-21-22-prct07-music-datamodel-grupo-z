@@ -53,28 +53,23 @@ export class MusicDataBase {
     }
 
     public addGenre(newGenre: Genre) {
-        let newGenres: Set<Genre> = this.getGenres().add(newGenre);
-        this.db.set('genre', newGenres).write();
+        this.db.set('genre', this.getGenres().add(newGenre)).write();
     }
 
     public addArtist(newArtist: Artist) {
-        let newArtists: Set<Artist> = this.getArtists().add(newArtist);
-        this.db.set('artist', newArtists).write();
+        this.db.set('artist', this.getArtists().add(newArtist)).write();
     }
 
     public addGroup(newGroup: Group) {
-        let newGroups: Set<Group> = this.getGroups().add(newGroup);
-        this.db.set('artist', newGroups).write();
+        this.db.set('group', this.getGroups().add(newGroup)).write();
     }
 
     public addSong(newSong: Song) {
-        let newSongs: Set<Song> = this.getSongs().add(newSong);
-        this.db.set('songs', newSongs).write();
+        this.db.set('songs', this.getSongs().add(newSong)).write();
     }
 
     public addAlbum(newAlbum: Album) {
-        let newAlbums: Set<Album> = this.getAlbums().add(newAlbum);
-        this.db.set('albums', newAlbums).write()
+        this.db.set('albums', this.getAlbums().add(newAlbum)).write()
     }
 
     public defaultData() {
