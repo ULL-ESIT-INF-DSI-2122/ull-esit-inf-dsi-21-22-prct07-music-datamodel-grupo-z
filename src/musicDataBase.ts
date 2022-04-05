@@ -66,10 +66,22 @@ export class MusicDataBase {
 
     public addSong(newSong: Song) {
         this.db.set('songs', this.getSongs().add(newSong)).write();
+
+        let artistsUpdated: Set<Artist> = this.getArtists();
+        artistsUpdated.forEach((artist) => {
+            if(artist.getName() === newSong.getCreator().getName()) {
+                artist.addSong(newSong);
+                artist.addGenre(newSong.getGenre());
+                artist.updateListeners(newSong.getTimesListened())
+            }
+        });
+        this.db.set('artist', artistsUpdated).write();
+
+
     }
 
     public addAlbum(newAlbum: Album) {
-        this.db.set('albums', this.getAlbums().add(newAlbum)).write()
+        this.db.set('albums', this.getAlbums().add(newAlbum)).write();
     }
 
     public defaultData() {
@@ -133,8 +145,8 @@ export class MusicDataBase {
         });
 
 
-        let China: Song = new Song("China", Anuel, Reggeton, true, 1000025, 120);
-        let Sola: Song = new Song("Sola", Anuel, Reggeton, true, 458845, 100);
+        let China: Song = new Song("China", Anuel, Reggeton, true, 10000000, 120);
+        let Sola: Song = new Song("Sola", Anuel, Reggeton, true, 50000000, 100);
         let Abusadora: Song = new Song("Abusadora", WisinYYandel, Reggeton, true, 1000025, 110);
 
         let defaultSongs: Set<Song> = new Set<Song>([

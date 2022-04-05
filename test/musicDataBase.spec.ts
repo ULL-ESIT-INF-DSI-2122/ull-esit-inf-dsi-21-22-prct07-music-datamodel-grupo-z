@@ -157,3 +157,72 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
    
 });
 
+
+describe("SE ACTUALIZA CORRECTAMENTE AL AÑADIR INFORMACION", () => {
+    let myDataBase: MusicDataBase = new MusicDataBase;
+    myDataBase.defaultData();
+
+    it("Se actualizan correctamente las canciones al artista al añadir una canción a la base de datos", () => {
+        let a = myDataBase.getArtists();
+        a.forEach((artist) => {
+            switch(artist.getName()) {
+                case 'Anuel': {
+                    expect(artist.getSongs().size).to.be.equal(2);
+                    break;
+                }
+
+                case 'Maluma': {
+                    expect(artist.getSongs().size).to.be.equal(0);
+                    break;
+                }
+
+                default: {
+                    break;
+                }
+            }   
+        });
+    });
+
+
+    it("Se actualizan correctamente los generos relacionados al artista al añadir una canción a la base de datos", () => {
+        let a = myDataBase.getArtists();
+        a.forEach((artist) => {
+            switch(artist.getName()) {
+                case 'Anuel': {
+                    expect(artist.getGenres().size).to.be.equal(1);
+                    break;
+                }
+
+                case 'Maluma': {
+                    expect(artist.getSongs().size).to.be.equal(0);
+                    break;
+                }
+
+                default: {
+                    break;
+                }
+            }   
+        });
+    });
+
+    it("Se actualizan correctamente los oyentes del artista al añadir una canción a la base de datos", () => {
+        let a = myDataBase.getArtists();
+        a.forEach((artist) => {
+            switch(artist.getName()) {
+                case 'Anuel': {
+                    expect(artist.getListeners()).to.be.equal(60000000);
+                    break;
+                }
+
+                case 'Maluma': {
+                    expect(artist.getListeners()).to.be.equal(0);
+                    break;
+                }
+
+                default: {
+                    break;
+                }
+            }   
+        });
+    });
+})
