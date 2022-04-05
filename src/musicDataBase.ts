@@ -19,7 +19,7 @@ export class MusicDataBase {
 
     private db: lowdb.LowdbSync<schemaType>;
         
-    initializeDb() {
+    public initializeDb() {
         this.db = lowdb(new FileSync('database/db.json'));
         this.db.set('songs', new Set<Song>([])).write();
         this.db.set('albums', new Set<Album>([])).write();
@@ -73,6 +73,16 @@ export class MusicDataBase {
                 artist.addSong(newSong);
                 artist.addGenre(newSong.getGenre());
                 artist.updateListeners(newSong.getTimesListened())
+            }
+        });
+        this.db.set('artist', artistsUpdated).write();
+
+        let groupsUpdated: Set<Group> = this.getGroups();
+        groupsUpdated.forEach((group) => {
+            if(group.getName() === newSong.getCreator().getName()) {
+                group.addSong(newSong);
+                group.addGenre(newSong.getGenre());
+                group.updateListeners(newSong.getTimesListened())
             }
         });
         this.db.set('artist', artistsUpdated).write();
