@@ -25,13 +25,16 @@ export class MusicDataBase {
         this.db.set('songs', new Set<Song>([])).write();
         this.db.set('albums', new Set<Album>([])).write();
         this.db.set('groups', new Set<Group>([])).write();
-        this.db.set('genres', new Set<Genre>([])).write();
         this.db.set('artists', new Set<Artist>([])).write();
-
+        this.db.set('genres', new Set<Genre>([])).write();
     }
 
     constructor() {
         this.initializeDb();
+    }
+
+    public defaultData() {
+        this.defaultGenres();
     }
 
     public getSongs(): Set<Song> {
@@ -50,7 +53,25 @@ export class MusicDataBase {
         return this.db.get('groups').value();
     }
 
-    public getGenres(): Set<Genre> {
+    public getGenres() {
         return this.db.get('genres').value();
+
+    }
+
+    private defaultGenres() {
+        let defaultGenres: Set<Genre> = new Set<Genre>([
+            new Genre("Reggaeton"),
+            new Genre("Electronica"),
+            new Genre("Bachata"),
+            new Genre("Pop"),
+            new Genre("Rock"),
+            new Genre("Heavy Metal"),
+            new Genre("Salsa"),
+            new Genre("Rap"),
+            new Genre("Reggae"),
+            new Genre("Trap")      
+        ]);
+
+        this.db.set('genres', defaultGenres).write();
     }
 }

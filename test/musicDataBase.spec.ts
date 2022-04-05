@@ -24,15 +24,26 @@ describe("DATABASE EMPTY TEST", () => {
 
     it("Se espera que al crear una base de datos, no tenga grupos", () => {
         let emptySet: Set<Group> = new Set<Group> ();
-        expect(compareSets(myDataBase.getGroups(), emptySet)).to.be.equal(true)
+        expect(compareSets(myDataBase.getGroups(), emptySet)).to.be.equal(true);
     });
 
     it("Se espera que al crear una base de datos, no tenga albumes", () => {
         let emptySet: Set<Album> = new Set<Album>();
-        expect(compareSets(myDataBase.getAlbums(), emptySet)).to.be.equal(true)
+        expect(compareSets(myDataBase.getAlbums(), emptySet)).to.be.equal(true);
     });
-/*
-    it("Se espera que al crear una base de datos, tenga los géneros por defecto", () => {
+
+    it("Se espera que al crear una base de datos, no tenga géneros", () => {
+        let emptySet: Set<Genre> = new Set<Genre>();
+        expect(compareSets(myDataBase.getGenres(), emptySet)).to.be.equal(true)
+    });
+});
+
+
+describe("CARGA DE LA BASE DE DATOS TESTS", () => {
+    it("Se espera que la base de datos se cargue con los géneros por defecto", () => {
+        let myDataBase: MusicDataBase = new MusicDataBase();
+        myDataBase.defaultData();
+
         let defaultGenres: Set<Genre> = new Set<Genre>([
             new Genre("Reggaeton"),
             new Genre("Electronica"),
@@ -46,28 +57,7 @@ describe("DATABASE EMPTY TEST", () => {
             new Genre("Trap")      
         ]);
 
-        expect(compareSets(defaultGenres, myDataBase.getGenres())).to.be.eql(true);
-    });*/
+        expect(compareSets(myDataBase.getGenres(), defaultGenres)).to.be.equal(true);
+    });
 });
 
-
-/*
-describe("INCLUDE ARTIST IN DATA BASE  TEST", () => {
-
-    let myDataBase: MusicDataBase = new MusicDataBase;
-
-    let Anuel: Artist = new Artist("Anuel");
-    let Maluma: Artist = new Artist("Maluma");
-    let BobMarley: Artist = new Artist("Bob Marley");
-    let DavidGuetta: Artist = new Artist("David Guetta");
-
-    myDataBase.addArtist(Anuel);
-    myDataBase.addArtist(Maluma);
-    myDataBase.addArtist(BobMarley);
-    myDataBase.addArtist(DavidGuetta);   
-
-    it("Se espera que se puedan añadir artistas a la base de datos", () => {
-        let expectedArtist: Set<Artist> = new Set <Artist> ([Anuel, Maluma, BobMarley, DavidGuetta]);
-        expect(compareSets(expectedArtist, myDataBase.getArtists())).to.be.equal(true);
-    });
-});*/
