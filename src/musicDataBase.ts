@@ -15,7 +15,6 @@ type schemaType = {
 }
 
 
-
 export class MusicDataBase {
 
     private db: lowdb.LowdbSync<schemaType>;
@@ -35,6 +34,7 @@ export class MusicDataBase {
 
     public defaultData() {
         this.defaultGenres();
+        this.defaultArtists();
     }
 
     public getSongs(): Set<Song> {
@@ -73,5 +73,30 @@ export class MusicDataBase {
         ]);
 
         this.db.set('genres', defaultGenres).write();
+    }
+
+    private defaultArtists() {
+        let defaultArtists: Set<Artist> = new Set<Artist>([
+            new Artist("Anuel"),
+            new Artist("Bob Marley"),
+            new Artist("Avicii"),
+            new Artist("David Guetta"),
+            new Artist("Celia Cruz"),
+            new Artist("Eminem"),
+            new Artist("Maluma"),
+            new Artist("Wisin"),
+            new Artist("Yandel"),
+            new Artist("David Muñoz"),
+            new Artist("Jose Muñoz"),
+            new Artist("Rihanna"),
+            new Artist("Juan Magan"),
+            new Artist("Ozuna"),
+            new Artist("Freddy Mercury"),
+            new Artist("John Lennon"),
+            new Artist("Morad"),
+            new Artist("Shakira")    
+        ]);
+
+        this.db.set('artists', defaultArtists).write();
     }
 }

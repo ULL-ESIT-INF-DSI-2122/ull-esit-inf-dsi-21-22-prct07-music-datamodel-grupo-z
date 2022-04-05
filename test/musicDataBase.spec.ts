@@ -40,9 +40,10 @@ describe("DATABASE EMPTY TEST", () => {
 
 
 describe("CARGA DE LA BASE DE DATOS TESTS", () => {
+    let myDataBase: MusicDataBase = new MusicDataBase();
+    myDataBase.defaultData();
+
     it("Se espera que la base de datos se cargue con los géneros por defecto", () => {
-        let myDataBase: MusicDataBase = new MusicDataBase();
-        myDataBase.defaultData();
 
         let defaultGenres: Set<Genre> = new Set<Genre>([
             new Genre("Reggaeton"),
@@ -59,5 +60,33 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
         expect(compareSets(myDataBase.getGenres(), defaultGenres)).to.be.equal(true);
     });
+
+
+    it("Se espera que la base de datos se cargue con los artistas por defecto", () => {
+
+        let defaultArtists: Set<Artist> = new Set<Artist>([
+            new Artist("Anuel"),
+            new Artist("Bob Marley"),
+            new Artist("Avicii"),
+            new Artist("David Guetta"),
+            new Artist("Celia Cruz"),
+            new Artist("Eminem"),
+            new Artist("Maluma"),
+            new Artist("Wisin"),
+            new Artist("Yandel"),
+            new Artist("David Muñoz"),
+            new Artist("Jose Muñoz"),
+            new Artist("Rihanna"),
+            new Artist("Juan Magan"),
+            new Artist("Ozuna"),
+            new Artist("Freddy Mercury"),
+            new Artist("John Lennon"),
+            new Artist("Morad"),
+            new Artist("Shakira")    
+        ]);
+
+        expect(compareSets(myDataBase.getArtists(), defaultArtists)).to.be.equal(true);
+    });
+   
 });
 
