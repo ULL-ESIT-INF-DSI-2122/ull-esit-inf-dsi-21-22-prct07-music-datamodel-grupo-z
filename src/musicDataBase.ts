@@ -7,7 +7,7 @@ import { Song } from "./song";
 import { LowSync, JSONFileSync } from 'lowdb'
 
 export class MusicDataBase {
-    private db = new LowSync(new JSONFileSync('file.json'));
+    private db = new LowSync(new JSONFileSync('../database/db.json'));
     
     initializeDb() {
         this.db.read();
