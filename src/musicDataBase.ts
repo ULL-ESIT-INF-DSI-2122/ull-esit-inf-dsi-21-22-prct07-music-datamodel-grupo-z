@@ -32,14 +32,6 @@ export class MusicDataBase {
         this.initializeDb();
     }
 
-    public defaultData() {
-        this.defaultGenres();
-        this.defaultArtists();
-        this.defaultGroups();
-        this.defaultSongs();
-        this.defaultAlbums();
-    }
-
     public getSongs(): Set<Song> {
         return this.db.get('songs').value();
     }
@@ -56,9 +48,8 @@ export class MusicDataBase {
         return this.db.get('groups').value();
     }
 
-    public getGenres() {
+    public getGenres(): Set<Genre> {
         return this.db.get('genres').value();
-
     }
 
     public addGenre(newGenre: Genre) {
@@ -86,125 +77,87 @@ export class MusicDataBase {
         this.db.set('albums', newAlbums).write()
     }
 
-    private defaultGenres() {
+    public defaultData() {
+        let Reggeton: Genre = new Genre("Reggaeton");
+        let Electronica: Genre = new Genre("Electronica");
+        let Bachata: Genre = new Genre("Bachata");
+        let Pop: Genre = new Genre("Pop");
+        let Rock: Genre = new Genre("Rock");
+        let HeavyMetal: Genre = new Genre("Heavy Metal");
+        let Salsa: Genre = new Genre("Salsa");
+        let Rap: Genre = new Genre("Rap");
+        let Reggae: Genre = new Genre("Reggae");
+        let Trap: Genre = new Genre("Trap");
+
         let defaultGenres: Set<Genre> = new Set<Genre>([
-            new Genre("Reggaeton"),
-            new Genre("Electronica"),
-            new Genre("Bachata"),
-            new Genre("Pop"),
-            new Genre("Rock"),
-            new Genre("Heavy Metal"),
-            new Genre("Salsa"),
-            new Genre("Rap"),
-            new Genre("Reggae"),
-            new Genre("Trap")      
+            Reggeton, Electronica, Bachata, Pop, Rock, HeavyMetal, Salsa, Rap, Reggae, Trap
         ]);
 
         defaultGenres.forEach((genre) => {
             this.addGenre(genre);
-        })
-    }
+        });
 
-    private defaultArtists() {
+
+        let Anuel: Artist = new Artist("Anuel");
+        let BobMarley: Artist = new Artist("Bob Marley");
+        let Avicii: Artist = new Artist("Avicii");
+        let DavidGuetta: Artist = new Artist("David Guetta");
+        let CeliaCruz: Artist = new Artist("Celia Cruz");
+        let Eminem: Artist = new Artist("Eminem");
+        let Maluma: Artist = new Artist("Maluma");
+        let Wisin: Artist = new Artist("Wisin");
+        let Yandel: Artist = new Artist("Yandel");
+        let DavidMuñoz: Artist = new Artist("David Muñoz");
+        let JoseMuñoz: Artist = new Artist("Jose Muñoz");
+        let Rihanna: Artist = new Artist("Rihanna");
+        let JuanMagan: Artist = new Artist("Juan Magan");
+        let Ozuna: Artist = new Artist("Ozuna");
+        let FreddyMercury: Artist = new Artist("Freddy Mercury");
+        let JohnLennon: Artist = new Artist("John Lennon");
+        let Morad: Artist = new Artist("Morad");
+        let Shakira: Artist = new Artist("Shakira");
+
         let defaultArtists: Set<Artist> = new Set<Artist>([
-            new Artist("Anuel"),
-            new Artist("Bob Marley"),
-            new Artist("Avicii"),
-            new Artist("David Guetta"),
-            new Artist("Celia Cruz"),
-            new Artist("Eminem"),
-            new Artist("Maluma"),
-            new Artist("Wisin"),
-            new Artist("Yandel"),
-            new Artist("David Muñoz"),
-            new Artist("Jose Muñoz"),
-            new Artist("Rihanna"),
-            new Artist("Juan Magan"),
-            new Artist("Ozuna"),
-            new Artist("Freddy Mercury"),
-            new Artist("John Lennon"),
-            new Artist("Morad"),
-            new Artist("Shakira")    
+            Anuel, BobMarley, Avicii, DavidGuetta, CeliaCruz, Eminem, Maluma, Wisin, Yandel, DavidMuñoz, JoseMuñoz,
+            Rihanna, JuanMagan, Ozuna, FreddyMercury, JohnLennon, Morad, Shakira
         ]);
 
         defaultArtists.forEach((artist) => {
             this.addArtist(artist);
-        })
-    }
+        });
 
-
-    private defaultGroups() {
-        let Wisin: Artist;
-        let Yandel: Artist;
-        let DavidMuñoz: Artist;
-        let JoseMuñoz: Artist;
-
-        this.getArtists().forEach((a) => { if(a.getName() == 'Wisin') Wisin = a});
-        this.getArtists().forEach((a) => { if(a.getName() == 'Yandel') Yandel = a});
-        this.getArtists().forEach((a) => { if(a.getName() == 'David Muñoz') DavidMuñoz = a});
-        this.getArtists().forEach((a) => { if(a.getName() == 'Jose Muñoz') JoseMuñoz = a});
+        let WisinYYandel: Group = new Group("Wisin & Yandel", 2001, new Set<Artist>([Wisin, Yandel]), 12563);
+        let Estopa: Group = new Group("Estopa", 2006, new Set<Artist>([DavidMuñoz, JoseMuñoz]), 4123);
 
         let defaultGroups: Set<Group> = new Set<Group>([
-            new Group("Wisin & Yandel", 2001, new Set<Artist>([Wisin, Yandel]), 12563),
-            new Group("Estopa", 2006, new Set<Artist>([DavidMuñoz, JoseMuñoz]), 4123)
+            WisinYYandel, Estopa
         ]);
 
         defaultGroups.forEach((group) => {
             this.addGroup(group);
-        })
-    }
-
-    private defaultSongs() {
-
-        let WisinYYandel: Group;
-        let Anuel: Artist;
-
-        this.getArtists().forEach((a) => { if(a.getName() == 'Anuel') Anuel = a});
-        this.getGroups().forEach((a) => { if(a.getName() == 'Wisin & Yandel') WisinYYandel = a});
+        });
 
 
-        let Reggeton: Genre;
-
-        this.getGenres().forEach((a) => { if(a.getName() == 'Reggaeton') Reggeton = a});
-
+        let China: Song = new Song("China", Anuel, Reggeton, true, 1000025, 120);
+        let Sola: Song = new Song("Sola", Anuel, Reggeton, true, 458845, 100);
+        let Abusadora: Song = new Song("Abusadora", WisinYYandel, Reggeton, true, 1000025, 110);
 
         let defaultSongs: Set<Song> = new Set<Song>([
-            new Song("China", Anuel, Reggeton, true, 1000025, 120),
-            new Song("Sola", Anuel, Reggeton, true, 458845, 100),
-            new Song("Abusadora", WisinYYandel, Reggeton, true, 1000025, 110),
+            China, Sola, Abusadora
         ]);
 
         defaultSongs.forEach((song) => {
             this.addSong(song)
         });
-    }
 
-
-    private defaultAlbums() {
-
-        let Anuel: Artist;
-
-        this.getArtists().forEach((a) => { if(a.getName() == 'Anuel') Anuel = a});
-
-
-        let Reggeton: Genre;
-
-        this.getGenres().forEach((a) => { if(a.getName() == 'Reggeton') Reggeton = a});
-
-
-        let China: Song;
-        let Sola: Song
-
-        this.getSongs().forEach((a) => { if(a.getName() === "China") { China = a}})
-        this.getSongs().forEach((a) => { if(a.getName() === "Sola") { Sola = a}})
-
+        let RHLM: Album = new Album("Real Hasta La Muerte", Anuel, 100, new Set<Song>([Sola, China]));
 
         let defaultAlbums: Set<Album> = new Set<Album>([
-            new Album("Real Hasta La Muerte", Anuel, 100, new Set<Song>([Sola, China])),
+            RHLM
         ]);
 
         defaultAlbums.forEach((album) => {
             this.addAlbum(album);
-        })
+        });
     }
 }
