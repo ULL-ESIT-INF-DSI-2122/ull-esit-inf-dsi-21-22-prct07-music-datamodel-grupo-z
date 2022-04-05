@@ -3,5 +3,7 @@
   "albums": {},
   "groups": {},
   "artists": {},
-  "genres": {}
+  "genres": {},
+  "genre": {},
+  "artist": {}
 }

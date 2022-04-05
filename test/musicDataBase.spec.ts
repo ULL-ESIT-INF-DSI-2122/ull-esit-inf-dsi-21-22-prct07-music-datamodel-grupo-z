@@ -87,6 +87,73 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
         expect(compareSets(myDataBase.getArtists(), defaultArtists)).to.be.equal(true);
     });
+
+    it("Se espera que la base de datos se cargue con los grupos por defecto", () => {
+        let Wisin: Artist;
+        let Yandel: Artist;
+        let DavidMuñoz: Artist;
+        let JoseMuñoz: Artist;
+
+        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Wisin') Wisin = a});
+        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Yandel') Yandel = a});
+        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'David Muñoz') DavidMuñoz = a});
+        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Jose Muñoz') JoseMuñoz = a});
+
+       let defaultGroups: Set<Group> = new Set<Group>([
+            new Group("Wisin & Yandel", 2001, new Set<Artist>([Wisin, Yandel]), 12563),
+            new Group("Estopa", 2006, new Set<Artist>([DavidMuñoz, JoseMuñoz]), 4123)
+        ]);
+
+        expect(compareSets(myDataBase.getGroups(), defaultGroups)).to.be.equal(true);
+    });
+
+
+    it("Se espera que la base de datos se cargue con las canciones por defecto", () => {
+        let WisinYYandel: Group;
+        let Anuel: Artist;
+
+        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Anuel') Anuel = a});
+        myDataBase.getGroups().forEach((a) => { if(a.getName() == 'Wisin & Yandel') WisinYYandel = a});
+
+
+        let Reggeton: Genre;
+
+        myDataBase.getGenres().forEach((a) => { if(a.getName() == 'Reggaeton') Reggeton = a});
+
+        let defaultSongs: Set<Song> = new Set<Song>([
+            new Song("China", Anuel, Reggeton, true, 1000025, 120),
+            new Song("Sola", Anuel, Reggeton, true, 458845, 100),
+            new Song("Abusadora", WisinYYandel, Reggeton, true, 1000025, 110),
+        ]);
+
+        expect(compareSets(myDataBase.getSongs(), defaultSongs)).to.be.equal(true);
+    });
+
+
+    it("Se espera que al cargar la base de datos esta tenga las canciones por defecto", () => {
+        let Anuel: Artist;
+
+        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Anuel') Anuel = a});
+
+
+        let Reggeton: Genre;
+
+        myDataBase.getGenres().forEach((a) => { if(a.getName() == 'Reggeton') Reggeton = a});
+
+
+        let China: Song;
+        let Sola: Song
+
+        myDataBase.getSongs().forEach((a) => { if(a.getName() === "China") { China = a}})
+        myDataBase.getSongs().forEach((a) => { if(a.getName() === "Sola") { Sola = a}})
+
+
+        let defaultAlbums: Set<Album> = new Set<Album>([
+            new Album("Real Hasta La Muerte", Anuel, 100, new Set<Song>([Sola, China])),
+        ]);
+
+        expect(compareSets(myDataBase.getAlbums(), defaultAlbums)).to.be.equal(true);
+    })
    
 });
 
