@@ -67,4 +67,40 @@ export class Genre {
     public addSong(newSong: Song) {
         this.songs.add(newSong);
     }
+    
+    public same(genre: Genre) {
+        return this.getName() === genre.getName();
+    }
+
+    public print() {
+        console.log(`GENERO: **${this.getName()}**`);
+        if (this.getAlbums().size > 0) {
+            console.log(`\tAlbumes: `)
+            this.getAlbums().forEach(album => {
+                console.log(`\t  - ${album.getName()} - by:  ${album.getCreator()}`);
+            });
+        } else {
+            console.log(`\tEste genero no tiene albumes relacionados`);
+        }
+
+        if (this.getComponents().size > 0) {
+            console.log(`\tArtistas Relacionados: `);
+            this.getComponents().forEach(component => {
+                console.log(`\t  - ${component.getName()}`);
+            });
+        } else {
+            console.log(`\tEste genero no tiene artistas relacionados`);
+        }   
+
+        if (this.getSongs().size > 0) {
+            console.log(`\tCanciones: `);
+            this.getSongs().forEach(song => {
+                console.log(`\t  - ${song.getName()}`);
+            });
+        } else {
+            console.log(`\tEste genero no tiene canciones asociadas`);
+        }
+
+        console.log();
+    }
 }

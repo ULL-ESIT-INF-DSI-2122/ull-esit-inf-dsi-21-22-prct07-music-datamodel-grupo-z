@@ -225,4 +225,47 @@ describe("SE ACTUALIZA CORRECTAMENTE AL AÑADIR INFORMACION", () => {
             }   
         });
     });
+
+    it("Se actualizan correctamente los grupos del artista al añadirlo a un grupo", () => {
+        let a = myDataBase.getArtists();
+        a.forEach((artist) => {
+            switch(artist.getName()) {
+                case 'Anuel': {
+                    expect(artist.getGroups().size).to.be.equal(0);
+                    break;
+                }
+
+                case 'Wisin': {
+                    expect(artist.getGroups().size).to.be.equal(1);
+                    break;
+                }
+
+                default: {
+                    break;
+                }
+            }   
+        });
+    });
+
+
+    it("Se actualizan correctamente los albums del artista al añadir un album a la base de datos", () => {
+        let a = myDataBase.getArtists();
+        a.forEach((artist) => {
+            switch(artist.getName()) {
+                case 'Anuel': {
+                    expect(artist.getAlbums().size).to.be.equal(1);
+                    break;
+                }
+
+                case 'Wisin': {
+                    expect(artist.getAlbums().size).to.be.equal(0);
+                    break;
+                }
+
+                default: {
+                    break;
+                }
+            }   
+        });
+    });
 })

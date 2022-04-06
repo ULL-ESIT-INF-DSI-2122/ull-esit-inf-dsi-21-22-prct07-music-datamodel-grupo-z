@@ -86,10 +86,66 @@ export class Artist {
     }
 
     /**
+     * Añade un nuevo grupo al artista cuando se añade un nuevo grupo al que pertenece a la base de datos. 
+     * @param newSong 
+     */
+    public addGroup(newGroup: Group) {
+        this.groups.add(newGroup);
+    }
+
+    /**
      * Suma los nuevos oyentes al artista cuando se añade una nueva canción
      * @param newData number
      */
     public updateListeners(newData: number) {
         this.listeners += newData;
+    }
+
+    /**
+     * Añade un album a los relacionados con el artista
+     * @param newAlbum Album
+     */
+    public addAlbum(newAlbum: Album) {
+        this.albums.add(newAlbum)
+    }
+
+    public same(artist: Artist | Group): boolean {
+        if (artist instanceof Group) {
+            return false;
+        }
+        return this.getName() === artist.getName();
+    }
+
+    public print() {
+        console.log(`ARTISTA: **${this.getName()}**`);
+        if (this.getAlbums().size > 0) {
+            console.log('\tAlbums:')
+            this.getAlbums().forEach((album) => {
+                console.log(`\t   - ${album.getName()}`);
+
+            });
+        } else {
+            console.log(`\tEste artista no tiene albumes relacionados`);
+        }
+
+        if (this.getSongs().size > 0) {
+            console.log('\tCanciones:')
+            this.getSongs().forEach((song) => {
+                console.log(`\t   - ${song.getName()}`);
+
+            });
+        } else {
+            console.log(`\tEste artista no tiene canciones aun`);
+        }
+
+        if (this.getGenres().size > 0) {
+            console.log('\tGeneros::')
+            this.getGenres().forEach((genre) => {
+                console.log(`\t   - ${genre.getName()}`);
+
+            });
+        } else {
+            console.log(`\tEste artista no tiene generos relacionados aun`);
+        }
     }
 }

@@ -62,6 +62,19 @@ export class MusicDataBase {
 
     public addGroup(newGroup: Group) {
         this.db.set('groups', this.getGroups().add(newGroup)).write();
+
+        let artists: Set<Artist> = newGroup.getArtist();
+        let dbArtists: Set<Artist> = this.getArtists(); 
+        
+        dbArtists.forEach((artist1) => {
+            artists.forEach((artist2) => {
+                if (artist1.same(artist2)) {
+                    artist2.addGroup(newGroup);
+                }
+            })
+        });
+
+        this.db.set('artists', dbArtists).write();
     }
 
 
@@ -70,7 +83,7 @@ export class MusicDataBase {
 
         let artistsUpdated: Set<Artist> = this.getArtists();
         artistsUpdated.forEach((artist) => {
-            if(artist.getName() === newSong.getCreator().getName()) {
+            if(artist.same(newSong.getCreator())) {
                 artist.addSong(newSong);
                 artist.addGenre(newSong.getGenre());
                 artist.updateListeners(newSong.getTimesListened())
@@ -81,7 +94,7 @@ export class MusicDataBase {
 
         let groupsUpdated: Set<Group> = this.getGroups();
         groupsUpdated.forEach((group) => {
-            if(group.getName() === newSong.getCreator().getName()) {
+            if(group.same(newSong.getCreator())) {
                 group.addSong(newSong);
                 group.addGenre(newSong.getGenre());
                 group.updateListeners(newSong.getTimesListened())
@@ -89,10 +102,35 @@ export class MusicDataBase {
         });
         this.db.set('artist', artistsUpdated).write();
 
+        let genresUpdated: Set<Genre> = this.getGenres();
+        genresUpdated.forEach((genre) => {
+            if(genre.same(newSong.getGenre())) {
+                genre.addSong(newSong);
+            }
+        });
+        this.db.set('genres', genresUpdated).write();
+
     }
 
     public addAlbum(newAlbum: Album) {
         this.db.set('albums', this.getAlbums().add(newAlbum)).write();
+
+        let artistsUpdated: Set<Artist> = this.getArtists();
+        artistsUpdated.forEach((artist) => {
+            if(artist.same(newAlbum.getCreator())) {
+                artist.addAlbum(newAlbum);
+            }
+        });
+        this.db.set('artists', artistsUpdated).write();
+
+
+        let groupsUpdated: Set<Group> = this.getGroups();
+        groupsUpdated.forEach((group) => {
+            if(group.same(newAlbum.getCreator())) {
+                group.addAlbum(newAlbum);
+            }
+        });
+        this.db.set('artist', artistsUpdated).write();
     }
 
     public defaultData() {

@@ -84,6 +84,28 @@ export class Song {
     public getMinutes(): number {
         return this.duration.minutes;
     }
+
+    public same(song: Song): boolean {
+        if ((this.getName() === song.getName()) && (this.getIsSingle() === song.getIsSingle())) {
+            if ((this.getTimesListened() === song.getTimesListened()) && (this.getMinutes() === song.getMinutes())) {
+                if ((this.getCreator().same(song.getCreator())) && (this.getGenre().same(song.getGenre()))) {
+                    return true;
+                }
+
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public print() {
+        console.log(`CANCION: **${this.getName()}**`);
+        console.log(`\tAutor: ${this.getCreator().getName()}`);
+        console.log(`\tGenero: ${this.getGenre().getName()}`);
+        console.log(`\tDuracion en minutos: ${this.getMinutes().toFixed(2)}`);
+        console.log(`\tNumero de reproducciones: ${this.getTimesListened()}\n`);
+    }
 }
 
 

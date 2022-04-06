@@ -67,4 +67,40 @@ export class Album {
     public getSongs(): Set<Song> {
         return this.songs;
     }
+
+    public same(album: Album): boolean {
+        if ((this.getName() === album.getName()) && (this.getYear() === album.getYear())) { 
+            this.getSongs().forEach(song1 => {
+                let same: boolean = false;
+                album.getSongs().forEach(song2 => {
+                    if (song1.same(song2)) {
+                        same = true;
+                    }
+                });
+                if (!same) {
+                    return false;
+                }
+            });
+            return true;
+        }
+        return false;
+    }
+
+    public print() {
+        console.log(`ALBUM: **${this.getName()}**`);
+        if (this.getCreator() instanceof Artist) {
+            console.log(`\tCantante: ${this.getCreator().getName()}`)
+        } else {
+            console.log(`\tGrupo: ${this.getCreator()}`);
+        }
+
+        console.log(`\tAño: ${this.getYear()}`);
+
+        console.log(`\tCanciones:`)
+        this.getSongs().forEach(song => {
+            console.log(`\t   - ${song.getName()}`);
+        });
+
+        console.log();
+    }
 };

@@ -98,10 +98,67 @@ export class Group {
     }
 
     /**
+     * Añade un album a los relacionados con el grupo
+     * @param newAlbum Album
+     */
+    public addAlbum(newAlbum: Album) {
+        this.albums.add(newAlbum);
+    }
+
+    /**
      * Actualiza los oyentes del grupo
      * @param newData number
      */
     public updateListeners(newData: number) {
         this.listeners += newData;
+    }
+
+    public same(group: Group | Artist) {
+        if (group instanceof Artist) {
+            return false;
+        }
+
+        if ((this.getName() == group.getName()) && (this.getYear() == group.getYear())) {
+            this.getArtist().forEach(artist1 => {
+                let same: boolean = false;
+                group.getArtist().forEach(artist2 => {
+                    if (artist1.same(artist2)) {
+                        same = true;
+                    }
+                });
+                if (!same) {
+                    return false;
+                }
+            });
+            return true;
+        }
+        return false;
+    }
+    
+    public print() {
+        console.log(`GRUPO: **${this.getName()}**`);
+        console.log('\tComponentes:')
+        this.getArtist().forEach((artist) => {
+            console.log(`\t   - ${artist.getName()}`);
+  
+        });
+
+        console.log('\tCanciones:')
+        this.getSongs().forEach((song) => {
+            console.log(`\t   - ${song.getName()}`);
+  
+        });
+
+        if (this.getAlbums().size > 0) {
+            console.log('\tAlbums:')
+            this.getAlbums().forEach((album) => {
+                console.log(`\t   - ${album.getName()}`);
+
+            });
+        } else {
+            console.log(`\tEste grupo no tiene albumes relacionados`);
+        }
+
+        console.log('\n');
     }
 };
