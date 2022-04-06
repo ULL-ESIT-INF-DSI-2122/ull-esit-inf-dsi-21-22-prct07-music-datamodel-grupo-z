@@ -45,4 +45,8 @@ export class Playlist {
     public getGenres(): Set<Genre> {
         return this.genres;
     }
+
+    public addSong(newSong: Song) {
+        
+    }
 } 
