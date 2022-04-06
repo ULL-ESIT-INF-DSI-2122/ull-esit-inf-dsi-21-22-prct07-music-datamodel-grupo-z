@@ -130,7 +130,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
     });
 
 
-    it("Se espera que al cargar la base de datos esta tenga las canciones por defecto", () => {
+    it("Se espera que al cargar la base de datos esta tenga los albumes por defecto", () => {
         let Anuel: Artist;
 
         myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Anuel') Anuel = a});

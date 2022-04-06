@@ -53,16 +53,17 @@ export class MusicDataBase {
     }
 
     public addGenre(newGenre: Genre) {
-        this.db.set('genre', this.getGenres().add(newGenre)).write();
+        this.db.set('genres', this.getGenres().add(newGenre)).write();
     }
 
     public addArtist(newArtist: Artist) {
-        this.db.set('artist', this.getArtists().add(newArtist)).write();
+        this.db.set('artists', this.getArtists().add(newArtist)).write();
     }
 
     public addGroup(newGroup: Group) {
-        this.db.set('group', this.getGroups().add(newGroup)).write();
+        this.db.set('groups', this.getGroups().add(newGroup)).write();
     }
+
 
     public addSong(newSong: Song) {
         this.db.set('songs', this.getSongs().add(newSong)).write();
@@ -75,7 +76,8 @@ export class MusicDataBase {
                 artist.updateListeners(newSong.getTimesListened())
             }
         });
-        this.db.set('artist', artistsUpdated).write();
+        this.db.set('artists', artistsUpdated).write();
+
 
         let groupsUpdated: Set<Group> = this.getGroups();
         groupsUpdated.forEach((group) => {
@@ -86,7 +88,6 @@ export class MusicDataBase {
             }
         });
         this.db.set('artist', artistsUpdated).write();
-
 
     }
 
