@@ -3,15 +3,20 @@ import { Artist } from "./artist";
 import { Genre } from "./genre";
 import { Group } from "./group";
 import { Song } from "./song";
+import { Playlist } from "./playlist";
+
 import * as lowdb from 'lowdb';
 import * as FileSync from 'lowdb/adapters/FileSync';
+
 
 type schemaType = {
     albums: Set<Album>,
     artists: Set<Artist>,
     groups: Set<Group>,
     genres: Set<Genre>,
-    songs: Set<Song>
+    songs: Set<Song>,
+    users: Set<string>,
+    playlists: Map<string, Set<Playlist>>
 }
 
 
@@ -26,11 +31,15 @@ export class MusicDataBase {
         this.db.set('groups', new Set<Group>([])).write();
         this.db.set('artists', new Set<Artist>([])).write();
         this.db.set('genres', new Set<Genre>([])).write();
+        this.db.set('users', new Set<string>([])).write();
+        this.db.set('playlists', new Map<string, Set<Playlist>>([])).write();
     }
 
     constructor() {
         this.initializeDb();
     }
+
+
 
     public getSongs(): Set<Song> {
         return this.db.get('songs').value();
@@ -50,6 +59,31 @@ export class MusicDataBase {
 
     public getGenres(): Set<Genre> {
         return this.db.get('genres').value();
+    }
+
+    public getUsers(): Set<string> {
+        return this.db.get('users').value();
+    }
+
+    public getPlaylists(): Map<string, Set<Playlist>> {
+        return this.db.get('playlists').value();
+    }
+
+
+    public addSongToPlaylist(user: string, playlist: string, song: Song) {
+        let myPlaylists: Map<string, Set<Playlist>> = this.getPlaylists();
+        myPlaylists.get(user).forEach((pl) => {
+            if (playlist === pl.getName()) {
+                pl.addSong(song);
+            }
+        });
+
+        this.db.set('playlists', myPlaylists).write();   
+    }
+ 
+
+    public addUser(newUser: string) {
+        this.db.set('users', this.getUsers().add(newUser)).write();
     }
 
     public addGenre(newGenre: Genre) {
@@ -77,6 +111,10 @@ export class MusicDataBase {
         this.db.set('artists', dbArtists).write();
     }
 
+
+    public addPlaylist(user: string) {
+        this.db.set('playlists', this.getPlaylists().set(user, new Set<Playlist>([]))).write();
+    }
 
     public addSong(newSong: Song) {
         this.db.set('songs', this.getSongs().add(newSong)).write();
@@ -132,6 +170,8 @@ export class MusicDataBase {
         });
         this.db.set('artist', artistsUpdated).write();
     }
+
+    
 
     public defaultData() {
         let Reggeton: Genre = new Genre("Reggaeton");
