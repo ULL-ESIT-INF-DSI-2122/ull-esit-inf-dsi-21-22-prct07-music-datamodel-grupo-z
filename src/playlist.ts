@@ -47,6 +47,10 @@ export class Playlist {
     }
 
     public addSong(newSong: Song) {
-        
+        this.songs.add(newSong);
+        this.genres.add(newSong.getGenre())
+        this.duration.seconds += newSong.getSeconds();
+        this.duration.minutes += newSong.getMinutes();
+        this.duration.hours += newSong.getMinutes() / 60;
     }
 } 

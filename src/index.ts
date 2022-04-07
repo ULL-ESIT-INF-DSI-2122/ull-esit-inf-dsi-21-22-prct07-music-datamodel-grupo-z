@@ -4,11 +4,13 @@ import { Genre } from "./genre";
 import { Group } from "./group";
 import { MusicDataBase } from "./musicDataBase";
 import { Song } from "./song";
+
 const inquirer = require('inquirer');
 const scanf = require('scanf');
 
 let myDataBase: MusicDataBase = new MusicDataBase();
 myDataBase.defaultData();
+
 
 promptUser()
 
@@ -114,8 +116,6 @@ export function managementDB() {
                 let e = scanf('%s')
                 promptUser();
                 break;
-
-
         }
     });
 }
