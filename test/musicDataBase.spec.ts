@@ -268,4 +268,9 @@ describe("SE ACTUALIZA CORRECTAMENTE AL AÑADIR INFORMACION", () => {
             }   
         });
     });
+
+
+    it("Se pueden ordenar los géneros alfabeticamente", () => {
+        expect(myDataBase.)
+    })
 })
