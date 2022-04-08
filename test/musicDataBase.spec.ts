@@ -154,13 +154,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
         expect(compareSets(myDataBase.getAlbums(), defaultAlbums)).to.be.equal(true);
     })
-   
-});
 
-
-describe("SE ACTUALIZA CORRECTAMENTE AL AÑADIR INFORMACION", () => {
-    let myDataBase: MusicDataBase = new MusicDataBase;
-    myDataBase.defaultData();
 
     it("Se actualizan correctamente las canciones al artista al añadir una canción a la base de datos", () => {
         let a = myDataBase.getArtists();
@@ -271,6 +265,25 @@ describe("SE ACTUALIZA CORRECTAMENTE AL AÑADIR INFORMACION", () => {
 
 
     it("Se pueden ordenar los géneros alfabeticamente", () => {
-        expect(myDataBase.)
-    })
-})
+        let myGenres: Array<Genre> = myDataBase.genreSort();
+        let myGenresNames: Array<string> = [];
+
+        myGenres.forEach((genre: Genre) => {
+            myGenresNames.push(genre.getName());
+        });
+
+        expect(myGenresNames).to.be.eql([
+            "Bachata", 
+            "Electronica",
+            "Heavy Metal",
+            "Pop",
+            "Rap",
+            "Reggae",
+            "Reggaeton",
+            "Rock",
+            "Salsa",
+            "Trap"
+        ]);
+    });
+});
+ 

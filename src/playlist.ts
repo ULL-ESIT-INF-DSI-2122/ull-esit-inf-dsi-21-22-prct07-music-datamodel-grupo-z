@@ -53,4 +53,5 @@ export class Playlist {
         this.duration.minutes += newSong.getMinutes();
         this.duration.hours += newSong.getMinutes() / 60;
     }
+
 } 

@@ -171,7 +171,86 @@ export class MusicDataBase {
         this.db.set('artist', artistsUpdated).write();
     }
 
-    
+    /**
+     * Si el tipo == 0 se ordena por nombre de cancion ascendentemente
+     * Si el tipo == 1 se ordena por nombre de cancion descententemente
+     * Si el tipo == 2 se ordena por numero de reproducciones totales ascententemente
+     * Si el tipo == 3 se ordena por numero de reproducciones totales descendentemente
+     */
+    public songSort(type: number): Array<Song> {
+        let sortedList: Array<Song> = Array.from(this.getSongs());
+        let a: Song;
+        let b: Song;
+        
+        sortedList.sort(function (a, b) {
+            if (type === 0) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else if (type == 2) {
+                return a.getName() > b.getName() ? -1 : 1;
+            } else if (type == 3) {
+                return a.getTimesListened() - b.getTimesListened();
+            } else {
+                return a.getTimesListened() > b.getTimesListened() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
+
+    public albumSort(asc: boolean = true): Array<Album> {
+        let sortedList: Array<Album> = Array.from(this.getAlbums());
+        let a: Album;
+        let b: Album;
+        
+        sortedList.sort(function (a, b) {
+            if (asc) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else {
+                return a.getName() > b.getName() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
+
+    public genreSort(asc: boolean = true): Array<Genre> {
+        let sortedList: Array<Genre> = Array.from(this.getGenres());
+        let a: Genre;
+        let b: Genre;
+        
+        sortedList.sort(function (a, b) {
+            if (asc) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else {
+                return a.getName() > b.getName() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
+    public playListSort(asc: boolean = true): Array<Playlist> {
+        let sortedList: Array<Playlist> = [];
+        Array.from(this.getPlaylists().values()).forEach(playlist => {
+            sortedList.concat(Array.from(playlist));
+        });
+
+        let a: Playlist;
+        let b: Playlist;
+        
+        sortedList.sort(function (a, b) {
+            if (asc) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else {
+                return a.getName() > b.getName() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
 
     public defaultData() {
         let Reggeton: Genre = new Genre("Reggaeton");
