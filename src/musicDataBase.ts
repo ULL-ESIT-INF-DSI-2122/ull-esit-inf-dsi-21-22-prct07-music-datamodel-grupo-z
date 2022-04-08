@@ -214,6 +214,22 @@ export class MusicDataBase {
         return sortedList;
     }
 
+    public artistSort(asc: boolean = true): Array<Artist> {
+        let sortedList: Array<Artist> = Array.from(this.getArtists());
+        let a: Artist;
+        let b: Artist;
+        
+        sortedList.sort(function (a, b) {
+            if (asc) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else {
+                return a.getName() > b.getName() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
 
     public genreSort(asc: boolean = true): Array<Genre> {
         let sortedList: Array<Genre> = Array.from(this.getGenres());
