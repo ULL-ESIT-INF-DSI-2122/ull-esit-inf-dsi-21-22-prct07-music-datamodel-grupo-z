@@ -113,8 +113,9 @@ export class MusicDataBase {
     }
 
 
-    public addPlaylist(user: string) {
-        this.db.set('playlists', this.getPlaylists().set(user, new Array<Playlist>([]))).write();
+    public addPlaylist(newPlaylist: Playlist) {
+        // Metodo de busqueda por usuario 
+        this.db.set('playlists', newPlaylist).write();
     }
 
     public addSong(newSong: Song) {
@@ -152,7 +153,7 @@ export class MusicDataBase {
     }
 
     public addAlbum(newAlbum: Album) {
-        this.db.set('albums', this.getAlbums().add(newAlbum)).write();
+        this.db.set('albums', newAlbum).write();
 
         let artistsUpdated: Array<Artist> = this.getArtists();
         artistsUpdated.forEach((artist) => {
@@ -179,7 +180,8 @@ export class MusicDataBase {
      * Si el tipo == 3 se ordena por numero de reproducciones totales descendentemente
      */
     public songSort(type: number): Array<Song> {
-        let sortedList: Array<Song> = Array.from(this.getSongs());
+        let sortedList: Array<Song> = this.getSongs();
+
         let a: Song;
         let b: Song;
         
@@ -200,7 +202,8 @@ export class MusicDataBase {
 
 
     public albumSort(asc: boolean = true): Array<Album> {
-        let sortedList: Array<Album> = Array.from(this.getAlbums());
+        let sortedList: Array<Album> = this.getAlbums();
+
         let a: Album;
         let b: Album;
         
@@ -216,7 +219,8 @@ export class MusicDataBase {
     }
 
     public artistSort(asc: boolean = true): Array<Artist> {
-        let sortedList: Array<Artist> = Array.from(this.getArtists());
+        let sortedList: Array<Artist> = this.getArtists();
+
         let a: Artist;
         let b: Artist;
         
@@ -233,7 +237,8 @@ export class MusicDataBase {
 
 
     public genreSort(asc: boolean = true): Array<Genre> {
-        let sortedList: Array<Genre> = Array.from(this.getGenres());
+        let sortedList: Array<Genre> = this.getGenres();
+
         let a: Genre;
         let b: Genre;
         
@@ -249,10 +254,7 @@ export class MusicDataBase {
     }
 
     public playListSort(asc: boolean = true): Array<Playlist> {
-        let sortedList: Array<Playlist> = [];
-        Array.from(this.getPlaylists().values()).forEach(playlist => {
-            sortedList.concat(Array.from(playlist));
-        });
+        let sortedList: Array<Playlist> = this.getPlaylists();
 
         let a: Playlist;
         let b: Playlist;
@@ -281,9 +283,9 @@ export class MusicDataBase {
         let Reggae: Genre = new Genre("Reggae");
         let Trap: Genre = new Genre("Trap");
 
-        let defaultGenres: Array<Genre> = new Array<Genre>([
-            Reggeton, Electronica, Bachata, Pop, Rock, HeavyMetal, Salsa, Rap, Reggae, Trap
-        ]);
+        let defaultGenres: Array<Genre> = [
+            Reggeton, Electronica, Bachata, Pop, Rock, HeavyMetal, Salsa, Rap, Reggae, Trap 
+        ];
 
         defaultGenres.forEach((genre) => {
             this.addGenre(genre);
@@ -309,21 +311,21 @@ export class MusicDataBase {
         let Morad: Artist = new Artist("Morad");
         let Shakira: Artist = new Artist("Shakira");
 
-        let defaultArtists: Array<Artist> = new Array<Artist>([
+        let defaultArtists: Array<Artist> = [
             Anuel, BobMarley, Avicii, DavidGuetta, CeliaCruz, Eminem, Maluma, Wisin, Yandel, DavidMuñoz, JoseMuñoz,
             Rihanna, JuanMagan, Ozuna, FreddyMercury, JohnLennon, Morad, Shakira
-        ]);
+        ];
 
         defaultArtists.forEach((artist) => {
             this.addArtist(artist);
         });
 
-        let WisinYYandel: Group = new Group("Wisin & Yandel", 2001, new Array<Artist>([Wisin, Yandel]), 12563);
-        let Estopa: Group = new Group("Estopa", 2006, new Array<Artist>([DavidMuñoz, JoseMuñoz]), 4123);
+        let WisinYYandel: Group = new Group("Wisin & Yandel", 2001, [Wisin, Yandel], 12563);
+        let Estopa: Group = new Group("Estopa", 2006, [DavidMuñoz, JoseMuñoz], 4123);
 
-        let defaultGroups: Array<Group> = new Array<Group>([
+        let defaultGroups: Array<Group> = [
             WisinYYandel, Estopa
-        ]);
+        ];
 
         defaultGroups.forEach((group) => {
             this.addGroup(group);
@@ -340,11 +342,11 @@ export class MusicDataBase {
             this.addSong(song)
         });
 
-        let RHLM: Album = new Album("Real Hasta La Muerte", Anuel, 100, new Array<Song>([Sola, China]));
+        let RHLM: Album = new Album("Real Hasta La Muerte", Anuel, 100, [Sola, China]);
 
-        let defaultAlbums: Array<Album> = new Array<Album>([
+        let defaultAlbums: Array<Album> = [
             RHLM
-        ]);
+        ];
 
         defaultAlbums.forEach((album) => {
             this.addAlbum(album);
