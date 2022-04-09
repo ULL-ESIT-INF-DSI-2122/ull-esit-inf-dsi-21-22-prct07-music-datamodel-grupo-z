@@ -64,7 +64,9 @@ El constructor de esta clase recibe todos sus atributos excepto duration, en vez
 //código de constructor y los atributos de artist 
 
   
-### Clase Group 
+### Clase Group
+La clase Group, tiene los siguientes atribustos privados:
+  
   - genres, un Array<Genre> donde se almacenan los géneros de los que el grupo ha sacado alguna canción. 
   - albums, un Array<Albums> donde se almacenan los albumsque el grupo ha lanzado.
   - songs, un Array<Song> donde se guardan las canciones que el grupo ha sacado. 
@@ -75,6 +77,22 @@ El constructor de esta clase recibe todos sus atributos excepto duration, en vez
   
 En el constructor de esta clase, se reciben los parámeteros name, year, artist y listeners. El resto de atributos, se van actualizando a medida que se añaden nuevas canciones, ábunes etc. a la base de datos. 
 
+// Código del constructor y los atributos privados de group. 
+  
+  
+### Clase Álbum
+La clase álbum, tiene los siguientes atributos privados:
+  
+  - name. de tipo string que guarda el nombre del álbum. 
+  - creator, de tipo Artist | Group, donde se almacena el creador del álbum ya sea un artista individual o un grupo. 
+  - genres, de tipo Array<Genre> donde se guardan todos los géneros del álbum. 
+  - year, de tipo number donde se almacena el año de lanzamiento del disco. 
+  - songs, de tipo Array<Songs> que guarda todas las canciones del álbum. 
+  
+El constructor de esta clase recibe los parámetros name, creator, year y songs. El atributo genres, se calcula a paritr de los géneros de las canciones.
+                                
+                                
+                        
 
 
 
