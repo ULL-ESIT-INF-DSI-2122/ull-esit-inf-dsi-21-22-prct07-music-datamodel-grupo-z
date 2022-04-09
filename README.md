@@ -47,6 +47,7 @@ La clase Artist tiene los siguientes atributos privados:
   
  Desde el constructor de la función únicamente se recibe el nombre del artista ya que el resto de atributos se van actualizando a medida se añaden canciones, grupos etc. a la base de datos mediante los métodos de actualización comentados previamente.
   
+//código de constructor y los atributos de artist 
   
 ### Clase Song
   
@@ -58,8 +59,21 @@ La clase tiene los siguientes atributos privados:
   - timesListened, de tipo number que almacena las veces que ha sido escuchada la canción. 
   - duration de tipo Time que guarda la duración de la canción en segundos, minutos y horas.
   
-El constructor de esta clase recibe todos sus atributos excepto duration, en vez de el, se recibe un number con la duración en segundos y a partir de el se calcula el resto de parámetros del tipo time. 
+El constructor de esta clase recibe todos sus atributos excepto duration, en vez de el, se recibe un number con la duración en segundos y a partir de el se calcula el resto de parámetros del tipo time.
   
+//código de constructor y los atributos de artist 
+
+  
+### Clase Group 
+  - genres, un Array<Genre> donde se almacenan los géneros de los que el grupo ha sacado alguna canción. 
+  - albums, un Array<Albums> donde se almacenan los albumsque el grupo ha lanzado.
+  - songs, un Array<Song> donde se guardan las canciones que el grupo ha sacado. 
+  - name, de tipo string  donde se guarda el nombre del grupo. 
+  - year, de tipo number con el año de creación del grupo. 
+  - listeners, de tipo number donde se guarda el número de veces que se ha escuchado el grupo. Se calcula a partir de todas las canciones relacionadas al grupo.
+  - artists, de tipo Array<Artist> donde se alamcenan los aritstas que componen el grupo.
+  
+En el constructor de esta clase, se reciben los parámeteros name, year, artist y listeners. El resto de atributos, se van actualizando a medida que se añaden nuevas canciones, ábunes etc. a la base de datos. 
 
 
 
