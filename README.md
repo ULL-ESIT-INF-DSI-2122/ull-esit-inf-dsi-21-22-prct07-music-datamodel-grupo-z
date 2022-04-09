@@ -43,20 +43,20 @@ La clase Artist tiene los siguientes atributos privados:
   - groups, de tipo Array<Group> con todos los grupos de los que el artista es miembro.
   - albums, un Array<Album> con todos los albums que ha lanzado el artista.
   - songs, de tipos Array<Song> donde se guardan todas las canciones que ha sacado el artista.
-  - name, un string con el nombre del artista
+  - name, un string con el nombre del artista.
   
  Desde el constructor de la función únicamente se recibe el nombre del artista ya que el resto de atributos se van actualizando a medida se añaden canciones, grupos etc. a la base de datos mediante los métodos de actualización comentados previamente.
   
   
-  ### Clase Song
+### Clase Song
   
- La clase tiene los siguientes atributos privados: 
-    - name, de tipo string que almacena el nombre de la canción. 
-    - creator, de tipo Artist | Group, donde se guarda el creador de la canción ya sea un artista o un grupo. 
-    - isSingel, de tipo booleam donde se guarda si la canción es un single, true en caso afirmativo, false en el contrario. 
-    - genre, de tipo Genre donde se almacena el género de la canción. 
-    - timesListened, de tipo number que almacena las veces que ha sido escuchada la canción. 
-    - duration de tipo Time que guarda la duración de la canción en segundos, minutos y horas.
+La clase tiene los siguientes atributos privados: 
+  - name, de tipo string que almacena el nombre de la canción. 
+  - creator, de tipo Artist | Group, donde se guarda el creador de la canción ya sea un artista o un grupo. 
+  - isSingel, de tipo booleam donde se guarda si la canción es un single, true en caso afirmativo, false en el contrario. 
+  - genre, de tipo Genre donde se almacena el género de la canción. 
+  - timesListened, de tipo number que almacena las veces que ha sido escuchada la canción. 
+  - duration de tipo Time que guarda la duración de la canción en segundos, minutos y horas.
   
 El constructor de esta clase recibe todos sus atributos excepto duration, en vez de el, se recibe un number con la duración en segundos y a partir de el se calcula el resto de parámetros del tipo time. 
   
