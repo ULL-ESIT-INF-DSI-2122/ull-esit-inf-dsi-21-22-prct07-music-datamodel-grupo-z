@@ -80,7 +80,7 @@ En el constructor de esta clase, se reciben los parámeteros name, year, artist 
 // Código del constructor y los atributos privados de group. 
   
   
-### Clase Álbum
+### Clase Album
 La clase álbum, tiene los siguientes atributos privados:
   
   - name. de tipo string que guarda el nombre del álbum. 
@@ -89,7 +89,7 @@ La clase álbum, tiene los siguientes atributos privados:
   - year, de tipo number donde se almacena el año de lanzamiento del disco. 
   - songs, de tipo Array<Songs> que guarda todas las canciones del álbum. 
   
-El constructor de esta clase recibe los parámetros name, creator, year y songs. El atributo genres, se calcula a paritr de los géneros de las canciones.
+El constructor de esta clase recibe los parámetros name, creator, year y songs. El atributo genres, se calcula a partir de los géneros de las canciones.
                                 
                                 
                         
