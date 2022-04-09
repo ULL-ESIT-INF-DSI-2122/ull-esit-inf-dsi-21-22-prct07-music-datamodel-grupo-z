@@ -80,7 +80,7 @@ export function managementDB() {
 
             case 'Gestionar grupos':
                 console.log("Mi base de datos musical")
-                let myGroups: Set<Group> = myDataBase.getGroups() ;
+                let myGroups: Array<Group> = myDataBase.getGroups() ;
                 myGroups.forEach((group: Group) => {
                     group.print();
                 });
@@ -91,7 +91,7 @@ export function managementDB() {
 
             case 'Gestionar albums':
                 console.log("Mi base de datos musical")
-                let myAlbums: Set<Album> = myDataBase.getAlbums() ;
+                let myAlbums: Array<Album> = myDataBase.getAlbums() ;
                 myAlbums.forEach((album: Album) => {
                     album.print();
                 });
