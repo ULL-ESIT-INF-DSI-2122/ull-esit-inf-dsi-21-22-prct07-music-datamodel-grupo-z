@@ -14,7 +14,7 @@ type schemaType = {
     artists: Set<Artist>,
     groups: Set<Group>,
     genres: Set<Genre>,
-    songs: Set<Song>,
+    songs: Array <Song>,
     users: Set<string>,
     playlists: Map<string, Set<Playlist>>
 }
@@ -26,7 +26,7 @@ export class MusicDataBase {
         
     public initializeDb() {
         this.db = lowdb(new FileSync('database/db.json'));
-        this.db.set('songs', new Set<Song>([])).write();
+        this.db.set('songs', new Array<Song>()).write();
         this.db.set('albums', new Set<Album>([])).write();
         this.db.set('groups', new Set<Group>([])).write();
         this.db.set('artists', new Set<Artist>([])).write();
@@ -41,7 +41,7 @@ export class MusicDataBase {
 
 
 
-    public getSongs(): Set<Song> {
+    public getSongs(): Array<Song> {
         return this.db.get('songs').value();
     }
 
@@ -117,7 +117,7 @@ export class MusicDataBase {
     }
 
     public addSong(newSong: Song) {
-        this.db.set('songs', this.getSongs().add(newSong)).write();
+        this.db.set('songs', newSong).write();
 
         let artistsUpdated: Set<Artist> = this.getArtists();
         artistsUpdated.forEach((artist) => {
@@ -138,7 +138,7 @@ export class MusicDataBase {
                 group.updateListeners(newSong.getTimesListened())
             }
         });
-        this.db.set('artist', artistsUpdated).write();
+        this.db.set('artists', artistsUpdated).write();
 
         let genresUpdated: Set<Genre> = this.getGenres();
         genresUpdated.forEach((genre) => {
@@ -168,7 +168,7 @@ export class MusicDataBase {
                 group.addAlbum(newAlbum);
             }
         });
-        this.db.set('artist', artistsUpdated).write();
+        this.db.set('artists', artistsUpdated).write();
     }
 
     /**
@@ -260,7 +260,7 @@ export class MusicDataBase {
             if (asc) {
                 return a.getName() > b.getName() ? 1 : -1;
             } else {
-                return a.getName() > b.getName() ? -1 : 1;
+              return a.getName() > b.getName() ? -1 : 1;
             }
         });
 
@@ -333,9 +333,7 @@ export class MusicDataBase {
         let Sola: Song = new Song("Sola", Anuel, Reggeton, true, 50000000, 100);
         let Abusadora: Song = new Song("Abusadora", WisinYYandel, Reggeton, true, 1000025, 110);
 
-        let defaultSongs: Set<Song> = new Set<Song>([
-            China, Sola, Abusadora
-        ]);
+        let defaultSongs: Array<Song> = [China, Sola, Abusadora];
 
         defaultSongs.forEach((song) => {
             this.addSong(song)

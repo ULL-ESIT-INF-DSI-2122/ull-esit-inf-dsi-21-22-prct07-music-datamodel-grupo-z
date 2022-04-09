@@ -1,5 +1,4 @@
 {
-  "songs": {},
   "albums": {},
   "groups": {},
   "artists": {},
@@ -7,5 +6,30 @@
   "artist": {},
   "genre": {},
   "playlists": {},
-  "users": {}
+  "users": {},
+  "songs": {
+    "name": "Abusadora",
+    "creator": {
+      "name": "Wisin & Yandel",
+      "year": 2001,
+      "artists": {},
+      "listeners": 1012588,
+      "genres": {},
+      "albums": {},
+      "songs": {}
+    },
+    "genre": {
+      "name": "Reggaeton",
+      "components": {},
+      "albums": {},
+      "songs": {}
+    },
+    "isSingle": true,
+    "timesListened": 1000025,
+    "duration": {
+      "hours": 0.030555555555555555,
+      "minutes": 1.8333333333333333,
+      "seconds": 110
+    }
+  }
 }
