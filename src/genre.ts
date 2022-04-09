@@ -8,9 +8,9 @@ import { Song } from "./song";
  */
 export class Genre {
 
-    private components: Set<Artist | Group> = new Set<Artist | Group> ();
-    private albums: Set<Album> = new Set<Album>();
-    private songs: Set<Song> = new Set<Song> ();
+    private components: Array<Artist | Group> = new Array<Artist | Group> ();
+    private albums: Array<Album> = new Array<Album>();
+    private songs: Array<Song> = new Array<Song> ();
 
     /**
      * Constructor de la clase Genre. Recibe el nombre del género
@@ -30,25 +30,25 @@ export class Genre {
 
     /**
      * Devuelve un conjunto con los artistas y grupos que han lanzado canciones del género
-     * @returns Set<Artist | Group>
+     * @returns Array<Artist | Group>
      */
-    public getComponents(): Set<Artist | Group> {
+    public getComponents(): Array<Artist | Group> {
         return this.components;
     }
 
     /**
      * Devuelve los albums del género
-     * @returns Set<Album>
+     * @returns Array<Album>
      */
-    public getAlbums(): Set<Album> {
+    public getAlbums(): Array<Album> {
         return this.albums;
     }
 
     /**
      * Devuelve las canciones de el género
-     * @returns Set<Song>
+     * @returns Array<Song>
      */
-    public getSongs(): Set<Song> {
+    public getSongs(): Array<Song> {
         return this.songs
     }
 
@@ -57,7 +57,7 @@ export class Genre {
      * @param newArtit Artist | Group
      */
     public addArtist(newArtist: Artist | Group) {
-        this.components.add(newArtist)
+        this.components.push(newArtist)
     }
 
     /**
@@ -65,7 +65,7 @@ export class Genre {
      * @param newSong Song
      */
     public addSong(newSong: Song) {
-        this.songs.add(newSong);
+        this.songs.push(newSong);
     }
     
     public same(genre: Genre) {
@@ -74,7 +74,7 @@ export class Genre {
 
     public print() {
         console.log(`GENERO: **${this.getName()}**`);
-        if (this.getAlbums().size > 0) {
+        if (this.getAlbums().length > 0) {
             console.log(`\tAlbumes: `)
             this.getAlbums().forEach(album => {
                 console.log(`\t  - ${album.getName()} - by:  ${album.getCreator()}`);
@@ -83,7 +83,7 @@ export class Genre {
             console.log(`\tEste genero no tiene albumes relacionados`);
         }
 
-        if (this.getComponents().size > 0) {
+        if (this.getComponents().length > 0) {
             console.log(`\tArtistas Relacionados: `);
             this.getComponents().forEach(component => {
                 console.log(`\t  - ${component.getName()}`);
@@ -92,7 +92,7 @@ export class Genre {
             console.log(`\tEste genero no tiene artistas relacionados`);
         }   
 
-        if (this.getSongs().size > 0) {
+        if (this.getSongs().length > 0) {
             console.log(`\tCanciones: `);
             this.getSongs().forEach(song => {
                 console.log(`\t  - ${song.getName()}`);
@@ -102,5 +102,30 @@ export class Genre {
         }
 
         console.log();
+    }
+
+
+    public has(element: Artist | Group | Album | Song): boolean {
+        if (element instanceof (Artist || Group)) {
+            this.getComponents().forEach(component => {
+                if(component.same(element)) {
+                    return true;
+                }
+            });
+        } else if (element instanceof Album) {
+            this.getAlbums().forEach(album => {
+                if (album.same(element)) {
+                    return true;
+                }
+            });
+        } else if (element instanceof Song) {
+            this.getSongs().forEach(song => {
+                if (song.same(element)) {
+                    return true;
+                }
+            });
+        }
+        
+        return false;
     }
 }

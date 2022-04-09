@@ -7,24 +7,24 @@ import { Song } from "./song";
  * Clase que define un album con sus atributos y métodos
  */
 export class Album {
-    private genres: Set<Genre> = new Set<Genre> ();
+    private genres: Array<Genre> = new Array<Genre> ();
 
     /**
      * Constructor de la clase album. Recibe el nombre, creador, año y canciones. Los géneros asociados
      * se calculan a partir de las canciones
      * @param name string
-     * @param creator Artist | Song
+     * @param creator Artist | Group
      * @param year number
-     * @param songs Set<Song>
+     * @param songs Array<Song>
      */
     constructor(
         private name: string,
         private creator: Artist | Group,
         private year: number,
-        private songs: Set<Song> = new Set<Song> ()
+        private songs: Array<Song> = new Array<Song> ()
     ) {
         songs.forEach((item: Song) => {
-            this.genres.add(item.getGenre());
+            this.genres.push(item.getGenre());
         });
     }
 
@@ -54,17 +54,17 @@ export class Album {
 
     /**
      * Devuelve los géneros del album
-     * @returns Set<Genre>
+     * @returns Array<Genre>
      */
-    public getGenres(): Set<Genre> {
+    public getGenres(): Array<Genre> {
         return this.genres;
     }
 
     /**
      * Devuelve las canciones del album
-     * @returns Set<Song>
+     * @returns Array<Song>
      */
-    public getSongs(): Set<Song> {
+    public getSongs(): Array<Song> {
         return this.songs;
     }
 
@@ -102,5 +102,27 @@ export class Album {
         });
 
         console.log();
+    }
+
+    public has(element: Genre | Artist | Group | Song): boolean {
+        if (element instanceof Genre) {
+            this.getGenres().forEach(album => {
+                if (album.same(element)) {
+                    return true;
+                }
+            });
+        } else if (element instanceof (Artist || Group)) {
+            if (this.getCreator().same(element)) {
+                    return true;
+            }
+        } else if (element instanceof Song) {
+            this.getSongs().forEach(song => {
+                if (song.same(element)) {
+                    return true;
+                }
+            });
+        }
+
+        return false;
     }
 };
