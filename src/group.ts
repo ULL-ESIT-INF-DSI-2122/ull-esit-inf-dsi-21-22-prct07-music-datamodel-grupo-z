@@ -7,29 +7,29 @@ import { Song } from "./song";
  * Clase que define un grupo de cantantes con sus atributos y métodos
  */
 export class Group {
-    private genres: Set<Genre> = new Set<Genre>();
-    private albums: Set<Album> = new Set<Album>();
-    private songs: Set<Song> = new Set<Song>();
+    private genres: Array<Genre> = new Array<Genre>();
+    private albums: Array<Album> = new Array<Album>();
+    private songs: Array<Song> = new Array<Song>();
 
     /**
      * Constructor de la clase Group. Recibe el nombre, año de creación, artistas y oyentes.
      * @param name string
      * @param year number
-     * @param artists Set<Artists>
+     * @param artists Array<Artists>
      * @param listeners number
      */
     constructor(
         private name: string,
         private year: number,
-        private artists: Set<Artist>,
+        private artists: Array<Artist>,
         private listeners: number
     ) {}
 
     /**
      * Devuelve los artistas que componen el grupo
-     * @returns Set<Artist>
+     * @returns Array<Artist>
      */
-    public getArtist(): Set<Artist> {
+    public getArtist(): Array<Artist> {
         return this.artists;
     }
 
@@ -43,9 +43,9 @@ export class Group {
 
     /**
      * Devuelve los albums del grupo
-     * @returns Set<Album>
+     * @returns Array<Album>
      */
-    public getAlbums(): Set<Album> {
+    public getAlbums(): Array<Album> {
         return this.albums;
     }
 
@@ -59,17 +59,17 @@ export class Group {
 
     /**
      * Devuelve los géneros asociados con el grupo
-     * @returns Set<Genre>
+     * @returns Array<Genre>
      */
-    public getGenres(): Set<Genre> {
+    public getGenres(): Array<Genre> {
         return this.genres;
     }
 
     /**
      * Devuelve las canciones del grupo
-     * @returns Set<Song>
+     * @returns Array<Song>
      */
-    public getSongs(): Set<Song> {
+    public getSongs(): Array<Song> {
         return this.songs;
     }
 
@@ -86,7 +86,7 @@ export class Group {
      * @param newGenre Genre
      */
     public addGenre(newGenre: Genre) {
-        this.genres.add(newGenre);
+        this.genres.push(newGenre);
     }
 
     /**
@@ -94,7 +94,7 @@ export class Group {
      * @param newSong Song
      */
     public addSong(newSong: Song) {
-        this.songs.add(newSong);
+        this.songs.push(newSong);
     }
 
     /**
@@ -102,7 +102,7 @@ export class Group {
      * @param newAlbum Album
      */
     public addAlbum(newAlbum: Album) {
-        this.albums.add(newAlbum);
+        this.albums.push(newAlbum);
     }
 
     /**
@@ -149,7 +149,7 @@ export class Group {
   
         });
 
-        if (this.getAlbums().size > 0) {
+        if (this.getAlbums().length > 0) {
             console.log('\tAlbums:')
             this.getAlbums().forEach((album) => {
                 console.log(`\t   - ${album.getName()}`);
@@ -160,5 +160,35 @@ export class Group {
         }
 
         console.log('\n');
+    }
+
+    public has(element: Genre | Artist | Album | Song): boolean {
+        if (element instanceof Genre) {
+            this.getGenres().forEach(genre => {
+                if(genre.same(element)) {
+                    return true;
+                }
+            });
+        } else if (element instanceof Artist) {
+            this.getArtist().forEach(artist => {
+                if(artist.same(element)) {
+                    return true;
+                }
+            });
+        } else if (element instanceof Album) {
+            this.getAlbums().forEach(album => {
+                if (album.same(element)) {
+                    return true;
+                }
+            });
+        } else if (element instanceof Song) {
+            this.getSongs().forEach(song => {
+                if (song.same(element)) {
+                    return true;
+                }
+            });
+        }
+        
+        return false;
     }
 };
