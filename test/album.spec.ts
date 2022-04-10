@@ -4,7 +4,7 @@ import { Artist } from '../src/artist';
 import { Song } from '../src/song'
 import { Genre } from '../src/genre';
 import { Album } from '../src/album';
-import { compareSets } from '../src/compareSet';
+import { areEqual } from '../src/compareSet';
 
 describe("ALBUM TEST", () => {
     let Reggeton: Genre = new Genre("Reggeton");
@@ -19,8 +19,8 @@ describe("ALBUM TEST", () => {
     let WakeMeUp: Song = new Song("Wake Me Up", Avicii, Electronic, false, 485285, 101);
     let HeyBrother: Song = new Song("Hey Brother", Avicii, Electronic, false, 15574, 155);
 
-    let EasyMoney: Album = new Album("Easy Money", MykeTowers, 2020, new Set<Song>([Diosa, MIB]));
-    let True: Album = new Album("True", Avicii, 2013, new Set<Song>([WakeMeUp, HeyBrother]));
+    let EasyMoney: Album = new Album("Easy Money", MykeTowers, 2020, new Array<Song>(Diosa, MIB));
+    let True: Album = new Album("True", Avicii, 2013, new Array<Song>(WakeMeUp, HeyBrother));
 
 
     it("Se espera que se pueda acceder al nombre del album con el método getName()", () => {
@@ -38,14 +38,13 @@ describe("ALBUM TEST", () => {
         expect(True.getCreator()).to.be.equal(Avicii);
     });
 
-    it("Se espera que se pueda acceder a los oyentes del album con el método getListeners()", () => {
-        expect(compareSets(EasyMoney.getGenres(), new Set<Genre>([Reggeton]))).to.be.equal(true);
-        expect(compareSets(EasyMoney.getGenres(), new Set<Genre>([Electronic]))).to.be.equal(true);
+    it("Se espera que se pueda acceder a los géneros del album con el método getGenres()", () => {
+        expect(areEqual(EasyMoney.getGenres(), new Array<Genre>(Reggeton))).to.be.equal(true);
+        expect(areEqual(True.getGenres(), new Array<Genre>(Electronic))).to.be.equal(true);
     });
 
     it ("Se espera que se pueda acceder a las canciones del album con el metodo getSongs()", () => {
-        expect(compareSets(EasyMoney.getSongs(), new Set<Song>([MIB, Diosa]))).to.be.equal(true);
-        expect(compareSets(True.getSongs(), new Set<Song>([WakeMeUp, HeyBrother]))).to.be.equal(true);
+        expect(areEqual(EasyMoney.getSongs(), new Array<Song>(MIB, Diosa))).to.be.equal(true);
+        expect(areEqual(True.getSongs(), new Array<Song>(WakeMeUp, HeyBrother))).to.be.equal(true);
     });
-
 });

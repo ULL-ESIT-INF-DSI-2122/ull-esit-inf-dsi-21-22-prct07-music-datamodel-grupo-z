@@ -102,7 +102,12 @@
     "songs": []
   },
   "artists": [],
-  "genres": [],
+  "genres": {
+    "name": "Trap",
+    "components": [],
+    "albums": [],
+    "songs": []
+  },
   "artist": {},
   "genre": {},
   "playlists": {},

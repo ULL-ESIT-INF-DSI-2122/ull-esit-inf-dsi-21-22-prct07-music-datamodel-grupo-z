@@ -23,7 +23,7 @@ export class Album {
         private year: number,
         private songs: Array<Song> = new Array<Song> ()
     ) {
-        songs.forEach((item: Song) => {
+        this.songs.forEach((item: Song) => {
             this.genres.push(item.getGenre());
         });
     }

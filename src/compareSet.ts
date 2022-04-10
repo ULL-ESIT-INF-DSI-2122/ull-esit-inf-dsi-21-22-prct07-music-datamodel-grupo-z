@@ -1,12 +1,12 @@
 /**
  * Recibe dos conjuntos genéricos del mismo tipo y compara si son iguales. Devuelve verdadero si lo son 
  * y false en caso contrario
- * @param first Set<T>
- * @param second Set<T>
+ * @param first Array<T>
+ * @param second Array<T>
  * @returns boolean
  */
-export function compareSets<T>(first: Set<T>,  second: Set<T>): boolean {
-    if (first.size !== second.size) {
+export function areEqual<T>(first: Array<T>,  second: Array<T>): boolean {
+    if (first.length !== second.length) {
         return false;
     } 
 

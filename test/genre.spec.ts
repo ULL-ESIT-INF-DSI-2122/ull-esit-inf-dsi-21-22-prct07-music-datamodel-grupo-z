@@ -5,7 +5,7 @@ import { Song } from '../src/song'
 import { Genre } from '../src/genre';
 import { Group } from '../src/group';
 import { Album } from '../src/album';
-import { compareSets } from '../src/compareSet';
+import { areEqual } from '../src/compareSet';
 
 describe("GENRE TEST", () => {
     let Reaggeton: Genre = new Genre("Reggeton");
@@ -21,29 +21,29 @@ describe("GENRE TEST", () => {
     });
 
     it("Se spera que al crear un género, no haya ningún artista o grupo vinculado", () => {
-        let emptySet: Set<Artist | Group> = new Set<Artist | Group> ();
+        let emptySet: Array<Artist | Group> = [];
 
-        expect(compareSets(Reaggeton.getComponents(), emptySet)).to.be.equal(true);
-        expect(compareSets(Salsa.getComponents(), emptySet)).to.be.equal(true);
-        expect(compareSets(Rap.getComponents(), emptySet)).to.be.equal(true);
-        expect(compareSets(Electronica.getComponents(), emptySet)).to.be.equal(true);
+        expect(areEqual(Reaggeton.getComponents(), emptySet)).to.be.equal(true);
+        expect(areEqual(Salsa.getComponents(), emptySet)).to.be.equal(true);
+        expect(areEqual(Rap.getComponents(), emptySet)).to.be.equal(true);
+        expect(areEqual(Electronica.getComponents(), emptySet)).to.be.equal(true);
     });
 
     it("Se spera que al crear un género, no haya ningún album vinculado", () => {
-        let emptySet: Set<Album> = new Set<Album> ();
+        let emptySet: Array<Album>  = [];
 
-        expect(compareSets(Reaggeton.getAlbums(), emptySet)).to.be.equal(true);
-        expect(compareSets(Salsa.getAlbums(), emptySet)).to.be.equal(true);
-        expect(compareSets(Rap.getAlbums(), emptySet)).to.be.equal(true);
-        expect(compareSets(Electronica.getAlbums(), emptySet)).to.be.equal(true);
+        expect(areEqual(Reaggeton.getAlbums(), emptySet)).to.be.equal(true);
+        expect(areEqual(Salsa.getAlbums(), emptySet)).to.be.equal(true);
+        expect(areEqual(Rap.getAlbums(), emptySet)).to.be.equal(true);
+        expect(areEqual(Electronica.getAlbums(), emptySet)).to.be.equal(true);
     });
 
     it("Se spera que al crear un género, no haya ningúna canción vinculado", () => {
-        let emptySet: Set<Song> = new Set<Song> ();
+        let emptySet: Array<Song> =  [];
 
-        expect(compareSets(Reaggeton.getSongs(), emptySet)).to.be.equal(true);
-        expect(compareSets(Salsa.getSongs(), emptySet)).to.be.equal(true);
-        expect(compareSets(Rap.getSongs(), emptySet)).to.be.equal(true);
-        expect(compareSets(Electronica.getSongs(), emptySet)).to.be.equal(true);
+        expect(areEqual(Reaggeton.getSongs(), emptySet)).to.be.equal(true);
+        expect(areEqual(Salsa.getSongs(), emptySet)).to.be.equal(true);
+        expect(areEqual(Rap.getSongs(), emptySet)).to.be.equal(true);
+        expect(areEqual(Electronica.getSongs(), emptySet)).to.be.equal(true);
     });
 });

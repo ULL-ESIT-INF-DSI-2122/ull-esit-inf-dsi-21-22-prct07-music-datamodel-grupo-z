@@ -6,35 +6,35 @@ import { Genre } from '../src/genre';
 import { MusicDataBase } from '../src/musicDataBase'
 import { Group } from '../src/group';
 import { Album } from '../src/album';
-import { compareSets } from '../src/compareSet';
+import { areEqual } from '../src/compareSet';
 
 describe("DATABASE EMPTY TEST", () => {
 
     let myDataBase: MusicDataBase = new MusicDataBase();
 
     it("Se espera que al crear una base de datos, no tenga artistas", () => {
-        let emptySet: Set<Artist> = new Set<Artist> ();
-        expect(compareSets(myDataBase.getArtists(), emptySet)).to.be.equal(true)
+        let emptySet: Array<Artist> = new Array<Artist> ();
+        expect(areEqual(myDataBase.getArtists(), emptySet)).to.be.equal(true)
     });
 
     it("Se espera que al crear una base de datos, no tenga canciones", () => {
-        let emptySet: Set<Song> = new Set<Song> ();
-        expect(compareSets(myDataBase.getSongs(), emptySet)).to.be.equal(true)
+        let emptySet: Array<Song> = new Array<Song> ();
+        expect(areEqual(myDataBase.getSongs(), emptySet)).to.be.equal(true)
     });
 
     it("Se espera que al crear una base de datos, no tenga grupos", () => {
-        let emptySet: Set<Group> = new Set<Group> ();
-        expect(compareSets(myDataBase.getGroups(), emptySet)).to.be.equal(true);
+        let emptySet: Array<Group> = new Array<Group> ();
+        expect(areEqual(myDataBase.getGroups(), emptySet)).to.be.equal(true);
     });
 
     it("Se espera que al crear una base de datos, no tenga albumes", () => {
-        let emptySet: Set<Album> = new Set<Album>();
-        expect(compareSets(myDataBase.getAlbums(), emptySet)).to.be.equal(true);
+        let emptySet: Array<Album> = new Array<Album>();
+        expect(areEqual(myDataBase.getAlbums(), emptySet)).to.be.equal(true);
     });
 
     it("Se espera que al crear una base de datos, no tenga géneros", () => {
-        let emptySet: Set<Genre> = new Set<Genre>();
-        expect(compareSets(myDataBase.getGenres(), emptySet)).to.be.equal(true)
+        let emptySet: Array<Genre> = new Array<Genre>();
+        expect(areEqual(myDataBase.getGenres(), emptySet)).to.be.equal(true)
     });
 });
 
@@ -45,7 +45,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
     it("Se espera que la base de datos se cargue con los géneros por defecto", () => {
 
-        let defaultGenres: Set<Genre> = new Set<Genre>([
+        let defaultGenres: Array<Genre> = [
             new Genre("Reggaeton"),
             new Genre("Electronica"),
             new Genre("Bachata"),
@@ -56,15 +56,15 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
             new Genre("Rap"),
             new Genre("Reggae"),
             new Genre("Trap")      
-        ]);
+        ];
 
-        expect(compareSets(myDataBase.getGenres(), defaultGenres)).to.be.equal(true);
+        expect(areEqual(myDataBase.getGenres(), defaultGenres)).to.be.equal(true);
     });
 
 
     it("Se espera que la base de datos se cargue con los artistas por defecto", () => {
 
-        let defaultArtists: Set<Artist> = new Set<Artist>([
+        let defaultArtists: Array<Artist> = [
             new Artist("Anuel"),
             new Artist("Bob Marley"),
             new Artist("Avicii"),
@@ -83,9 +83,10 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
             new Artist("John Lennon"),
             new Artist("Morad"),
             new Artist("Shakira")    
-        ]);
+        ];
 
-        expect(compareSets(myDataBase.getArtists(), defaultArtists)).to.be.equal(true);
+        console.log(myDataBase.getArtists(), defaultArtists)
+        expect(areEqual(myDataBase.getArtists(), defaultArtists)).to.be.equal(true);
     });
 
     it("Se espera que la base de datos se cargue con los grupos por defecto", () => {
@@ -99,12 +100,12 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
         myDataBase.getArtists().forEach((a) => { if(a.getName() == 'David Muñoz') DavidMuñoz = a});
         myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Jose Muñoz') JoseMuñoz = a});
 
-       let defaultGroups: Set<Group> = new Set<Group>([
-            new Group("Wisin & Yandel", 2001, new Set<Artist>([Wisin, Yandel]), 12563),
-            new Group("Estopa", 2006, new Set<Artist>([DavidMuñoz, JoseMuñoz]), 4123)
-        ]);
+       let defaultGroups: Array<Group> = [
+            new Group("Wisin & Yandel", 2001, new Array<Artist>(Wisin, Yandel), 12563),
+            new Group("Estopa", 2006, new Array<Artist>(DavidMuñoz, JoseMuñoz), 4123)
+        ];
 
-        expect(compareSets(myDataBase.getGroups(), defaultGroups)).to.be.equal(true);
+        expect(areEqual(myDataBase.getGroups(), defaultGroups)).to.be.equal(true);
     });
 
 
@@ -120,13 +121,13 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
         myDataBase.getGenres().forEach((a) => { if(a.getName() == 'Reggaeton') Reggeton = a});
 
-        let defaultSongs: Set<Song> = new Set<Song>([
+        let defaultSongs: Array<Song> = [
             new Song("China", Anuel, Reggeton, true, 1000025, 120),
             new Song("Sola", Anuel, Reggeton, true, 458845, 100),
             new Song("Abusadora", WisinYYandel, Reggeton, true, 1000025, 110),
-        ]);
+        ];
 
-        expect(compareSets(myDataBase.getSongs(), defaultSongs)).to.be.equal(true);
+        expect(areEqual(myDataBase.getSongs(), defaultSongs)).to.be.equal(true);
     });
 
 
@@ -148,11 +149,11 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
         myDataBase.getSongs().forEach((a) => { if(a.getName() === "Sola") { Sola = a}})
 
 
-        let defaultAlbums: Set<Album> = new Set<Album>([
-            new Album("Real Hasta La Muerte", Anuel, 100, new Set<Song>([Sola, China])),
-        ]);
+        let defaultAlbums: Array<Album> = [
+            new Album("Real Hasta La Muerte", Anuel, 100, new Array<Song>(Sola, China)),
+        ];
 
-        expect(compareSets(myDataBase.getAlbums(), defaultAlbums)).to.be.equal(true);
+        expect(areEqual(myDataBase.getAlbums(), defaultAlbums)).to.be.equal(true);
     })
 
 
@@ -161,12 +162,12 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
         a.forEach((artist) => {
             switch(artist.getName()) {
                 case 'Anuel': {
-                    expect(artist.getSongs().size).to.be.equal(2);
+                    expect(artist.getSongs().length).to.be.equal(2);
                     break;
                 }
 
                 case 'Maluma': {
-                    expect(artist.getSongs().size).to.be.equal(0);
+                    expect(artist.getSongs().length).to.be.equal(0);
                     break;
                 }
 
@@ -183,12 +184,12 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
         a.forEach((artist) => {
             switch(artist.getName()) {
                 case 'Anuel': {
-                    expect(artist.getGenres().size).to.be.equal(1);
+                    expect(artist.getGenres().length).to.be.equal(1);
                     break;
                 }
 
                 case 'Maluma': {
-                    expect(artist.getSongs().size).to.be.equal(0);
+                    expect(artist.getSongs().length).to.be.equal(0);
                     break;
                 }
 
@@ -225,12 +226,12 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
         a.forEach((artist) => {
             switch(artist.getName()) {
                 case 'Anuel': {
-                    expect(artist.getGroups().size).to.be.equal(0);
+                    expect(artist.getGroups().length).to.be.equal(0);
                     break;
                 }
 
                 case 'Wisin': {
-                    expect(artist.getGroups().size).to.be.equal(1);
+                    expect(artist.getGroups().length).to.be.equal(1);
                     break;
                 }
 
@@ -247,12 +248,12 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
         a.forEach((artist) => {
             switch(artist.getName()) {
                 case 'Anuel': {
-                    expect(artist.getAlbums().size).to.be.equal(1);
+                    expect(artist.getAlbums().length).to.be.equal(1);
                     break;
                 }
 
                 case 'Wisin': {
-                    expect(artist.getAlbums().size).to.be.equal(0);
+                    expect(artist.getAlbums().length).to.be.equal(0);
                     break;
                 }
 

@@ -22,7 +22,7 @@ describe("ARTIST EMPTY TEST", () => {
     });
 
     it("Se espera que al crear un artista, no tenga ningún género relacionado", () => {
-        let emptySet: Set<Genre> = new Set<Genre> ();
+        let emptySet: Array<Genre> = [];
         expect(Anuel.getGenres()).to.be.eql(emptySet);
         expect(Maluma.getGenres()).to.be.eql(emptySet);
         expect(BobMarley.getGenres()).to.be.eql(emptySet);
@@ -30,7 +30,7 @@ describe("ARTIST EMPTY TEST", () => {
     });
 
     it("Se espera que al crear un artista, no tenga canciones", () => {
-        let emptySet: Set<Song> = new Set<Song> ();
+        let emptySet: Array<Song> = [];
         expect(Anuel.getSongs()).to.be.eql(emptySet);
         expect(Maluma.getSongs()).to.be.eql(emptySet);
         expect(BobMarley.getSongs()).to.be.eql(emptySet);
@@ -45,7 +45,7 @@ describe("ARTIST EMPTY TEST", () => {
     });
 
     it("Se espera que al crear un artista, no pertenezca a ningún grupo", () => {
-        let emptySet: Set<Group> = new Set<Group> ();
+        let emptySet: Array<Group> = [];
         expect(Anuel.getGroups()).to.be.eql(emptySet);
         expect(Maluma.getGroups()).to.be.eql(emptySet);
         expect(BobMarley.getGroups()).to.be.eql(emptySet);
@@ -54,7 +54,7 @@ describe("ARTIST EMPTY TEST", () => {
     
 
     it("Se espera que al crear un artista, no tenga albumes", () => {
-        let emptySet: Set<Album> = new Set<Album> ();
+        let emptySet: Array<Album> = [];
         expect(Anuel.getAlbums()).to.be.eql(emptySet);
         expect(Maluma.getAlbums()).to.be.eql(emptySet);
         expect(BobMarley.getAlbums()).to.be.eql(emptySet);

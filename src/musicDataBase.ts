@@ -55,7 +55,7 @@ export class MusicDataBase {
     }
 
     public getGenres(): Array<Genre> {
-        return Array.from(this.db.get('genres').value());
+        return this.db.get('genres').value();
     }
 
     public getPlaylists():Array<Playlist> {
@@ -78,7 +78,8 @@ export class MusicDataBase {
     }
 
     public addGenre(newGenre: Genre) {
-        this.db.set('genres', this.getGenres().push(newGenre)).write();
+        console.log(this.getGenres())
+        this.db.set('genres', newGenre).write();
     }
 
     public addArtist(newArtist: Artist) {
@@ -163,13 +164,12 @@ export class MusicDataBase {
                 genre.addSong(newSong);
             }
         });*/
-        genresUpdated.forEach((genre) => {
+        /*genresUpdated.forEach((genre) => {
             if(genre.same(newSong.getGenre())) {
                 genre.addSong(newSong);
             }
         });
-        this.db.set('genres', genresUpdated).write();
-
+        this.db.set('genres', genresUpdated).write();*/
     }
 
     public addAlbum(newAlbum: Album) {
