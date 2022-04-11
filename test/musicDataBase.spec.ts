@@ -8,40 +8,8 @@ import { Group } from '../src/group';
 import { Album } from '../src/album';
 import { areEqual } from '../src/compareSet';
 
-describe("DATABASE EMPTY TEST", () => {
-
-    let myDataBase: MusicDataBase = new MusicDataBase();
-
-    it("Se espera que al crear una base de datos, no tenga artistas", () => {
-        let emptySet: Array<Artist> = [];
-        expect(areEqual(myDataBase.getArtists(), emptySet)).to.be.equal(true)
-    });
-
-    it("Se espera que al crear una base de datos, no tenga canciones", () => {
-        let emptySet: Array<Song> = [];
-        expect(areEqual(myDataBase.getSongs(), emptySet)).to.be.equal(true)
-    });
-
-    it("Se espera que al crear una base de datos, no tenga grupos", () => {
-        let emptySet: Array<Group> = [];
-        expect(areEqual(myDataBase.getGroups(), emptySet)).to.be.equal(true);
-    });
-
-    it("Se espera que al crear una base de datos, no tenga albumes", () => {
-        let emptySet: Array<Album> = [];
-        expect(areEqual(myDataBase.getAlbums(), emptySet)).to.be.equal(true);
-    });
-
-    it("Se espera que al crear una base de datos, no tenga géneros", () => {
-        let emptySet: Array<Genre> = [];
-        expect(areEqual(myDataBase.getGenres(), emptySet)).to.be.equal(true)
-    });
-});
-
-
 describe("CARGA DE LA BASE DE DATOS TESTS", () => {
     let myDataBase: MusicDataBase = new MusicDataBase();
-    myDataBase.defaultData();
 
     it("Se espera que la base de datos se cargue con los géneros por defecto", () => {
 
@@ -106,7 +74,6 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
             new Song("Abusadora", "WisinYYandel", "Reggeton", true, 1000025, 110)
         ];
 
-        console.log("mydb: ", myDataBase.getSongs(), "def", defaultSongs)
         expect(areEqual(myDataBase.getSongs(), defaultSongs)).to.be.equal(true);
     });
 
@@ -122,15 +89,15 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
 
     it("Se actualizan correctamente las canciones al artista al añadir una canción a la base de datos", () => {
-        let a = myDataBase.getArtists();
-        a.forEach((artist) => {
+        let artists = myDataBase.getArtists();
+        artists.forEach((artist: Artist) => {
             switch(artist.getName()) {
-                case 'Anuel': {
+                case "Anuel": {
                     expect(artist.getSongs().length).to.be.equal(2);
                     break;
                 }
 
-                case 'Maluma': {
+                case "Maluma": {
                     expect(artist.getSongs().length).to.be.equal(0);
                     break;
                 }
@@ -145,7 +112,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
     it("Se actualizan correctamente los generos relacionados al artista al añadir una canción a la base de datos", () => {
         let a = myDataBase.getArtists();
-        a.forEach((artist) => {
+        a.forEach((artist: Artist) => {
             switch(artist.getName()) {
                 case 'Anuel': {
                     expect(artist.getGenres().length).to.be.equal(1);
@@ -166,7 +133,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
     it("Se actualizan correctamente los oyentes del artista al añadir una canción a la base de datos", () => {
         let a = myDataBase.getArtists();
-        a.forEach((artist) => {
+        a.forEach((artist: Artist) => {
             switch(artist.getName()) {
                 case 'Anuel': {
                     expect(artist.getListeners()).to.be.equal(60000000);
@@ -187,7 +154,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
     it("Se actualizan correctamente los grupos del artista al añadirlo a un grupo", () => {
         let a = myDataBase.getArtists();
-        a.forEach((artist) => {
+        a.forEach((artist: Artist) => {
             switch(artist.getName()) {
                 case 'Anuel': {
                     expect(artist.getGroups().length).to.be.equal(0);
@@ -209,7 +176,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
     it("Se actualizan correctamente los albums del artista al añadir un album a la base de datos", () => {
         let a = myDataBase.getArtists();
-        a.forEach((artist) => {
+        a.forEach((artist: Artist) => {
             switch(artist.getName()) {
                 case 'Anuel': {
                     expect(artist.getAlbums().length).to.be.equal(1);

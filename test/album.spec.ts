@@ -28,7 +28,6 @@ describe("ALBUM TEST", () => {
     });
 
     it("Se espera que se pueda acceder a los géneros del album con el método getGenres()", () => {
-        console.log(EasyMoney.getGenres())
         expect(areEqual(EasyMoney.getGenres(), ["Reggeton"])).to.be.equal(true);
         expect(areEqual(True.getGenres(), ["Electronic"])).to.be.equal(true);
     });

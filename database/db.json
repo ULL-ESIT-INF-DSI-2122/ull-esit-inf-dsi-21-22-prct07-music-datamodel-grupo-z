@@ -1,4 +1,70 @@
 {
+  "genres": [
+    {
+      "name": "Reggeton",
+      "components": [],
+      "albums": [],
+      "songs": [
+        "China",
+        "Sola",
+        "Abusadora"
+      ]
+    },
+    {
+      "name": "Electronica",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Bachata",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Pop",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rock",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Heavy Metal",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Salsa",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rap",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Reggae",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Trap",
+      "components": [],
+      "albums": [],
+      "songs": []
+    }
+  ],
   "artists": [
     {
       "name": "Anuel",
@@ -232,72 +298,6 @@
       "genres": [
         "Reggeton"
       ]
-    }
-  ],
-  "genres": [
-    {
-      "name": "Reggeton",
-      "components": [],
-      "albums": [],
-      "songs": [
-        "China",
-        "Sola",
-        "Abusadora"
-      ]
-    },
-    {
-      "name": "Electronica",
-      "components": [],
-      "albums": [],
-      "songs": []
-    },
-    {
-      "name": "Bachata",
-      "components": [],
-      "albums": [],
-      "songs": []
-    },
-    {
-      "name": "Pop",
-      "components": [],
-      "albums": [],
-      "songs": []
-    },
-    {
-      "name": "Rock",
-      "components": [],
-      "albums": [],
-      "songs": []
-    },
-    {
-      "name": "Heavy Metal",
-      "components": [],
-      "albums": [],
-      "songs": []
-    },
-    {
-      "name": "Salsa",
-      "components": [],
-      "albums": [],
-      "songs": []
-    },
-    {
-      "name": "Rap",
-      "components": [],
-      "albums": [],
-      "songs": []
-    },
-    {
-      "name": "Reggae",
-      "components": [],
-      "albums": [],
-      "songs": []
-    },
-    {
-      "name": "Trap",
-      "components": [],
-      "albums": [],
-      "songs": []
     }
   ],
   "playlists": []

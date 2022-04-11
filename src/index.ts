@@ -9,8 +9,6 @@ const inquirer = require('inquirer');
 const scanf = require('scanf');
 
 let myDataBase: MusicDataBase = new MusicDataBase();
-myDataBase.defaultData();
-
 
 promptUser()
 
