@@ -7,11 +7,11 @@ import { Song } from "./song";
  * Clase que define un artista con sus atributos y métodos
  */
 export class Artist {
-    private genres: Array<Genre> = new Array<Genre> ();
+    private genres: Array<string> = [];
     private listeners: number = 0;
-    private groups: Array <Group> = new Array<Group>();
-    private albums: Array <Album> = new Array<Album>();
-    private songs: Array<Song> = new Array<Song>();
+    private groups: Array<string> = [];
+    private albums: Array<string> = [];
+    private songs: Array<string> = [];
 
     /**
      * Constructor de la clase Artist. Recibe el nombre del artista
@@ -23,9 +23,9 @@ export class Artist {
 
     /**
      * Devuelve los grupos de los que forma parte el artista
-     * @returns Array<Group>
+     * @returns Array<string>
      */
-    public getGroups(): Array<Group> {
+    public getGroups(): Array<string> {
         return this.groups;
     }
 
@@ -33,15 +33,15 @@ export class Artist {
      * Devuelve los albumes del artista
      * @returns Array<Album>
      */
-    public getAlbums(): Array<Album> {
+    public getAlbums(): Array<string> {
         return this.albums;
     }
 
     /**
      * Devuelve las canciones del artista
-     * @returns Array<Song>
+     * @returns Array<string>
      */
-    public getSongs(): Array<Song> {
+    public getSongs(): Array<string> {
         return this.songs;
     }
 
@@ -57,7 +57,7 @@ export class Artist {
      * Devuelve los géneros asociados con el artista
      * @returns 
      */
-    public getGenres(): Array<Genre> {
+    public getGenres(): Array<string> {
         return this.genres;
     }
 
@@ -73,8 +73,9 @@ export class Artist {
      * Añade un nuevo género a los asociados al artista cuando se añade a la base de datos una nueva canción.
      * @param newGenre Genre
      */
-    public addGenre(newGenre: Genre) {
-        this.genres.push(newGenre);
+    public addGenre(newGenre: string) {
+        if(!this.genres.includes(newGenre))
+            this.genres.push(newGenre);
     }
 
     /**
@@ -82,7 +83,7 @@ export class Artist {
      * @param newSong 
      */
     public addSong(newSong: Song) {
-        this.songs.push(newSong);
+        this.songs.push(newSong.getName());
     }
 
     /**
@@ -90,7 +91,7 @@ export class Artist {
      * @param newSong 
      */
     public addGroup(newGroup: Group) {
-        this.groups.push(newGroup);
+        this.groups.push(newGroup.getName());
     }
 
     /**
@@ -106,7 +107,7 @@ export class Artist {
      * @param newAlbum Album
      */
     public addAlbum(newAlbum: Album) {
-        this.albums.push(newAlbum)
+        this.albums.push(newAlbum.getName())
     }
 
     public same(artist: Artist | Group): boolean {
@@ -121,7 +122,7 @@ export class Artist {
         if (this.getAlbums().length > 0) {
             console.log('\tAlbums:')
             this.getAlbums().forEach((album) => {
-                console.log(`\t   - ${album.getName()}`);
+                console.log(`\t   - ${album}`);
 
             });
         } else {
@@ -131,7 +132,7 @@ export class Artist {
         if (this.getSongs().length > 0) {
             console.log('\tCanciones:')
             this.getSongs().forEach((song) => {
-                console.log(`\t   - ${song.getName()}`);
+                console.log(`\t   - ${song}`);
 
             });
         } else {
@@ -141,7 +142,7 @@ export class Artist {
         if (this.getGenres().length > 0) {
             console.log('\tGeneros::')
             this.getGenres().forEach((genre) => {
-                console.log(`\t   - ${genre.getName()}`);
+                console.log(`\t   - ${genre}`);
 
             });
         } else {
@@ -152,25 +153,25 @@ export class Artist {
     public has(element: Genre | Group | Album | Song): boolean {
         if (element instanceof Genre) {
             this.getGenres().forEach(genre => {
-                if(genre.same(element)) {
+                if(genre == element.getName()) {
                     return true;
                 }
             });
         } else if (element instanceof Group) {
             this.getGroups().forEach(component => {
-                if(component.same(element)) {
+                if(component == element.getName()) {
                     return true;
                 }
             });
         } else if (element instanceof Album) {
             this.getAlbums().forEach(album => {
-                if (album.same(element)) {
+                if (album == element.getName()) {
                     return true;
                 }
             });
         } else if (element instanceof Song) {
             this.getSongs().forEach(song => {
-                if (song.same(element)) {
+                if (song == element.getName()) {
                     return true;
                 }
             });
@@ -178,4 +179,32 @@ export class Artist {
         
         return false;
     }
+/*
+    public static deserialize(artists: Artist[]): Artist[] {
+        const myArtists: Artist[] = [];
+
+        artists.forEach((artist) => {
+            const myArtist = new Artist(artist.name);
+            artist.getAlbums().forEach(album => {
+                myArtist.addAlbum(album);
+            })
+
+            artist.getGenres().forEach(genre => {
+                myArtist.addGenre(genre);
+            })
+
+            artist.getGroups().forEach(group => {
+                myArtist.addGroup(group);
+            })
+
+            artist.getSongs().forEach(song => {
+                myArtist.addSong(song);
+            })
+
+            myArtist.updateListeners(artist.getListeners());
+            myArtists.push(myArtist);
+        });
+
+        return myArtists;
+  }*/
 }

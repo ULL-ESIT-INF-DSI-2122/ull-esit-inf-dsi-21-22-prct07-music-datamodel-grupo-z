@@ -2,11 +2,18 @@
   "artists": [
     {
       "name": "Anuel",
-      "genres": [],
-      "listeners": 0,
+      "genres": [
+        "Reggeton"
+      ],
+      "listeners": 60000000,
       "groups": [],
-      "albums": [],
-      "songs": []
+      "albums": [
+        "Real Hasta La Muerte"
+      ],
+      "songs": [
+        "China",
+        "Sola"
+      ]
     },
     {
       "name": "Bob Marley",
@@ -60,7 +67,9 @@
       "name": "Wisin",
       "genres": [],
       "listeners": 0,
-      "groups": [],
+      "groups": [
+        "Wisin & Yandel"
+      ],
       "albums": [],
       "songs": []
     },
@@ -68,7 +77,9 @@
       "name": "Yandel",
       "genres": [],
       "listeners": 0,
-      "groups": [],
+      "groups": [
+        "Wisin & Yandel"
+      ],
       "albums": [],
       "songs": []
     },
@@ -150,37 +161,89 @@
       "name": "Wisin & Yandel",
       "year": 2001,
       "artists": [
-        {
-          "name": "Wisin",
-          "genres": [],
-          "listeners": 0,
-          "groups": [],
-          "albums": [],
-          "songs": []
-        },
-        {
-          "name": "Yandel",
-          "genres": [],
-          "listeners": 0,
-          "groups": [],
-          "albums": [],
-          "songs": []
-        }
+        "Wisin",
+        "Yandel"
       ],
       "listeners": 12563,
       "genres": [],
       "albums": [],
       "songs": []
+    },
+    {
+      "name": "Estopa",
+      "year": 2006,
+      "artists": [
+        "DavidMuñoz",
+        "JoseMuñoz"
+      ],
+      "listeners": 4123,
+      "genres": [],
+      "albums": [],
+      "songs": []
     }
   ],
-  "songs": [],
-  "albums": [],
+  "songs": [
+    {
+      "name": "China",
+      "creator": "Anuel",
+      "genre": "Reggeton",
+      "isSingle": true,
+      "timesListened": 10000000,
+      "duration": {
+        "hours": 0.03333333333333333,
+        "minutes": 2,
+        "seconds": 120
+      }
+    },
+    {
+      "name": "Sola",
+      "creator": "Anuel",
+      "genre": "Reggeton",
+      "isSingle": true,
+      "timesListened": 50000000,
+      "duration": {
+        "hours": 0.027777777777777776,
+        "minutes": 1.6666666666666667,
+        "seconds": 100
+      }
+    },
+    {
+      "name": "Abusadora",
+      "creator": "WisinYYandel",
+      "genre": "Reggeton",
+      "isSingle": true,
+      "timesListened": 1000025,
+      "duration": {
+        "hours": 0.030555555555555555,
+        "minutes": 1.8333333333333333,
+        "seconds": 110
+      }
+    }
+  ],
+  "albums": [
+    {
+      "name": "Real Hasta La Muerte",
+      "creator": "Anuel",
+      "year": 100,
+      "songs": [
+        "Sola",
+        "China"
+      ],
+      "genres": [
+        "Reggeton"
+      ]
+    }
+  ],
   "genres": [
     {
       "name": "Reggeton",
       "components": [],
       "albums": [],
-      "songs": []
+      "songs": [
+        "China",
+        "Sola",
+        "Abusadora"
+      ]
     },
     {
       "name": "Electronica",

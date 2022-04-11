@@ -6,15 +6,10 @@ import { Genre } from '../src/genre';
 
 
 describe("SONG TEST", () =>  {
-    let Reggeton: Genre = new Genre("Reggeton");
-    let Electronic: Genre = new Genre("Electronica");
 
-    let Anuel: Artist = new Artist("Anuel");
-    let DavidGuetta: Artist = new Artist("David Guetta");
-
-    let China: Song = new Song("China", Anuel, Reggeton, true, 2000, 150);
-    let PlayHard: Song = new Song("Play Hard", DavidGuetta, Electronic, true, 20200, 110);
-    let Sola: Song = new Song("Sola", Anuel, Reggeton, false, 1400, 99);
+    let China: Song = new Song("China", "Anuel", "Reggeton", true, 2000, 150);
+    let PlayHard: Song = new Song("Play Hard", "DavidGuetta", "Electronic", true, 20200, 110);
+    let Sola: Song = new Song("Sola", "Anuel", "Reggeton", false, 1400, 99);
 
     it("Se espera que al crear una canción se pueda acceder a su nombre con el método getName()", () => {
         expect(China.getName()).to.be.equal("China");
@@ -23,15 +18,15 @@ describe("SONG TEST", () =>  {
     });
 
     it("Se espera que al crear una canción se pueda acceder a su artista con el método getCreator()", () => {
-        expect(China.getCreator()).to.be.equal(Anuel);
-        expect(PlayHard.getCreator()).to.be.equal(DavidGuetta);
-        expect(Sola.getCreator()).to.be.equal(Anuel);
+        expect(China.getCreator()).to.be.equal("Anuel");
+        expect(PlayHard.getCreator()).to.be.equal("DavidGuetta");
+        expect(Sola.getCreator()).to.be.equal("Anuel");
     });
 
     it("Se espera que al crear una canción se pueda acceder a su géenro con el método getGenre()", () => {
-        expect(China.getGenre()).to.be.equal(Reggeton);
-        expect(PlayHard.getGenre()).to.be.equal(Electronic);
-        expect(Sola.getGenre()).to.be.equal(Reggeton);
+        expect(China.getGenre()).to.be.equal("Reggeton");
+        expect(PlayHard.getGenre()).to.be.equal("Electronic");
+        expect(Sola.getGenre()).to.be.equal("Reggeton");
     });
 
     it("Se espera que al crear una canción se pueda acceder a su artista con el método getIsSingle()", () => {

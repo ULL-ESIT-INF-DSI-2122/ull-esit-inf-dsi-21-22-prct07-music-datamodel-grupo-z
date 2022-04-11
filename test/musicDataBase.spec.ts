@@ -85,74 +85,36 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
             new Artist("Shakira")    
         ];
 
-        console.log( "MYDB", myDataBase.getArtists())
-        console.log( "DEF",defaultArtists)
-
         expect(areEqual(myDataBase.getArtists(), defaultArtists)).to.be.equal(true);
     });
 
     it("Se espera que la base de datos se cargue con los grupos por defecto", () => {
-        let Wisin: Artist;
-        let Yandel: Artist;
-        let DavidMuñoz: Artist;
-        let JoseMuñoz: Artist;
-
-        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Wisin') Wisin = a});
-        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Yandel') Yandel = a});
-        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'David Muñoz') DavidMuñoz = a});
-        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Jose Muñoz') JoseMuñoz = a});
 
        let defaultGroups: Array<Group> = [
-            new Group("Wisin & Yandel", 2001, new Array<Artist>(Wisin, Yandel), 12563),
-            new Group("Estopa", 2006, new Array<Artist>(DavidMuñoz, JoseMuñoz), 4123)
+            new Group("Wisin & Yandel", 2001, ["Wisin", "Yandel"], 12563),
+            new Group("Estopa", 2006, ["DavidMuñoz", "JoseMuñoz"], 4123)
         ];
 
         expect(areEqual(myDataBase.getGroups(), defaultGroups)).to.be.equal(true);
     });
 
-
     it("Se espera que la base de datos se cargue con las canciones por defecto", () => {
-        let WisinYYandel: Group;
-        let Anuel: Artist;
-
-        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Anuel') Anuel = a});
-        myDataBase.getGroups().forEach((a) => { if(a.getName() == 'Wisin & Yandel') WisinYYandel = a});
-
-
-        let Reggeton: Genre;
-
-        myDataBase.getGenres().forEach((a) => { if(a.getName() == 'Reggeton') Reggeton = a});
 
         let defaultSongs: Array<Song> = [
-            new Song("China", Anuel, Reggeton, true, 1000025, 120),
-            new Song("Sola", Anuel, Reggeton, true, 458845, 100),
-            new Song("Abusadora", WisinYYandel, Reggeton, true, 1000025, 110),
+            new Song("China", "Anuel", "Reggeton", true, 10000000, 120),
+            new Song("Sola", "Anuel", "Reggeton", true, 50000000, 100),
+            new Song("Abusadora", "WisinYYandel", "Reggeton", true, 1000025, 110)
         ];
 
+        console.log("mydb: ", myDataBase.getSongs(), "def", defaultSongs)
         expect(areEqual(myDataBase.getSongs(), defaultSongs)).to.be.equal(true);
     });
 
 
     it("Se espera que al cargar la base de datos esta tenga los albumes por defecto", () => {
-        let Anuel: Artist;
-
-        myDataBase.getArtists().forEach((a) => { if(a.getName() == 'Anuel') Anuel = a});
-
-
-        let Reggeton: Genre;
-
-        myDataBase.getGenres().forEach((a) => { if(a.getName() == 'Reggeton') Reggeton = a});
-
-
-        let China: Song;
-        let Sola: Song
-
-        myDataBase.getSongs().forEach((a) => { if(a.getName() === "China") { China = a}})
-        myDataBase.getSongs().forEach((a) => { if(a.getName() === "Sola") { Sola = a}})
-
-
+        
         let defaultAlbums: Array<Album> = [
-            new Album("Real Hasta La Muerte", Anuel, 100, new Array<Song>(Sola, China)),
+            new Album("Real Hasta La Muerte", 'Anuel', 100, ["Sola", "China"], ["Reggaeton"]),
         ];
 
         expect(areEqual(myDataBase.getAlbums(), defaultAlbums)).to.be.equal(true);
