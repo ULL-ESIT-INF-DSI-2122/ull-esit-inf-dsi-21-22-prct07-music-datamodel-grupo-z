@@ -1,4 +1,3 @@
-import { Artist } from './artist'
 import { Time } from './durationType';
 import { Genre } from './genre';
 import { Group } from './group';
@@ -105,6 +104,19 @@ export class Song {
         console.log(`\tGenero: ${this.getGenre()}`);
         console.log(`\tDuracion en minutos: ${this.getMinutes().toFixed(2)}`);
         console.log(`\tNumero de reproducciones: ${this.getTimesListened()}\n`);
+    }
+
+    public static deserialize(songs: Song[]): Song[] {
+        const mySongs: Song[] = [];
+
+        songs.forEach((song) => {
+            const myArtist = new Song(song.getName(), song.getCreator(), song.getGenre(), 
+            song.getIsSingle(), song.getTimesListened(), song.getSeconds());
+
+            mySongs.push(myArtist);
+        });
+
+        return mySongs;
     }
 
 

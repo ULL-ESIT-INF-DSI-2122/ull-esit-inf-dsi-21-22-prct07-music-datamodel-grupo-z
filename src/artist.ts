@@ -7,18 +7,23 @@ import { Song } from "./song";
  * Clase que define un artista con sus atributos y métodos
  */
 export class Artist {
-    private genres: Array<string> = [];
-    private listeners: number = 0;
-    private groups: Array<string> = [];
-    private albums: Array<string> = [];
-    private songs: Array<string> = [];
 
     /**
-     * Constructor de la clase Artist. Recibe el nombre del artista
-     * @param name string 
+     * 
+     * @param name 
+     * @param genres 
+     * @param listeners 
+     * @param groups 
+     * @param albums 
+     * @param songs 
      */
     constructor(
-        private name: string
+        private name: string,
+        private genres: Array<string> = [],
+        private listeners: number = 0,
+        private groups: Array<string> = [],
+        private albums: Array<string> = [],
+        private songs: Array<string> = [],
     ) {}
 
     /**
@@ -179,40 +184,18 @@ export class Artist {
         
         return false;
     }
-<<<<<<< HEAD
 
-=======
-/*
->>>>>>> 3d63a18bb3f9b40a16bf899f37ced7d1e3fa345d
+
     public static deserialize(artists: Artist[]): Artist[] {
         const myArtists: Artist[] = [];
 
         artists.forEach((artist) => {
-            const myArtist = new Artist(artist.name);
-            artist.getAlbums().forEach(album => {
-                myArtist.addAlbum(album);
-            })
+            const myArtist = new Artist(artist.getName(), artist.getGenres(), 
+            artist.getListeners(), artist.getGroups(), artist.getAlbums(), artist.getSongs());
 
-            artist.getGenres().forEach(genre => {
-                myArtist.addGenre(genre);
-            })
-
-            artist.getGroups().forEach(group => {
-                myArtist.addGroup(group);
-            })
-
-            artist.getSongs().forEach(song => {
-                myArtist.addSong(song);
-            })
-
-            myArtist.updateListeners(artist.getListeners());
             myArtists.push(myArtist);
         });
 
         return myArtists;
-<<<<<<< HEAD
-  }
-=======
-  }*/
->>>>>>> 3d63a18bb3f9b40a16bf899f37ced7d1e3fa345d
+    }
 }

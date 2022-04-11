@@ -1,4 +1,3 @@
-import { Artist } from "./artist";
 import { Genre } from "./genre";
 import { Group } from "./group";
 import { Song } from "./song";
@@ -11,7 +10,7 @@ export class Album {
      * Constructor de la clase album. Recibe el nombre, creador, año y canciones. Los géneros asociados
      * se calculan a partir de las canciones
      * @param name string
-     * @param creator Artist | Group
+     * @param creator Album | Group
      * @param year number
      * @param songs Array<Song>
      */
@@ -34,7 +33,7 @@ export class Album {
     }
 
     /**
-     * Devuelve el creador del album. Artista o grupo
+     * Devuelve el creador del album. Albuma o grupo
      * @returns 
      */
     public getCreator(): string {
@@ -85,7 +84,7 @@ export class Album {
 
     public print() {
         console.log(`ALBUM: **${this.getName()}**`);
-        console.log(`\tArtista: ${this.getCreator()}`);
+        console.log(`\tAlbuma: ${this.getCreator()}`);
 
         console.log(`\tAño: ${this.getYear()}`);
 
@@ -97,14 +96,14 @@ export class Album {
         console.log();
     }
 
-    public has(element: Genre | Artist | Group | Song): boolean {
+    public has(element: Genre | Album | Group | Song): boolean {
         if (element instanceof Genre) {
             this.getGenres().forEach(genre => {
                 if (genre == element.getName()) {
                     return true;
                 }
             });
-        } else if (element instanceof (Artist || Group)) {
+        } else if (element instanceof (Album || Group)) {
             if (this.getCreator() == element.getName()) {
                     return true;
             }
@@ -117,5 +116,18 @@ export class Album {
         }
 
         return false;
+    }
+
+    public static deserialize(albums: Album[]): Album[] {
+        const myAlbums: Album[] = [];
+
+        albums.forEach((album) => {
+            const myAlbum = new Album(album.getName(), album.getCreator(), 
+            album.getYear(), album.getSongs(), album.getGenres());
+
+            myAlbums.push(myAlbum);
+        });
+
+        return myAlbums;
     }
 };

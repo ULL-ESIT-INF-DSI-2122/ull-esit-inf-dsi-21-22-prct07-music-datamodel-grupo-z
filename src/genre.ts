@@ -8,16 +8,15 @@ import { Song } from "./song";
  */
 export class Genre {
 
-    private components: Array<string> = new Array<string> ();
-    private albums: Array<string> = new Array<string>();
-    private songs: Array<string> = new Array<string> ();
-
     /**
      * Constructor de la clase Genre. Recibe el nombre del género
      * @param name string
      */
     constructor(
         private name: string,
+        private components: Array<string> = [],
+        private albums: Array<string> = [],
+        private songs: Array<string> = [],
     ) {}
 
     /**
@@ -135,13 +134,14 @@ export class Genre {
     }
 
     public static deserialize(genres: Genre[]): Genre[] {
-    const myGenres: Genre[] = [];
+        const myGenres: Genre[] = [];
 
-    Array.prototype.forEach.call(genres, genre => {
-      const myGenre = new Genre(genre.name);
-      myGenres.push(myGenre);
-    });
+        genres.forEach((genre) => {
+        const myGenre = new Genre(genre.name);
+        myGenres.push(myGenre);
+        });
 
-    return myGenres;
-  }
+        return myGenres;
+    } 
+
 }
