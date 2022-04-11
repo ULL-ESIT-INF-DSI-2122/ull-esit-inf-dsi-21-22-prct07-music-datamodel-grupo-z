@@ -178,4 +178,32 @@ export class Artist {
         
         return false;
     }
+
+    public static deserialize(artists: Artist[]): Artist[] {
+        const myArtists: Artist[] = [];
+
+        artists.forEach((artist) => {
+            const myArtist = new Artist(artist.name);
+            artist.getAlbums().forEach(album => {
+                myArtist.addAlbum(album);
+            })
+
+            artist.getGenres().forEach(genre => {
+                myArtist.addGenre(genre);
+            })
+
+            artist.getGroups().forEach(group => {
+                myArtist.addGroup(group);
+            })
+
+            artist.getSongs().forEach(song => {
+                myArtist.addSong(song);
+            })
+
+            myArtist.updateListeners(artist.getListeners());
+            myArtists.push(myArtist);
+        });
+
+        return myArtists;
+  }
 }
