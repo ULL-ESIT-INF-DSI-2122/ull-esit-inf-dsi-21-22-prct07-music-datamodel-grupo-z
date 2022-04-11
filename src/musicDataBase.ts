@@ -55,7 +55,10 @@ export class MusicDataBase {
     }
 
     public getGenres(): Array<Genre> {
-        return Array.from(this.db.get('genres').value());
+        // Probando cosas: 
+        const serializedGenres = this.db.get('genres').value();
+        const myGenre = Genre.deserialize(serializedGenres);
+        return myGenre;
     }
 
     public getPlaylists():Array<Playlist> {
@@ -78,7 +81,9 @@ export class MusicDataBase {
     }
 
     public addGenre(newGenre: Genre) {
-        this.db.set('genres', this.getGenres().push(newGenre)).write();
+        const genreValue: Array<Genre> = this.getGenres();
+        genreValue.push(newGenre);
+        this.db.set('genres', genreValue).write();
     }
 
     public addArtist(newArtist: Artist) {
@@ -169,7 +174,7 @@ export class MusicDataBase {
             }
         });
         this.db.set('genres', genresUpdated).write();
-
+        
     }
 
     public addAlbum(newAlbum: Album) {

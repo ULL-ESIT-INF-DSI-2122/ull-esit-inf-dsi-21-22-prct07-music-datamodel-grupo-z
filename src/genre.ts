@@ -128,4 +128,15 @@ export class Genre {
         
         return false;
     }
+
+    public static deserialize(genres: Genre[]): Genre[] {
+    const myGenres: Genre[] = [];
+
+    Array.prototype.forEach.call(genres, genre => {
+      const myGenre = new Genre(genre.name);
+      myGenres.push(myGenre);
+    });
+
+    return myGenres;
+  }
 }
