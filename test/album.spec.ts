@@ -39,8 +39,8 @@ describe("ALBUM TEST", () => {
     });
 
     it("Se espera que se pueda acceder a los géneros del album con el método getGenres()", () => {
-        expect(areEqual(EasyMoney.getGenres(), new Array<Genre>(Reggeton))).to.be.equal(true);
-        expect(areEqual(True.getGenres(), new Array<Genre>(Electronic))).to.be.equal(true);
+        expect(areEqual(EasyMoney.getGenres(), [Reggeton])).to.be.equal(true);
+        expect(areEqual(True.getGenres(), [Electronic])).to.be.equal(true);
     });
 
     it ("Se espera que se pueda acceder a las canciones del album con el metodo getSongs()", () => {

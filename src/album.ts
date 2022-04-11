@@ -24,7 +24,8 @@ export class Album {
         private songs: Array<Song> = new Array<Song> ()
     ) {
         this.songs.forEach((item: Song) => {
-            this.genres.push(item.getGenre());
+            if (!this.genres.includes(item.getGenre()))
+                this.genres.push(item.getGenre());
         });
     }
 

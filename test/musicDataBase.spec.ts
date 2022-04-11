@@ -13,27 +13,27 @@ describe("DATABASE EMPTY TEST", () => {
     let myDataBase: MusicDataBase = new MusicDataBase();
 
     it("Se espera que al crear una base de datos, no tenga artistas", () => {
-        let emptySet: Array<Artist> = new Array<Artist> ();
+        let emptySet: Array<Artist> = [];
         expect(areEqual(myDataBase.getArtists(), emptySet)).to.be.equal(true)
     });
 
     it("Se espera que al crear una base de datos, no tenga canciones", () => {
-        let emptySet: Array<Song> = new Array<Song> ();
+        let emptySet: Array<Song> = [];
         expect(areEqual(myDataBase.getSongs(), emptySet)).to.be.equal(true)
     });
 
     it("Se espera que al crear una base de datos, no tenga grupos", () => {
-        let emptySet: Array<Group> = new Array<Group> ();
+        let emptySet: Array<Group> = [];
         expect(areEqual(myDataBase.getGroups(), emptySet)).to.be.equal(true);
     });
 
     it("Se espera que al crear una base de datos, no tenga albumes", () => {
-        let emptySet: Array<Album> = new Array<Album>();
+        let emptySet: Array<Album> = [];
         expect(areEqual(myDataBase.getAlbums(), emptySet)).to.be.equal(true);
     });
 
     it("Se espera que al crear una base de datos, no tenga géneros", () => {
-        let emptySet: Array<Genre> = new Array<Genre>();
+        let emptySet: Array<Genre> = [];
         expect(areEqual(myDataBase.getGenres(), emptySet)).to.be.equal(true)
     });
 });
@@ -46,7 +46,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
     it("Se espera que la base de datos se cargue con los géneros por defecto", () => {
 
         let defaultGenres: Array<Genre> = [
-            new Genre("Reggaeton"),
+            new Genre("Reggeton"),
             new Genre("Electronica"),
             new Genre("Bachata"),
             new Genre("Pop"),
@@ -85,7 +85,9 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
             new Artist("Shakira")    
         ];
 
-        console.log(myDataBase.getArtists(), defaultArtists)
+        console.log( "MYDB", myDataBase.getArtists())
+        console.log( "DEF",defaultArtists)
+
         expect(areEqual(myDataBase.getArtists(), defaultArtists)).to.be.equal(true);
     });
 
@@ -119,7 +121,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
         let Reggeton: Genre;
 
-        myDataBase.getGenres().forEach((a) => { if(a.getName() == 'Reggaeton') Reggeton = a});
+        myDataBase.getGenres().forEach((a) => { if(a.getName() == 'Reggeton') Reggeton = a});
 
         let defaultSongs: Array<Song> = [
             new Song("China", Anuel, Reggeton, true, 1000025, 120),
@@ -280,7 +282,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
             "Pop",
             "Rap",
             "Reggae",
-            "Reggaeton",
+            "Reggeton",
             "Rock",
             "Salsa",
             "Trap"
