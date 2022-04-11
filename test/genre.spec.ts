@@ -21,7 +21,7 @@ describe("GENRE TEST", () => {
     });
 
     it("Se spera que al crear un género, no haya ningún artista o grupo vinculado", () => {
-        let emptySet: Array<Artist | Group> = [];
+        let emptySet: Array<string> = [];
 
         expect(areEqual(Reaggeton.getComponents(), emptySet)).to.be.equal(true);
         expect(areEqual(Salsa.getComponents(), emptySet)).to.be.equal(true);
@@ -30,7 +30,7 @@ describe("GENRE TEST", () => {
     });
 
     it("Se spera que al crear un género, no haya ningún album vinculado", () => {
-        let emptySet: Array<Album>  = [];
+        let emptySet: Array<string>  = [];
 
         expect(areEqual(Reaggeton.getAlbums(), emptySet)).to.be.equal(true);
         expect(areEqual(Salsa.getAlbums(), emptySet)).to.be.equal(true);
@@ -38,8 +38,8 @@ describe("GENRE TEST", () => {
         expect(areEqual(Electronica.getAlbums(), emptySet)).to.be.equal(true);
     });
 
-    it("Se spera que al crear un género, no haya ningúna canción vinculado", () => {
-        let emptySet: Array<Song> =  [];
+    it("Se spera que al crear un género, no haya ningúna canción vinculada", () => {
+        let emptySet: Array<string> =  [];
 
         expect(areEqual(Reaggeton.getSongs(), emptySet)).to.be.equal(true);
         expect(areEqual(Salsa.getSongs(), emptySet)).to.be.equal(true);

@@ -8,7 +8,6 @@ import { Playlist } from "./playlist";
 import * as lowdb from 'lowdb';
 import * as FileSync from 'lowdb/adapters/FileSync';
 
-
 type schemaType = {
     albums: Array<Album>,
     artists: Array<Artist>,
@@ -23,20 +22,41 @@ export class MusicDataBase {
 
     private db: lowdb.LowdbSync<schemaType>;
         
-    public initializeDB() {
-        this.db.set('songs', []).write();
-        this.db.set('albums', []).write();
-        this.db.set('groups', []).write();
-        this.db.set('artists', []).write();
-        this.db.set('genres', []).write();
-        this.db.set('playlists', []).write();
+    public clear() {
     }
 
     constructor() {
         this.db = lowdb(new FileSync('database/db.json'));
-        this.initializeDB();
-    }
 
+        if (this.db.get("genres").value() === undefined) {
+            this.db.set("genres", []).write();
+            this.defaultGenres();
+        }
+
+        if (this.db.get("artists").value() === undefined) {
+            this.db.set("artists", []).write();
+            this.defaultArtists();
+        }
+
+        if (this.db.get("groups").value() === undefined) {
+            this.db.set("groups", []).write();
+            this.defaultGroups();
+        }
+
+        if (this.db.get("songs").value() === undefined) {
+            this.db.set("songs", []).write();
+            this.defaultSongs();
+        }
+
+        if (this.db.get("albums").value() === undefined) {
+            this.db.set("albums", []).write();
+            this.defaultAlbums();
+        }
+
+        if (this.db.get("playlists").value() === undefined) {
+            this.db.set("playlists", []).write();
+        }
+    }
 
 
     public getSongs(): Array<Song> {
@@ -47,11 +67,16 @@ export class MusicDataBase {
         return this.db.get('albums').value();
     }
 
+<<<<<<< HEAD
     public getArtists(): Array<Artist> {
         // Probando cosas: 
         const serializedArtists = this.db.get('artists').value();
         const myArtists = Artist.deserialize(serializedArtists);
         return myArtists;
+=======
+    public getArtists(): Array<Artist> { 
+        return this.db.get('artists').value();
+>>>>>>> 3d63a18bb3f9b40a16bf899f37ced7d1e3fa345d
     }
 
     public getGroups(): Array<Group> {
@@ -72,8 +97,6 @@ export class MusicDataBase {
 
     public addSongToPlaylist(user: string, playlist: string, song: Song) {
         let myPlaylists: Array<Playlist> = this.getPlaylists();
-
-        // Realizar filtrado por usuarios
 
         myPlaylists.forEach((pl) => {
             if (playlist === pl.getName()) {
@@ -101,20 +124,29 @@ export class MusicDataBase {
         //groupValue.push(newGroup);
         this.db.set('groups', newGroup).write();
 
+<<<<<<< HEAD
         let artists: Array<Artist> = newGroup.getArtist();
         let dbArtists: Array<Artist> = this.getArtists(); 
         dbArtists.forEach(artist1 => {
             artists.forEach(artist2 => {
                 if (artist1.same(artist2)) {
+=======
+        let artists: Array<string> = newGroup.getArtist();
+        let dbArtists: Array<Artist> = this.getArtists();
+
+        dbArtists.forEach((artist1: Artist) => {
+            artists.forEach((artist2: string) => {
+                if (artist1.getName() === artist2) {
+>>>>>>> 3d63a18bb3f9b40a16bf899f37ced7d1e3fa345d
                     artist1.addGroup(newGroup);
                 }
-            })
+            });
         });
         this.db.set('artists', dbArtists).write();
     }
 
-
     public addPlaylist(newPlaylist: Playlist) {
+<<<<<<< HEAD
         // Metodo de busqueda por usuario 
         const playlistValue: Array<Playlist> = this.getPlaylists();
         playlistValue.push(newPlaylist);
@@ -125,10 +157,17 @@ export class MusicDataBase {
         const songValue: Array<Song> = this.getSongs();
         songValue.push(newSong);
         this.db.set('songs', songValue).write();
+=======
+        this.db.set('playlists', newPlaylist).write();
+    }
+
+    public addSong(newSong: Song) {
+        this.db.get('songs').push(newSong).write();
+>>>>>>> 3d63a18bb3f9b40a16bf899f37ced7d1e3fa345d
 
         let artistsUpdated: Array<Artist> = this.getArtists();
         artistsUpdated.forEach((artist) => {
-            if(artist.same(newSong.getCreator())) {
+            if(artist.getName() == newSong.getCreator()) {
                 artist.addSong(newSong);
                 artist.addGenre(newSong.getGenre());
                 artist.updateListeners(newSong.getTimesListened())
@@ -138,19 +177,26 @@ export class MusicDataBase {
 
 
         let groupsUpdated: Array<Group> = this.getGroups();
-        groupsUpdated.forEach((group) => {
-            if(group.same(newSong.getCreator())) {
+        groupsUpdated.forEach((group: Group) => {
+            if(group.getName() == newSong.getCreator()) {
                 group.addSong(newSong);
                 group.addGenre(newSong.getGenre());
                 group.updateListeners(newSong.getTimesListened())
             }
         });
+<<<<<<< HEAD
         this.db.set('artists', artistsUpdated).write();
         
         let genresUpdated: Array<Genre> = this.getGenres(); 
+=======
+        this.db.set('groups', groupsUpdated).write();
+
+        let genresUpdated: Array<Genre> = this.getGenres();
+>>>>>>> 3d63a18bb3f9b40a16bf899f37ced7d1e3fa345d
         genresUpdated.forEach((genre) => {
-            if(genre.same(newSong.getGenre())) {
+            if(genre.getName() == newSong.getGenre()) {
                 genre.addSong(newSong);
+                genre.addArtist(newSong.getCreator())
             }
         });
         this.db.set('genres', genresUpdated).write();
@@ -158,6 +204,7 @@ export class MusicDataBase {
     }
 
     public addAlbum(newAlbum: Album) {
+<<<<<<< HEAD
         const albumValue: Array<Album> = this.getAlbums();
         albumValue.push(newAlbum);
         this.db.set('albums', albumValue).write();
@@ -167,6 +214,14 @@ export class MusicDataBase {
         
         artistsUpdated.forEach((artist) => {
             if(artist.same(newAlbum.getCreator())) {
+=======
+        this.db.get('albums').push(newAlbum).write();
+
+        let artistsUpdated: Array<Artist> = this.getArtists();
+
+        artistsUpdated.forEach((artist: Artist) => {
+            if(artist.getName() === newAlbum.getCreator()) {
+>>>>>>> 3d63a18bb3f9b40a16bf899f37ced7d1e3fa345d
                 artist.addAlbum(newAlbum);
             }
         });
@@ -177,11 +232,23 @@ export class MusicDataBase {
 
         
         groupsUpdated.forEach((group) => {
-            if(group.same(newAlbum.getCreator())) {
+            if(group.getName() == newAlbum.getCreator()) {
                 group.addAlbum(newAlbum);
             }
         });
+<<<<<<< HEAD
         this.db.set('groups', groupsUpdated).write();
+=======
+        this.db.set('artists', artistsUpdated).write();
+
+        let genresUpdated: Array<Genre> = this.getGenres();
+        genresUpdated.forEach((genre) => {
+            if(newAlbum.getGenres().includes(genre.getName())) {
+                genre.addAlbum(newAlbum.getName());
+            }
+        });
+        this.db.set('artists', artistsUpdated).write();
+>>>>>>> 3d63a18bb3f9b40a16bf899f37ced7d1e3fa345d
     }
 
     /**
@@ -250,10 +317,7 @@ export class MusicDataBase {
     public genreSort(asc: boolean = true): Array<Genre> {
         let sortedList: Array<Genre> = this.getGenres();
 
-        let a: Genre;
-        let b: Genre;
-        
-        sortedList.sort(function (a, b) {
+        sortedList.sort(function (a: Genre, b: Genre) {
             if (asc) {
                 return a.getName() > b.getName() ? 1 : -1;
             } else {
@@ -282,7 +346,7 @@ export class MusicDataBase {
     }
 
 
-    public defaultData() {
+    public defaultGenres() {
         let Reggeton: Genre = new Genre("Reggeton");
         let Electronica: Genre = new Genre("Electronica");
         let Bachata: Genre = new Genre("Bachata");
@@ -301,62 +365,83 @@ export class MusicDataBase {
         defaultGenres.forEach((genre) => {
             this.addGenre(genre);
         });
+    }
 
-
-        let Anuel: Artist = new Artist("Anuel");
-        let BobMarley: Artist = new Artist("Bob Marley");
-        let Avicii: Artist = new Artist("Avicii");
-        let DavidGuetta: Artist = new Artist("David Guetta");
-        let CeliaCruz: Artist = new Artist("Celia Cruz");
-        let Eminem: Artist = new Artist("Eminem");
-        let Maluma: Artist = new Artist("Maluma");
-        let Wisin: Artist = new Artist("Wisin");
-        let Yandel: Artist = new Artist("Yandel");
-        let DavidMuñoz: Artist = new Artist("David Muñoz");
-        let JoseMuñoz: Artist = new Artist("Jose Muñoz");
-        let Rihanna: Artist = new Artist("Rihanna");
-        let JuanMagan: Artist = new Artist("Juan Magan");
-        let Ozuna: Artist = new Artist("Ozuna");
-        let FreddyMercury: Artist = new Artist("Freddy Mercury");
-        let JohnLennon: Artist = new Artist("John Lennon");
-        let Morad: Artist = new Artist("Morad");
-        let Shakira: Artist = new Artist("Shakira");
-
+    public defaultArtists() {
         let defaultArtists: Array<Artist> = [
-            Anuel, BobMarley, Avicii, DavidGuetta, CeliaCruz, Eminem, Maluma, Wisin, Yandel, DavidMuñoz, JoseMuñoz,
-            Rihanna, JuanMagan, Ozuna, FreddyMercury, JohnLennon, Morad, Shakira
+            new Artist("Bob Marley"),
+            new Artist("Avicii"),
+            new Artist("David Guetta"),
+            new Artist("Celia Cruz"),
+            new Artist("Anuel"),
+            new Artist("Eminem"),
+            new Artist("Maluma"),
+            new Artist("Wisin"),
+            new Artist("Yandel"),
+            new Artist("David Muñoz"),
+            new Artist("Jose Muñoz"),
+            new Artist("Rihanna"),
+            new Artist("Juan Magan"),
+            new Artist("Ozuna"),
+            new Artist("Freddy Mercury"),
+            new Artist("John Lennon"),
+            new Artist("Morad"),
+            new Artist("Shakira"),
         ];
 
         defaultArtists.forEach((artist) => {
             this.addArtist(artist);
         });
+    }
 
-        let WisinYYandel: Group = new Group("Wisin & Yandel", 2001, [Wisin, Yandel], 12563);
-        let Estopa: Group = new Group("Estopa", 2006, [DavidMuñoz, JoseMuñoz], 4123);
-
+    public defaultGroups() {
         let defaultGroups: Array<Group> = [
-            WisinYYandel, Estopa
+            new Group("Wisin & Yandel", 2001, ["Wisin", "Yandel"], 12563),
+            new Group("Estopa", 2006, ["DavidMuñoz", "JoseMuñoz"], 4123),
+            new Group("Queen", 1970, ["Freddy Mercury"], 14520300),
         ];
 
         defaultGroups.forEach((group) => {
             this.addGroup(group);
         });
+    }
 
-
-        let China: Song = new Song("China", Anuel, Reggeton, true, 10000000, 120);
-        let Sola: Song = new Song("Sola", Anuel, Reggeton, true, 50000000, 100);
-        let Abusadora: Song = new Song("Abusadora", WisinYYandel, Reggeton, true, 1000025, 110);
-
-        let defaultSongs: Array<Song> = [China, Sola, Abusadora];
+    public defaultSongs() {
+        let defaultSongs: Array<Song> = [
+            new Song("China", "Anuel", "Reggeton", true, 10000000, 120),
+            new Song("Sola", "Anuel", "Reggeton", true, 50000000, 100),
+            new Song("Abusadora", "WisinYYandel", "Reggeton", true, 1000025, 110),
+            new Song("Waka Waka", "Shakira", "Pop", true, 4584684, 110),
+            new Song("La vida es un carnaval", "Celia Cruz", "Salsa", true, 44711100, 140),
+            new Song("El farsante", "Ozuna", "Trap", false, 47580000, 110),
+            new Song("Work", "Rihana", "Pop", true, 23000000, 98),
+            new Song("Diamonds", "Rihana", "Pop", true, 400000, 170),
+            new Song("Dile que tú me quieres", "Ozuna", "Reggeton", false, 412000000, 146),
+            new Song("Without me", "Eminem", "Rap", true, 7410000, 102),
+            new Song("Lose Yourself", "Eminem", "Rap", true, 4705000, 103),
+            new Song("Stan", "Eminem", "Pop", true, 5880000, 100),
+            new Song("La negra tiene tumbao", "Celia Cruz", "Salsa", true, 45020000, 104),
+            new Song("Wake me Up", "Avicii", "Electronica", false, 9900000, 88),
+            new Song("The nights", "Avicii", "Electronica", false, 47500000, 148),
+            new Song("The days", "Avicii", "Electronica", false, 63000000, 178),
+            new Song("Play Hard", "David Guetta", "Electronica", true, 5000000, 133),
+            new Song("Sobredosis", "Ozuna", "Bachata", true, 1300000, 155),
+            new Song("Smack that", "David Guetta", "Electronica", false, 77778800, 144),
+            new Song("We are the Champions", "Queen", "Rock", true, 77746000, 200),
+            new Song("Bohemian Raphsody", "Queen", "Rock", true, 30000000, 220),
+        ];
 
         defaultSongs.forEach((song) => {
             this.addSong(song)
         });
+    }
+    
 
-        let RHLM: Album = new Album("Real Hasta La Muerte", Anuel, 100, [Sola, China]);
-
+    public defaultAlbums() {
         let defaultAlbums: Array<Album> = [
-            RHLM
+            new Album("Real Hasta La Muerte", "Anuel", 100, ["Sola", "China"], ["Reggeton"]),
+            new Album("Odisea", "Ozuna", 2018, ["El farsante", "Dile que tu me quieres"], ["Reggeton", "Trap"]),
+            new Album("True", "Avicii", 2013, ["Wake me Up", "The nights", "The days"], ["Electronica"]),
         ];
 
         defaultAlbums.forEach((album) => {

@@ -8,9 +8,9 @@ import { Song } from "./song";
  */
 export class Genre {
 
-    private components: Array<Artist | Group> = new Array<Artist | Group> ();
-    private albums: Array<Album> = new Array<Album>();
-    private songs: Array<Song> = new Array<Song> ();
+    private components: Array<string> = new Array<string> ();
+    private albums: Array<string> = new Array<string>();
+    private songs: Array<string> = new Array<string> ();
 
     /**
      * Constructor de la clase Genre. Recibe el nombre del género
@@ -32,7 +32,7 @@ export class Genre {
      * Devuelve un conjunto con los artistas y grupos que han lanzado canciones del género
      * @returns Array<Artist | Group>
      */
-    public getComponents(): Array<Artist | Group> {
+    public getComponents(): Array<string> {
         return this.components;
     }
 
@@ -40,7 +40,7 @@ export class Genre {
      * Devuelve los albums del género
      * @returns Array<Album>
      */
-    public getAlbums(): Array<Album> {
+    public getAlbums(): Array<string> {
         return this.albums;
     }
 
@@ -48,16 +48,21 @@ export class Genre {
      * Devuelve las canciones de el género
      * @returns Array<Song>
      */
-    public getSongs(): Array<Song> {
+    public getSongs(): Array<string> {
         return this.songs
+    }
+
+    public addAlbum(newAlbum: string) {
+        this.albums.push(newAlbum)
     }
 
     /**
      * Añade a la lista de artistas el recibido por parámetro cuando se añade a la base de datos una canción de este género
      * @param newArtit Artist | Group
      */
-    public addArtist(newArtist: Artist | Group) {
-        this.components.push(newArtist)
+    public addArtist(newArtist: string) {
+        if (!this.components.includes(newArtist))
+            this.components.push(newArtist)
     }
 
     /**
@@ -65,7 +70,7 @@ export class Genre {
      * @param newSong Song
      */
     public addSong(newSong: Song) {
-        this.songs.push(newSong);
+        this.songs.push(newSong.getName());
     }
     
     public same(genre: Genre) {
@@ -77,7 +82,7 @@ export class Genre {
         if (this.getAlbums().length > 0) {
             console.log(`\tAlbumes: `)
             this.getAlbums().forEach(album => {
-                console.log(`\t  - ${album.getName()} - by:  ${album.getCreator()}`);
+                console.log(`\t  - ${album}}`);
             });
         } else {
             console.log(`\tEste genero no tiene albumes relacionados`);
@@ -86,7 +91,7 @@ export class Genre {
         if (this.getComponents().length > 0) {
             console.log(`\tArtistas Relacionados: `);
             this.getComponents().forEach(component => {
-                console.log(`\t  - ${component.getName()}`);
+                console.log(`\t  - ${component}`);
             });
         } else {
             console.log(`\tEste genero no tiene artistas relacionados`);
@@ -95,7 +100,7 @@ export class Genre {
         if (this.getSongs().length > 0) {
             console.log(`\tCanciones: `);
             this.getSongs().forEach(song => {
-                console.log(`\t  - ${song.getName()}`);
+                console.log(`\t  - ${song}`);
             });
         } else {
             console.log(`\tEste genero no tiene canciones asociadas`);
@@ -108,19 +113,19 @@ export class Genre {
     public has(element: Artist | Group | Album | Song): boolean {
         if (element instanceof (Artist || Group)) {
             this.getComponents().forEach(component => {
-                if(component.same(element)) {
+                if(component == element.getName()) {
                     return true;
                 }
             });
         } else if (element instanceof Album) {
             this.getAlbums().forEach(album => {
-                if (album.same(element)) {
+                if (album == element.getName()) {
                     return true;
                 }
             });
         } else if (element instanceof Song) {
             this.getSongs().forEach(song => {
-                if (song.same(element)) {
+                if (song == element.getName()) {
                     return true;
                 }
             });

@@ -1,10 +1,107 @@
 {
-  "artists": [
+  "genres": [
     {
-      "name": "Anuel",
-      "genres": [],
-      "listeners": 0,
-      "groups": [],
+      "name": "Reggeton",
+      "components": [
+        "Anuel",
+        "WisinYYandel",
+        "Ozuna"
+      ],
+      "albums": [
+        "Real Hasta La Muerte",
+        "Odisea"
+      ],
+      "songs": [
+        "China",
+        "Sola",
+        "Abusadora",
+        "Dile que tú me quieres"
+      ]
+    },
+    {
+      "name": "Electronica",
+      "components": [
+        "Avicii",
+        "David Guetta"
+      ],
+      "albums": [
+        "True"
+      ],
+      "songs": [
+        "Wake me Up",
+        "The nights",
+        "The days",
+        "Play Hard",
+        "Smack that"
+      ]
+    },
+    {
+      "name": "Bachata",
+      "components": [
+        "Ozuna"
+      ],
+      "albums": [],
+      "songs": [
+        "Sobredosis"
+      ]
+    },
+    {
+      "name": "Pop",
+      "components": [
+        "Shakira",
+        "Rihana",
+        "Eminem"
+      ],
+      "albums": [],
+      "songs": [
+        "Waka Waka",
+        "Work",
+        "Diamonds",
+        "Stan"
+      ]
+    },
+    {
+      "name": "Rock",
+      "components": [
+        "Queen"
+      ],
+      "albums": [],
+      "songs": [
+        "We are the Champions",
+        "Bohemian Raphsody"
+      ]
+    },
+    {
+      "name": "Heavy Metal",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Salsa",
+      "components": [
+        "Celia Cruz"
+      ],
+      "albums": [],
+      "songs": [
+        "La vida es un carnaval",
+        "La negra tiene tumbao"
+      ]
+    },
+    {
+      "name": "Rap",
+      "components": [
+        "Eminem"
+      ],
+      "albums": [],
+      "songs": [
+        "Without me",
+        "Lose Yourself"
+      ]
+    },
+    {
+      "name": "Reggae",
+      "components": [],
       "albums": [],
       "songs": []
     },
@@ -113,6 +210,20 @@
     },
 >>>>>>> Types
     {
+      "name": "Trap",
+      "components": [
+        "Ozuna"
+      ],
+      "albums": [
+        "Odisea"
+      ],
+      "songs": [
+        "El farsante"
+      ]
+    }
+  ],
+  "artists": [
+    {
       "name": "Bob Marley",
       "genres": [],
       "listeners": 0,
@@ -122,35 +233,75 @@
     },
     {
       "name": "Avicii",
-      "genres": [],
-      "listeners": 0,
+      "genres": [
+        "Electronica"
+      ],
+      "listeners": 120400000,
       "groups": [],
-      "albums": [],
-      "songs": []
+      "albums": [
+        "True"
+      ],
+      "songs": [
+        "Wake me Up",
+        "The nights",
+        "The days"
+      ]
     },
     {
       "name": "David Guetta",
-      "genres": [],
-      "listeners": 0,
+      "genres": [
+        "Electronica"
+      ],
+      "listeners": 82778800,
       "groups": [],
       "albums": [],
-      "songs": []
+      "songs": [
+        "Play Hard",
+        "Smack that"
+      ]
     },
     {
       "name": "Celia Cruz",
-      "genres": [],
-      "listeners": 0,
+      "genres": [
+        "Salsa"
+      ],
+      "listeners": 89731100,
       "groups": [],
       "albums": [],
-      "songs": []
+      "songs": [
+        "La vida es un carnaval",
+        "La negra tiene tumbao"
+      ]
+    },
+    {
+      "name": "Anuel",
+      "genres": [
+        "Reggeton"
+      ],
+      "listeners": 60000000,
+      "groups": [],
+      "albums": [
+        "Real Hasta La Muerte"
+      ],
+      "songs": [
+        "China",
+        "Sola"
+      ]
     },
     {
       "name": "Eminem",
-      "genres": [],
-      "listeners": 0,
+      "genres": [
+        "Rap",
+        "Pop"
+      ],
+      "listeners": 17995000,
       "groups": [],
       "albums": [],
-      "songs": []
+      "songs": [
+        "Without me",
+        "Lose Yourself",
+        "Stan"
+      ]
     },
     {
       "name": "Maluma",
@@ -164,7 +315,9 @@
       "name": "Wisin",
       "genres": [],
       "listeners": 0,
-      "groups": [],
+      "groups": [
+        "Wisin & Yandel"
+      ],
       "albums": [],
       "songs": []
     },
@@ -172,7 +325,9 @@
       "name": "Yandel",
       "genres": [],
       "listeners": 0,
-      "groups": [],
+      "groups": [
+        "Wisin & Yandel"
+      ],
       "albums": [],
       "songs": []
     },
@@ -210,17 +365,29 @@
     },
     {
       "name": "Ozuna",
-      "genres": [],
-      "listeners": 0,
+      "genres": [
+        "Trap",
+        "Reggeton",
+        "Bachata"
+      ],
+      "listeners": 460880000,
       "groups": [],
-      "albums": [],
-      "songs": []
+      "albums": [
+        "Odisea"
+      ],
+      "songs": [
+        "El farsante",
+        "Dile que tú me quieres",
+        "Sobredosis"
+      ]
     },
     {
       "name": "Freddy Mercury",
       "genres": [],
       "listeners": 0,
-      "groups": [],
+      "groups": [
+        "Queen"
+      ],
       "albums": [],
       "songs": []
     },
@@ -242,12 +409,20 @@
     },
     {
       "name": "Shakira",
-      "genres": [],
-      "listeners": 0,
+      "genres": [
+        "Pop"
+      ],
+      "listeners": 4584684,
       "groups": [],
       "albums": [],
+<<<<<<< HEAD
       "songs": []
 <<<<<<< HEAD
+=======
+      "songs": [
+        "Waka Waka"
+      ]
+>>>>>>> 3d63a18bb3f9b40a16bf899f37ced7d1e3fa345d
     }
   ],
   "groups": [
@@ -988,91 +1163,336 @@
       "name": "Wisin & Yandel",
       "year": 2001,
       "artists": [
-        {
-          "name": "Wisin",
-          "genres": [],
-          "listeners": 0,
-          "groups": [],
-          "albums": [],
-          "songs": []
-        },
-        {
-          "name": "Yandel",
-          "genres": [],
-          "listeners": 0,
-          "groups": [],
-          "albums": [],
-          "songs": []
-        }
+        "Wisin",
+        "Yandel"
       ],
       "listeners": 12563,
       "genres": [],
       "albums": [],
       "songs": []
+    },
+    {
+      "name": "Estopa",
+      "year": 2006,
+      "artists": [
+        "DavidMuñoz",
+        "JoseMuñoz"
+      ],
+      "listeners": 4123,
+      "genres": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Queen",
+      "year": 1970,
+      "artists": [
+        "Freddy Mercury"
+      ],
+      "listeners": 122266300,
+      "genres": [
+        "Rock",
+        "Rock"
+      ],
+      "albums": [],
+      "songs": [
+        "We are the Champions",
+        "Bohemian Raphsody"
+      ]
     }
   ],
-  "songs": [],
-  "albums": [],
-  "genres": [
+  "songs": [
     {
-      "name": "Reggeton",
-      "components": [],
-      "albums": [],
-      "songs": []
+      "name": "China",
+      "creator": "Anuel",
+      "genre": "Reggeton",
+      "isSingle": true,
+      "timesListened": 10000000,
+      "duration": {
+        "hours": 0.03333333333333333,
+        "minutes": 2,
+        "seconds": 120
+      }
     },
     {
-      "name": "Electronica",
-      "components": [],
-      "albums": [],
-      "songs": []
+      "name": "Sola",
+      "creator": "Anuel",
+      "genre": "Reggeton",
+      "isSingle": true,
+      "timesListened": 50000000,
+      "duration": {
+        "hours": 0.027777777777777776,
+        "minutes": 1.6666666666666667,
+        "seconds": 100
+      }
     },
     {
-      "name": "Bachata",
-      "components": [],
-      "albums": [],
-      "songs": []
+      "name": "Abusadora",
+      "creator": "WisinYYandel",
+      "genre": "Reggeton",
+      "isSingle": true,
+      "timesListened": 1000025,
+      "duration": {
+        "hours": 0.030555555555555555,
+        "minutes": 1.8333333333333333,
+        "seconds": 110
+      }
     },
     {
-      "name": "Pop",
-      "components": [],
-      "albums": [],
-      "songs": []
+      "name": "Waka Waka",
+      "creator": "Shakira",
+      "genre": "Pop",
+      "isSingle": true,
+      "timesListened": 4584684,
+      "duration": {
+        "hours": 0.030555555555555555,
+        "minutes": 1.8333333333333333,
+        "seconds": 110
+      }
     },
     {
-      "name": "Rock",
-      "components": [],
-      "albums": [],
-      "songs": []
+      "name": "La vida es un carnaval",
+      "creator": "Celia Cruz",
+      "genre": "Salsa",
+      "isSingle": true,
+      "timesListened": 44711100,
+      "duration": {
+        "hours": 0.03888888888888889,
+        "minutes": 2.3333333333333335,
+        "seconds": 140
+      }
     },
     {
-      "name": "Heavy Metal",
-      "components": [],
-      "albums": [],
-      "songs": []
+      "name": "El farsante",
+      "creator": "Ozuna",
+      "genre": "Trap",
+      "isSingle": false,
+      "timesListened": 47580000,
+      "duration": {
+        "hours": 0.030555555555555555,
+        "minutes": 1.8333333333333333,
+        "seconds": 110
+      }
     },
     {
-      "name": "Salsa",
-      "components": [],
-      "albums": [],
-      "songs": []
+      "name": "Work",
+      "creator": "Rihana",
+      "genre": "Pop",
+      "isSingle": true,
+      "timesListened": 23000000,
+      "duration": {
+        "hours": 0.02722222222222222,
+        "minutes": 1.6333333333333333,
+        "seconds": 98
+      }
     },
     {
-      "name": "Rap",
-      "components": [],
-      "albums": [],
-      "songs": []
+      "name": "Diamonds",
+      "creator": "Rihana",
+      "genre": "Pop",
+      "isSingle": true,
+      "timesListened": 400000,
+      "duration": {
+        "hours": 0.04722222222222222,
+        "minutes": 2.8333333333333335,
+        "seconds": 170
+      }
     },
     {
-      "name": "Reggae",
-      "components": [],
-      "albums": [],
-      "songs": []
+      "name": "Dile que tú me quieres",
+      "creator": "Ozuna",
+      "genre": "Reggeton",
+      "isSingle": false,
+      "timesListened": 412000000,
+      "duration": {
+        "hours": 0.04055555555555555,
+        "minutes": 2.433333333333333,
+        "seconds": 146
+      }
     },
     {
-      "name": "Trap",
-      "components": [],
-      "albums": [],
-      "songs": []
+      "name": "Without me",
+      "creator": "Eminem",
+      "genre": "Rap",
+      "isSingle": true,
+      "timesListened": 7410000,
+      "duration": {
+        "hours": 0.028333333333333332,
+        "minutes": 1.7,
+        "seconds": 102
+      }
+    },
+    {
+      "name": "Lose Yourself",
+      "creator": "Eminem",
+      "genre": "Rap",
+      "isSingle": true,
+      "timesListened": 4705000,
+      "duration": {
+        "hours": 0.02861111111111111,
+        "minutes": 1.7166666666666666,
+        "seconds": 103
+      }
+    },
+    {
+      "name": "Stan",
+      "creator": "Eminem",
+      "genre": "Pop",
+      "isSingle": true,
+      "timesListened": 5880000,
+      "duration": {
+        "hours": 0.027777777777777776,
+        "minutes": 1.6666666666666667,
+        "seconds": 100
+      }
+    },
+    {
+      "name": "La negra tiene tumbao",
+      "creator": "Celia Cruz",
+      "genre": "Salsa",
+      "isSingle": true,
+      "timesListened": 45020000,
+      "duration": {
+        "hours": 0.028888888888888888,
+        "minutes": 1.7333333333333334,
+        "seconds": 104
+      }
+    },
+    {
+      "name": "Wake me Up",
+      "creator": "Avicii",
+      "genre": "Electronica",
+      "isSingle": false,
+      "timesListened": 9900000,
+      "duration": {
+        "hours": 0.024444444444444446,
+        "minutes": 1.4666666666666666,
+        "seconds": 88
+      }
+    },
+    {
+      "name": "The nights",
+      "creator": "Avicii",
+      "genre": "Electronica",
+      "isSingle": false,
+      "timesListened": 47500000,
+      "duration": {
+        "hours": 0.04111111111111111,
+        "minutes": 2.466666666666667,
+        "seconds": 148
+      }
+    },
+    {
+      "name": "The days",
+      "creator": "Avicii",
+      "genre": "Electronica",
+      "isSingle": false,
+      "timesListened": 63000000,
+      "duration": {
+        "hours": 0.049444444444444444,
+        "minutes": 2.966666666666667,
+        "seconds": 178
+      }
+    },
+    {
+      "name": "Play Hard",
+      "creator": "David Guetta",
+      "genre": "Electronica",
+      "isSingle": true,
+      "timesListened": 5000000,
+      "duration": {
+        "hours": 0.036944444444444446,
+        "minutes": 2.216666666666667,
+        "seconds": 133
+      }
+    },
+    {
+      "name": "Sobredosis",
+      "creator": "Ozuna",
+      "genre": "Bachata",
+      "isSingle": true,
+      "timesListened": 1300000,
+      "duration": {
+        "hours": 0.043055555555555555,
+        "minutes": 2.5833333333333335,
+        "seconds": 155
+      }
+    },
+    {
+      "name": "Smack that",
+      "creator": "David Guetta",
+      "genre": "Electronica",
+      "isSingle": false,
+      "timesListened": 77778800,
+      "duration": {
+        "hours": 0.04,
+        "minutes": 2.4,
+        "seconds": 144
+      }
+    },
+    {
+      "name": "We are the Champions",
+      "creator": "Queen",
+      "genre": "Rock",
+      "isSingle": true,
+      "timesListened": 77746000,
+      "duration": {
+        "hours": 0.05555555555555555,
+        "minutes": 3.3333333333333335,
+        "seconds": 200
+      }
+    },
+    {
+      "name": "Bohemian Raphsody",
+      "creator": "Queen",
+      "genre": "Rock",
+      "isSingle": true,
+      "timesListened": 30000000,
+      "duration": {
+        "hours": 0.06111111111111111,
+        "minutes": 3.6666666666666665,
+        "seconds": 220
+      }
+    }
+  ],
+  "albums": [
+    {
+      "name": "Real Hasta La Muerte",
+      "creator": "Anuel",
+      "year": 100,
+      "songs": [
+        "Sola",
+        "China"
+      ],
+      "genres": [
+        "Reggeton"
+      ]
+    },
+    {
+      "name": "Odisea",
+      "creator": "Ozuna",
+      "year": 2018,
+      "songs": [
+        "El farsante",
+        "Dile que tu me quieres"
+      ],
+      "genres": [
+        "Reggeton",
+        "Trap"
+      ]
+    },
+    {
+      "name": "True",
+      "creator": "Avicii",
+      "year": 2013,
+      "songs": [
+        "Wake me Up",
+        "The nights",
+        "The days"
+      ],
+      "genres": [
+        "Electronica"
+      ]
     }
   ],
   "playlists": []

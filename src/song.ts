@@ -20,8 +20,8 @@ export class Song {
      */
     constructor(
         private name: string,
-        private creator: Artist | Group,
-        private genre: Genre,
+        private creator: string,
+        private genre: string,
         private isSingle: boolean,
         private timesListened: number,
         durationInSeconds: number,
@@ -41,7 +41,7 @@ export class Song {
      * Devuelve el creador de la canción: Artista o Grupo
      * @returns Artist | Group
      */
-    public getCreator(): Artist | Group {
+    public getCreator(): string {
         return this.creator;
     }
 
@@ -49,7 +49,7 @@ export class Song {
      * Devuelve el género de la canción
      * @returns Genre
      */
-    public getGenre(): Genre {
+    public getGenre(): string {
         return this.genre;
     }
 
@@ -88,7 +88,7 @@ export class Song {
     public same(song: Song): boolean {
         if ((this.getName() === song.getName()) && (this.getIsSingle() === song.getIsSingle())) {
             if ((this.getTimesListened() === song.getTimesListened()) && (this.getMinutes() === song.getMinutes())) {
-                if ((this.getCreator().same(song.getCreator())) && (this.getGenre().same(song.getGenre()))) {
+                if ((this.getCreator() == (song.getCreator())) && (this.getGenre() == (song.getGenre()))) {
                     return true;
                 }
 
@@ -101,8 +101,8 @@ export class Song {
 
     public print() {
         console.log(`CANCION: **${this.getName()}**`);
-        console.log(`\tAutor: ${this.getCreator().getName()}`);
-        console.log(`\tGenero: ${this.getGenre().getName()}`);
+        console.log(`\tAutor: ${this.getCreator()}`);
+        console.log(`\tGenero: ${this.getGenre()}`);
         console.log(`\tDuracion en minutos: ${this.getMinutes().toFixed(2)}`);
         console.log(`\tNumero de reproducciones: ${this.getTimesListened()}\n`);
     }
