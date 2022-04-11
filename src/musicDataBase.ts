@@ -99,23 +99,13 @@ export class MusicDataBase {
 
         let artists: Array<Artist> = newGroup.getArtist();
         let dbArtists: Array<Artist> = this.getArtists(); 
-        
-        Array.prototype.forEach.call(dbArtists, artist1 => {
-            artists.forEach(artist2 => {
-                if (artist1.same(artist2)) {
-                    artist1.addGroup(newGroup);
-                }
-            })
-        });
-        /*
         dbArtists.forEach(artist1 => {
             artists.forEach(artist2 => {
                 if (artist1.same(artist2)) {
                     artist1.addGroup(newGroup);
                 }
             })
-        });*/
-
+        });
         this.db.set('artists', dbArtists).write();
     }
 
@@ -133,49 +123,27 @@ export class MusicDataBase {
         this.db.set('songs', songValue).write();
 
         let artistsUpdated: Array<Artist> = this.getArtists();
-
-        Array.prototype.forEach.call(artistsUpdated, artist => {
-            if(artist.same(newSong.getCreator())) {
-                artist.addSong(newSong);
-                artist.addGenre(newSong.getGenre());
-                artist.updateListeners(newSong.getTimesListened())
-            }
-        });
-        /*
         artistsUpdated.forEach((artist) => {
             if(artist.same(newSong.getCreator())) {
                 artist.addSong(newSong);
                 artist.addGenre(newSong.getGenre());
                 artist.updateListeners(newSong.getTimesListened())
             }
-        });*/
+        });
         this.db.set('artists', artistsUpdated).write();
 
 
         let groupsUpdated: Array<Group> = this.getGroups();
-        Array.prototype.forEach.call(groupsUpdated, group => {
-            if(group.same(newSong.getCreator())) {
-                group.addSong(newSong);
-                group.addGenre(newSong.getGenre());
-                group.updateListeners(newSong.getTimesListened())
-            }
-        });
-        /*
         groupsUpdated.forEach((group) => {
             if(group.same(newSong.getCreator())) {
                 group.addSong(newSong);
                 group.addGenre(newSong.getGenre());
                 group.updateListeners(newSong.getTimesListened())
             }
-        });*/
+        });
         this.db.set('artists', artistsUpdated).write();
-        let genresUpdated: Array<Genre> = this.getGenres();
-        /*
-        Array.prototype.forEach.call(genresUpdated,genre  => {
-            if(genre.same(newSong.getGenre())) {
-                genre.addSong(newSong);
-            }
-        });*/
+        
+        let genresUpdated: Array<Genre> = this.getGenres(); 
         genresUpdated.forEach((genre) => {
             if(genre.same(newSong.getGenre())) {
                 genre.addSong(newSong);
@@ -192,33 +160,23 @@ export class MusicDataBase {
 
         let artistsUpdated: Array<Artist> = this.getArtists();
 
-        Array.prototype.forEach.call(artistsUpdated, artist => {
-            if(artist.same(newAlbum.getCreator())) {
-                artist.addAlbum(newAlbum);
-            }
-        });
-        /*
+        
         artistsUpdated.forEach((artist) => {
             if(artist.same(newAlbum.getCreator())) {
                 artist.addAlbum(newAlbum);
             }
-        });*/
+        });
         this.db.set('artists', artistsUpdated).write();
 
 
         let groupsUpdated: Array<Group> = this.getGroups();
 
-        Array.prototype.forEach.call(groupsUpdated, group => {
-            if(group.same(newAlbum.getCreator())) {
-                group.addAlbum(newAlbum);
-            }
-        });
-        /*
+        
         groupsUpdated.forEach((group) => {
             if(group.same(newAlbum.getCreator())) {
                 group.addAlbum(newAlbum);
             }
-        });*/
+        });
         this.db.set('groups', groupsUpdated).write();
     }
 
