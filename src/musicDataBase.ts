@@ -76,7 +76,7 @@ export class MusicDataBase {
                 pl.addSong(song);
             }
         });
-
+        
         this.db.set('playlists', myPlaylists).write();   
     }
 
@@ -87,11 +87,15 @@ export class MusicDataBase {
     }
 
     public addArtist(newArtist: Artist) {
-        this.db.set('artists', newArtist).write();
+        const artistValue: Array<Artist> = this.getArtists();
+        artistValue.push(newArtist);
+        this.db.set('artists', artistValue).write();
     }
 
     public addGroup(newGroup: Group) {
-        this.db.set('groups', newGroup).write();
+        const groupValue: Array<Group> = this.getGroups();
+        groupValue.push(newGroup);
+        this.db.set('groups', groupValue).write();
 
         let artists: Array<Artist> = newGroup.getArtist();
         let dbArtists: Array<Artist> = this.getArtists(); 
@@ -118,11 +122,15 @@ export class MusicDataBase {
 
     public addPlaylist(newPlaylist: Playlist) {
         // Metodo de busqueda por usuario 
-        this.db.set('playlists', newPlaylist).write();
+        const playlistValue: Array<Playlist> = this.getPlaylists();
+        playlistValue.push(newPlaylist);
+        this.db.set('playlists', playlistValue).write();
     }
 
     public addSong(newSong: Song) {
-        this.db.set('songs', newSong).write();
+        const songValue: Array<Song> = this.getSongs();
+        songValue.push(newSong);
+        this.db.set('songs', songValue).write();
 
         let artistsUpdated: Array<Artist> = this.getArtists();
 
@@ -178,7 +186,9 @@ export class MusicDataBase {
     }
 
     public addAlbum(newAlbum: Album) {
-        this.db.set('albums', newAlbum).write();
+        const albumValue: Array<Album> = this.getAlbums();
+        albumValue.push(newAlbum);
+        this.db.set('albums', albumValue).write();
 
         let artistsUpdated: Array<Artist> = this.getArtists();
 
@@ -209,7 +219,7 @@ export class MusicDataBase {
                 group.addAlbum(newAlbum);
             }
         });*/
-        this.db.set('artists', artistsUpdated).write();
+        this.db.set('groups', groupsUpdated).write();
     }
 
     /**
