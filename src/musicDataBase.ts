@@ -47,7 +47,10 @@ export class MusicDataBase {
     }
 
     public getArtists(): Array<Artist> {
-        return Array.from(this.db.get('artists').value());
+        // Probando cosas: 
+        const serializedArtists = this.db.get('artists').value();
+        const myArtists = Artist.deserialize(serializedArtists);
+        return myArtists;
     }
 
     public getGroups(): Array<Group> {
@@ -93,9 +96,9 @@ export class MusicDataBase {
     }
 
     public addGroup(newGroup: Group) {
-        const groupValue: Array<Group> = this.getGroups();
-        groupValue.push(newGroup);
-        this.db.set('groups', groupValue).write();
+        //const groupValue: Array<Group> = this.getGroups();
+        //groupValue.push(newGroup);
+        this.db.set('groups', newGroup).write();
 
         let artists: Array<Artist> = newGroup.getArtist();
         let dbArtists: Array<Artist> = this.getArtists(); 

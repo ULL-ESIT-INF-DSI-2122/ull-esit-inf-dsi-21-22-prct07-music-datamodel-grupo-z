@@ -76,11 +76,11 @@
     ]
   },
   "groups": {
-    "name": "Estopa",
-    "year": 2006,
+    "name": "Wisin & Yandel",
+    "year": 2001,
     "artists": [
       {
-        "name": "David Muñoz",
+        "name": "Wisin",
         "genres": [],
         "listeners": 0,
         "groups": [],
@@ -88,7 +88,7 @@
         "songs": []
       },
       {
-        "name": "Jose Muñoz",
+        "name": "Yandel",
         "genres": [],
         "listeners": 0,
         "groups": [],
@@ -96,61 +96,451 @@
         "songs": []
       }
     ],
-    "listeners": 4123,
+    "listeners": 12563,
     "genres": [],
     "albums": [],
     "songs": []
   },
-  "artists": [],
+  "artists": [
+    {
+      "name": "Anuel",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Bob Marley",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Avicii",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "David Guetta",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Celia Cruz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Eminem",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Maluma",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Wisin",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Yandel",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "David Muñoz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Jose Muñoz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rihanna",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Juan Magan",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Ozuna",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Freddy Mercury",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "John Lennon",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Morad",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Shakira",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Anuel",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Bob Marley",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Avicii",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "David Guetta",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Celia Cruz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Eminem",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Maluma",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Wisin",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Yandel",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "David Muñoz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Jose Muñoz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rihanna",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Juan Magan",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Ozuna",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Freddy Mercury",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "John Lennon",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Morad",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Shakira",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Anuel",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Bob Marley",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Avicii",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "David Guetta",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Celia Cruz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Eminem",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Maluma",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Wisin",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Yandel",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "David Muñoz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Jose Muñoz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rihanna",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Juan Magan",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Ozuna",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Freddy Mercury",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "John Lennon",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Morad",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Shakira",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    }
+  ],
   "genres": [
     {
       "name": "Reggaeton",
       "components": [],
       "albums": [],
-      "songs": [
-        {
-          "name": "Abusadora",
-          "creator": {
-            "name": "Wisin & Yandel",
-            "year": 2001,
-            "artists": [
-              {
-                "name": "Wisin",
-                "genres": [],
-                "listeners": 0,
-                "groups": [],
-                "albums": [],
-                "songs": []
-              },
-              {
-                "name": "Yandel",
-                "genres": [],
-                "listeners": 0,
-                "groups": [],
-                "albums": [],
-                "songs": []
-              }
-            ],
-            "listeners": 12563,
-            "genres": [],
-            "albums": [],
-            "songs": []
-          },
-          "genre": {
-            "name": "Reggaeton",
-            "components": [],
-            "albums": [],
-            "songs": []
-          },
-          "isSingle": true,
-          "timesListened": 1000025,
-          "duration": {
-            "hours": 0.030555555555555555,
-            "minutes": 1.8333333333333333,
-            "seconds": 110
-          }
-        }
-      ]
+      "songs": []
     },
     {
       "name": "Electronica",
@@ -222,50 +612,7 @@
       "name": "Reggaeton",
       "components": [],
       "albums": [],
-      "songs": [
-        {
-          "name": "Abusadora",
-          "creator": {
-            "name": "Wisin & Yandel",
-            "year": 2001,
-            "artists": [
-              {
-                "name": "Wisin",
-                "genres": [],
-                "listeners": 0,
-                "groups": [],
-                "albums": [],
-                "songs": []
-              },
-              {
-                "name": "Yandel",
-                "genres": [],
-                "listeners": 0,
-                "groups": [],
-                "albums": [],
-                "songs": []
-              }
-            ],
-            "listeners": 12563,
-            "genres": [],
-            "albums": [],
-            "songs": []
-          },
-          "genre": {
-            "name": "Reggaeton",
-            "components": [],
-            "albums": [],
-            "songs": []
-          },
-          "isSingle": true,
-          "timesListened": 1000025,
-          "duration": {
-            "hours": 0.030555555555555555,
-            "minutes": 1.8333333333333333,
-            "seconds": 110
-          }
-        }
-      ]
+      "songs": []
     },
     {
       "name": "Electronica",
@@ -325,50 +672,7 @@
       "name": "Reggaeton",
       "components": [],
       "albums": [],
-      "songs": [
-        {
-          "name": "Abusadora",
-          "creator": {
-            "name": "Wisin & Yandel",
-            "year": 2001,
-            "artists": [
-              {
-                "name": "Wisin",
-                "genres": [],
-                "listeners": 0,
-                "groups": [],
-                "albums": [],
-                "songs": []
-              },
-              {
-                "name": "Yandel",
-                "genres": [],
-                "listeners": 0,
-                "groups": [],
-                "albums": [],
-                "songs": []
-              }
-            ],
-            "listeners": 12563,
-            "genres": [],
-            "albums": [],
-            "songs": []
-          },
-          "genre": {
-            "name": "Reggaeton",
-            "components": [],
-            "albums": [],
-            "songs": []
-          },
-          "isSingle": true,
-          "timesListened": 1000025,
-          "duration": {
-            "hours": 0.030555555555555555,
-            "minutes": 1.8333333333333333,
-            "seconds": 110
-          }
-        }
-      ]
+      "songs": []
     },
     {
       "name": "Electronica",
@@ -428,50 +732,187 @@
       "name": "Reggaeton",
       "components": [],
       "albums": [],
-      "songs": [
-        {
-          "name": "Abusadora",
-          "creator": {
-            "name": "Wisin & Yandel",
-            "year": 2001,
-            "artists": [
-              {
-                "name": "Wisin",
-                "genres": [],
-                "listeners": 0,
-                "groups": [],
-                "albums": [],
-                "songs": []
-              },
-              {
-                "name": "Yandel",
-                "genres": [],
-                "listeners": 0,
-                "groups": [],
-                "albums": [],
-                "songs": []
-              }
-            ],
-            "listeners": 12563,
-            "genres": [],
-            "albums": [],
-            "songs": []
-          },
-          "genre": {
-            "name": "Reggaeton",
-            "components": [],
-            "albums": [],
-            "songs": []
-          },
-          "isSingle": true,
-          "timesListened": 1000025,
-          "duration": {
-            "hours": 0.030555555555555555,
-            "minutes": 1.8333333333333333,
-            "seconds": 110
-          }
-        }
-      ]
+      "songs": []
+    },
+    {
+      "name": "Electronica",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Bachata",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Pop",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rock",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Heavy Metal",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Salsa",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rap",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Reggae",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Trap",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Reggaeton",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Electronica",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Bachata",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Pop",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rock",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Heavy Metal",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Salsa",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rap",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Reggae",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Trap",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Reggaeton",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Electronica",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Bachata",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Pop",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rock",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Heavy Metal",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Salsa",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rap",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Reggae",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Trap",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Reggaeton",
+      "components": [],
+      "albums": [],
+      "songs": []
     },
     {
       "name": "Electronica",
