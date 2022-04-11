@@ -111,6 +111,7 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
 
     it("Se actualizan correctamente las canciones al artista al añadir una canción a la base de datos", () => {
         let artists: Array<Artist> = myDataBase.getArtists();
+
         artists.forEach((artist: Artist) => {
             switch(artist.getName()) {
                 case "Anuel": {

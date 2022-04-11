@@ -366,7 +366,6 @@ export class MusicDataBase {
             new Song("Smack that", "David Guetta", "Electronica", false, 77778800, 144),
             new Song("We are the Champions", "Queen", "Rock", true, 77746000, 200),
             new Song("Bohemian Raphsody", "Queen", "Rock", true, 30000000, 220),
-
         ];
 
         defaultSongs.forEach((song) => {
