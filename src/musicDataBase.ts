@@ -152,6 +152,7 @@ export class MusicDataBase {
         genresUpdated.forEach((genre) => {
             if(genre.getName() == newSong.getGenre()) {
                 genre.addSong(newSong);
+                genre.addArtist(newSong.getCreator())
             }
         });
         this.db.set('genres', genresUpdated).write();
@@ -174,6 +175,14 @@ export class MusicDataBase {
         groupsUpdated.forEach((group) => {
             if(group.getName() == newAlbum.getCreator()) {
                 group.addAlbum(newAlbum);
+            }
+        });
+        this.db.set('artists', artistsUpdated).write();
+
+        let genresUpdated: Array<Genre> = this.getGenres();
+        genresUpdated.forEach((genre) => {
+            if(newAlbum.getGenres().includes(genre.getName())) {
+                genre.addAlbum(newAlbum.getName());
             }
         });
         this.db.set('artists', artistsUpdated).write();
@@ -296,28 +305,25 @@ export class MusicDataBase {
     }
 
     public defaultArtists() {
-        let Anuel: Artist = new Artist("Anuel");
-        let BobMarley: Artist = new Artist("Bob Marley");
-        let Avicii: Artist = new Artist("Avicii");
-        let DavidGuetta: Artist = new Artist("David Guetta");
-        let CeliaCruz: Artist = new Artist("Celia Cruz");
-        let Eminem: Artist = new Artist("Eminem");
-        let Maluma: Artist = new Artist("Maluma");
-        let Wisin: Artist = new Artist("Wisin");
-        let Yandel: Artist = new Artist("Yandel");
-        let DavidMuñoz: Artist = new Artist("David Muñoz");
-        let JoseMuñoz: Artist = new Artist("Jose Muñoz");
-        let Rihanna: Artist = new Artist("Rihanna");
-        let JuanMagan: Artist = new Artist("Juan Magan");
-        let Ozuna: Artist = new Artist("Ozuna");
-        let FreddyMercury: Artist = new Artist("Freddy Mercury");
-        let JohnLennon: Artist = new Artist("John Lennon");
-        let Morad: Artist = new Artist("Morad");
-        let Shakira: Artist = new Artist("Shakira");
-
         let defaultArtists: Array<Artist> = [
-            Anuel, BobMarley, Avicii, DavidGuetta, CeliaCruz, Eminem, Maluma, Wisin, Yandel, DavidMuñoz, JoseMuñoz,
-            Rihanna, JuanMagan, Ozuna, FreddyMercury, JohnLennon, Morad, Shakira
+            new Artist("Bob Marley"),
+            new Artist("Avicii"),
+            new Artist("David Guetta"),
+            new Artist("Celia Cruz"),
+            new Artist("Anuel"),
+            new Artist("Eminem"),
+            new Artist("Maluma"),
+            new Artist("Wisin"),
+            new Artist("Yandel"),
+            new Artist("David Muñoz"),
+            new Artist("Jose Muñoz"),
+            new Artist("Rihanna"),
+            new Artist("Juan Magan"),
+            new Artist("Ozuna"),
+            new Artist("Freddy Mercury"),
+            new Artist("John Lennon"),
+            new Artist("Morad"),
+            new Artist("Shakira"),
         ];
 
         defaultArtists.forEach((artist) => {
@@ -326,11 +332,10 @@ export class MusicDataBase {
     }
 
     public defaultGroups() {
-        let WisinYYandel: Group = new Group("Wisin & Yandel", 2001, ["Wisin", "Yandel"], 12563);
-        let Estopa: Group = new Group("Estopa", 2006, ["DavidMuñoz", "JoseMuñoz"], 4123);
-
         let defaultGroups: Array<Group> = [
-            WisinYYandel, Estopa
+            new Group("Wisin & Yandel", 2001, ["Wisin", "Yandel"], 12563),
+            new Group("Estopa", 2006, ["DavidMuñoz", "JoseMuñoz"], 4123),
+            new Group("Queen", 1970, ["Freddy Mercury"], 14520300),
         ];
 
         defaultGroups.forEach((group) => {
@@ -339,11 +344,30 @@ export class MusicDataBase {
     }
 
     public defaultSongs() {
-        let China: Song = new Song("China", "Anuel", "Reggeton", true, 10000000, 120);
-        let Sola: Song = new Song("Sola", "Anuel", "Reggeton", true, 50000000, 100);
-        let Abusadora: Song = new Song("Abusadora", "WisinYYandel", "Reggeton", true, 1000025, 110);
+        let defaultSongs: Array<Song> = [
+            new Song("China", "Anuel", "Reggeton", true, 10000000, 120),
+            new Song("Sola", "Anuel", "Reggeton", true, 50000000, 100),
+            new Song("Abusadora", "WisinYYandel", "Reggeton", true, 1000025, 110),
+            new Song("Waka Waka", "Shakira", "Pop", true, 4584684, 110),
+            new Song("La vida es un carnaval", "Celia Cruz", "Salsa", true, 44711100, 140),
+            new Song("El farsante", "Ozuna", "Trap", false, 47580000, 110),
+            new Song("Work", "Rihana", "Pop", true, 23000000, 98),
+            new Song("Diamonds", "Rihana", "Pop", true, 400000, 170),
+            new Song("Dile que tú me quieres", "Ozuna", "Reggeton", false, 412000000, 146),
+            new Song("Without me", "Eminem", "Rap", true, 7410000, 102),
+            new Song("Lose Yourself", "Eminem", "Rap", true, 4705000, 103),
+            new Song("Stan", "Eminem", "Pop", true, 5880000, 100),
+            new Song("La negra tiene tumbao", "Celia Cruz", "Salsa", true, 45020000, 104),
+            new Song("Wake me Up", "Avicii", "Electronica", false, 9900000, 88),
+            new Song("The nights", "Avicii", "Electronica", false, 47500000, 148),
+            new Song("The days", "Avicii", "Electronica", false, 63000000, 178),
+            new Song("Play Hard", "David Guetta", "Electronica", true, 5000000, 133),
+            new Song("Sobredosis", "Ozuna", "Bachata", true, 1300000, 155),
+            new Song("Smack that", "David Guetta", "Electronica", false, 77778800, 144),
+            new Song("We are the Champions", "Queen", "Rock", true, 77746000, 200),
+            new Song("Bohemian Raphsody", "Queen", "Rock", true, 30000000, 220),
 
-        let defaultSongs: Array<Song> = [China, Sola, Abusadora];
+        ];
 
         defaultSongs.forEach((song) => {
             this.addSong(song)
@@ -352,10 +376,10 @@ export class MusicDataBase {
     
 
     public defaultAlbums() {
-        let RHLM: Album = new Album("Real Hasta La Muerte", "Anuel", 100, ["Sola", "China"], ["Reggeton"]);
-
         let defaultAlbums: Array<Album> = [
-            RHLM
+            new Album("Real Hasta La Muerte", "Anuel", 100, ["Sola", "China"], ["Reggeton"]),
+            new Album("Odisea", "Ozuna", 2018, ["El farsante", "Dile que tu me quieres"], ["Reggeton", "Trap"]),
+            new Album("True", "Avicii", 2013, ["Wake me Up", "The nights", "The days"], ["Electronica"]),
         ];
 
         defaultAlbums.forEach((album) => {

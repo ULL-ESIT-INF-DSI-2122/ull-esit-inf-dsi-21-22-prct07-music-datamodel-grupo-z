@@ -52,12 +52,17 @@ export class Genre {
         return this.songs
     }
 
+    public addAlbum(newAlbum: string) {
+        this.albums.push(newAlbum)
+    }
+
     /**
      * Añade a la lista de artistas el recibido por parámetro cuando se añade a la base de datos una canción de este género
      * @param newArtit Artist | Group
      */
-    public addArtist(newArtist: Artist | Group) {
-        this.components.push(newArtist.getName())
+    public addArtist(newArtist: string) {
+        if (!this.components.includes(newArtist))
+            this.components.push(newArtist)
     }
 
     /**
