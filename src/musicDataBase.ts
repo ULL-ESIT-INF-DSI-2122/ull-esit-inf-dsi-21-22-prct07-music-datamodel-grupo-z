@@ -29,15 +29,7 @@ export class MusicDataBase {
         this.db = lowdb(new FileSync('database/db.json'));
 
 
-        this.db.defaults({ 
-            albums: [], 
-            artists: [],
-            groups: [],
-            genres:[],
-            songs: [],
-            playlists: [],
-        }).write();
-
+        
         if (this.db.get("genres").value() === undefined) {
             this.db.set("genres", []).write();
             this.defaultGenres();
@@ -66,6 +58,16 @@ export class MusicDataBase {
         if (this.db.get("playlists").value() === undefined) {
             this.db.set("playlists", []).write();
         }
+
+        this.db.defaults({ 
+            albums: [], 
+            artists: [],
+            groups: [],
+            genres:[],
+            songs: [],
+            playlists: [],
+        }).write();
+
     }
 
 
@@ -91,7 +93,10 @@ export class MusicDataBase {
     }
 
     public getGroups(): Array<Group> {
-        return this.db.get('groups').value();
+        // Probando cosas: 
+        const serializedGroups = this.db.get('Group').value();
+        const myGroups = Group.deserialize(serializedGroups);
+        return myGroups;
     }
 
     public getGenres(): Array<Genre> {

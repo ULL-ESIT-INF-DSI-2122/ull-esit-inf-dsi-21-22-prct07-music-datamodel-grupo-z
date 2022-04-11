@@ -1,8 +1,260 @@
 {
-  "albums": [],
-  "artists": [],
-  "groups": [],
-  "genres": [],
-  "songs": [],
+  "genres": [
+    {
+      "name": "Reggeton",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Electronica",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Bachata",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Pop",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rock",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Heavy Metal",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Salsa",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rap",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Reggae",
+      "components": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Trap",
+      "components": [],
+      "albums": [],
+      "songs": []
+    }
+  ],
+  "artists": [
+    {
+      "name": "Bob Marley",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Avicii",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "David Guetta",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Celia Cruz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Anuel",
+      "genres": [
+        "Reggeton"
+      ],
+      "listeners": 10000000,
+      "groups": [],
+      "albums": [],
+      "songs": [
+        "China"
+      ]
+    },
+    {
+      "name": "Eminem",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Maluma",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Wisin",
+      "genres": [],
+      "listeners": 0,
+      "groups": [
+        "Wisin & Yandel"
+      ],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Yandel",
+      "genres": [],
+      "listeners": 0,
+      "groups": [
+        "Wisin & Yandel"
+      ],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "David Muñoz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Jose Muñoz",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Rihanna",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Juan Magan",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Ozuna",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Freddy Mercury",
+      "genres": [],
+      "listeners": 0,
+      "groups": [
+        "Queen"
+      ],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "John Lennon",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Morad",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    },
+    {
+      "name": "Shakira",
+      "genres": [],
+      "listeners": 0,
+      "groups": [],
+      "albums": [],
+      "songs": []
+    }
+  ],
+  "groups": {
+    "name": "Queen",
+    "year": 1970,
+    "artists": [
+      "Freddy Mercury"
+    ],
+    "listeners": 14520300,
+    "genres": [],
+    "albums": [],
+    "songs": []
+  },
+  "songs": [
+    {
+      "name": "China",
+      "creator": "Anuel",
+      "genre": "Reggeton",
+      "isSingle": true,
+      "timesListened": 10000000,
+      "duration": {
+        "hours": 0.03333333333333333,
+        "minutes": 2,
+        "seconds": 120
+      }
+    }
+  ],
+  "albums": [
+    {
+      "name": "Real Hasta La Muerte",
+      "creator": "Anuel",
+      "year": 100,
+      "songs": [
+        "Sola",
+        "China"
+      ],
+      "genres": [
+        "Reggeton"
+      ]
+    }
+  ],
   "playlists": []
 }

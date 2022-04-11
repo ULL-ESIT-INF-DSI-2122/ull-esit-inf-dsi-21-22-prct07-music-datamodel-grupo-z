@@ -7,22 +7,25 @@ import { Song } from "./song";
  * Clase que define un grupo de cantantes con sus atributos y métodos
  */
 export class Group {
-    private genres: Array<string> = new Array<string>();
-    private albums: Array<string> = new Array<string>();
-    private songs: Array<string> = new Array<string>();
 
     /**
-     * Constructor de la clase Group. Recibe el nombre, año de creación, artistas y oyentes.
-     * @param name string
-     * @param year number
-     * @param artists Array<Artists>
-     * @param listeners number
+     * 
+     * @param name 
+     * @param year 
+     * @param artists 
+     * @param listeners 
+     * @param genres 
+     * @param albums 
+     * @param songs 
      */
     constructor(
         private name: string,
         private year: number,
         private artists: Array<string>,
-        private listeners: number
+        private listeners: number,
+        private genres: Array<string> = [],
+        private albums: Array<string> = [],
+        private songs: Array<string> = [],
     ) {}
 
     /**
@@ -190,5 +193,19 @@ export class Group {
         }
         
         return false;
+    }
+
+
+    public static deserialize(groups: Group[]): Group[] {
+        const myGroups: Group[] = [];
+
+        groups.forEach((group) => {
+            const myGroup = new Group(group.getName(), group.getYear(), group.getArtist(),
+            group.getListeners(), group.getGenres(), group.getAlbums(), group.getSongs());
+
+            myGroups.push(myGroup);
+        });
+
+        return myGroups;
     }
 };
