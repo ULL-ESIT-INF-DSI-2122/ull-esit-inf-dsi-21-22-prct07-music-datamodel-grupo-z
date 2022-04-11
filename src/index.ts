@@ -61,10 +61,7 @@ export function managementDB() {
     inquirer.prompt(questions).then((answers: any) => {
         switch(answers['election']) {
             case 'Gestionar canciones':
-                console.log("Mi base de datos musical")
-                console.log("Pulse enter para continuar...");
-                let a = scanf('%s')
-                promptUser();
+                managementSongs()
                 break;
 
             case 'Gestionar artistas':
@@ -78,24 +75,12 @@ export function managementDB() {
 
             case 'Gestionar grupos':
                 console.log("Mi base de datos musical")
-                let myGroups: Array<Group> = myDataBase.getGroups() ;
-                myGroups.forEach((group: Group) => {
-                    group.print();
-                });
-                console.log("Pulse enter para continuar...");
-                let d = scanf('%s')
-                promptUser();
+                managementGroups();
                 break;
 
             case 'Gestionar albums':
                 console.log("Mi base de datos musical")
-                let myAlbums: Array<Album> = myDataBase.getAlbums() ;
-                myAlbums.forEach((album: Album) => {
-                    album.print();
-                });
-                console.log("Pulse enter para continuar...");
-                let e = scanf('%s')
-                promptUser();
+                managementAlbum();
                 break;
 
             case 'Volver atras': {
@@ -125,7 +110,7 @@ export function managementGenres() {
                 case 'Ver géneros ordenados alfabeticamente': {
                     let genres: Genre[] = myDataBase.genreSort(true);
                     genres.map((genre) => {
-                        genre.print()
+                        genre.print();
                     });
                     console.log("Pulse enter para continuar...");
                     let e = scanf('%s');
@@ -181,7 +166,7 @@ export function managementArtist() {
             console.clear();
             switch(answers['election']) {
                 case 'Ver artistas ordenados alfabeticamente': {
-                    let artists: Artist[] = myDataBase.artistSort(true);
+                    let artists: Artist[] = myDataBase.artistSort(0);
                     artists.map((artist) => {
                         artist.print()
                     });
@@ -192,7 +177,7 @@ export function managementArtist() {
                 }
 
                 case 'Ver artistas ordenados inversamente': {
-                    let artists: Artist[] = myDataBase.artistSort(false);
+                    let artists: Artist[] = myDataBase.artistSort(1);
                     artists.map((artist) => {
                         artist.print()
                     });
@@ -215,15 +200,288 @@ export function managementArtist() {
                 }
                 
                 case 'Ver artistas por popularidad (oyentes creciente)': {
-                    //sortArtist(2)
+                    let artists: Artist[] = myDataBase.artistSort(2);
+                    artists.map((artist) => {
+                        artist.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
                     managementArtist();
-                    break;
                     break;
                 }
 
                 case 'Ver artistas por popularidad (oyentes decreciente)': {
-                    //sortArtist(3)
+                    let artists: Artist[] = myDataBase.artistSort(3);
+                    artists.map((artist) => {
+                        artist.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
                     managementArtist();
+                    break;
+                }
+
+                case 'Volver atrás': {
+                    managementDB();
+                    break;
+                }
+            }
+        });
+}
+
+export function managementSongs() {
+    console.clear();
+    const questions = [
+        {
+            type: 'list',
+            name: 'election',
+            message: 'Gestión de géneros',
+            choices: ['Ver canciones alfabeticamente', 'Ver canciones inversamente', 'Ver canciones por oyentes (creciente)',
+                'Ver canciones por oyentes (decreciente)', 'Añadir canción', 'Volver atras'
+            ],
+        },
+      ];
+    
+        inquirer.prompt(questions).then((answers: any) => {
+            console.clear();
+            switch(answers['election']) {
+                case 'Ver canciones alfabeticamente': {
+                    let songs: Song[] = myDataBase.songSort(0);
+                    songs.map((song: Song) => {
+                        song.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementSongs();
+                    break;
+                }
+
+                case 'Ver canciones inversamente': {
+                    let songs: Song[] = myDataBase.songSort(1);
+                    songs.map((song: Song) => {
+                        song.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementSongs();
+                    break;
+                }
+
+                case 'Añadir canción': {
+                    console.log("Inserte el nombre de la nueva cancion: ");
+                    let name: string = scanf('%S');
+                    console.log("\nInserte el nombre del creador: ");
+                    let creator: string = scanf('%S');
+                    console.log("\nInserte el nombre del genero al que pertenece: ");
+                    let genre: string = scanf('%S');
+                    console.log("\nIndique si la cancion es un Single (0 - es un single // 1 - no es un single): ");
+                    let aux: number = scanf("%d");
+                    let isSingle: boolean = aux === 0 ? true : false;
+                    console.log("Inserte el numero de veces que ha sido escuchada:");
+                    let timesListened: number = scanf('%d');
+                    console.log("Inserte la duracion de la cancion en segundos: ");
+                    let duration: number = scanf('%d');
+
+                    let newSong: Song = new Song(name, creator, genre, isSingle, timesListened, duration);
+                    myDataBase.addSong(newSong);
+                    console.log('Canción añadida correctamente :)');
+                    console.log("Pulse enter para continuar...");
+                    let q = scanf('%s');
+                    managementSongs();
+                    break;
+                }
+                
+                case 'Ver canciones por oyentes (creciente)': {
+                    let songs: Song[] = myDataBase.songSort(2);
+                    songs.map((song) => {
+                        song.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementSongs();
+                    break;
+                }
+
+                case 'Ver canciones por oyentes (decreciente)': {
+                    let songs: Song[] = myDataBase.songSort(3);
+                    songs.map((song) => {
+                        song.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementSongs();
+                    break;
+                }
+
+                case 'Volver atras': {
+                    managementDB();
+                    break;
+                }
+            }
+        });
+}
+
+
+export function managementGroups() {
+    console.clear();
+    const questions = [
+        {
+            type: 'list',
+            name: 'election',
+            message: 'Gestión de géneros',
+            choices: ['Ver grupos alfabeticamente', 'Ver grupos inversamente', 'Añadir grupo', 'Volver atras'],
+        },
+      ];
+    
+        inquirer.prompt(questions).then((answers: any) => {
+            console.clear();
+            switch(answers['election']) {
+                case 'Ver grupos alfabeticamente': {
+                    let groups: Group[] = myDataBase.groupSort(true);
+                    groups.map((group: Group) => {
+                        group.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementGroups();
+                    break;
+                }
+
+                case 'Ver grupos inversamente': {
+                    let groups: Group[] = myDataBase.groupSort(false);
+                    groups.map((group: Group) => {
+                        group.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementGroups();
+                    break;
+                }
+
+                case 'Añadir grupo': {
+                    console.log("Inserte el nombre del grupo: ");
+                    let name: string = scanf('%S');
+                    console.log("\nInserte el año de creación del grupo");
+                    let year: number = scanf('%d');
+                    console.log("\nInserte el número de componentes del grupo");
+                    let n: number = scanf('%d');
+                    let components: string[] = [];
+                    for (let i: number = 0; i < n; ++i) {
+                        console.log("\nInserte el nombre del componente ", i + 1, ": ");
+                        components.push(scanf("%S"))
+                    }
+                    console.log("Introduzca el numero de oyentes mensuales: ");
+                    let listeners: number = scanf("%d");
+
+                    let newGroup: Group = new Group(name, year, components, listeners);
+                    myDataBase.addGroup(newGroup);
+                    console.log('Grupo añadido correctamente :)');
+                    console.log("Pulse enter para continuar...");
+                    let q = scanf('%s');
+                    managementGroups();
+                    break;
+                }
+
+                case 'Volver atras': {
+                    managementDB();
+                    break;
+                }
+            }
+        });
+}
+
+
+
+export function managementAlbum() {
+    console.clear();
+    const questions = [
+        {
+            type: 'list',
+            name: 'election',
+            message: 'Gestión de albumes',
+            choices: ['Ver albumes ordenados alfabeticamente', 'Ver albumes ordenados inversamente', 
+            'Ver albumes por año de lanzamiento (creciente)', 'Ver albumes por año de lanzamiento (decreciente)', 'Añadir album', 'Volver atrás'],
+        },
+      ];
+    
+        inquirer.prompt(questions).then((answers: any) => {
+            console.clear();
+            switch(answers['election']) {
+                case 'Ver albumes ordenados alfabeticamente': {
+                    let albums: Album[] = myDataBase.albumSort(0);
+                    albums.map((album) => {
+                        album.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementAlbum();
+                    break;
+                }
+
+                case 'Ver albumes ordenados inversamente': {
+                    let albums: Album[] = myDataBase.albumSort(1);
+                    albums.map((artist) => {
+                        artist.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementAlbum();
+                    break;
+                }
+
+                case 'Añadir album': {
+                    console.log("Inserte el nombre del nuevo album: ");
+                    let name: string = scanf('%S');
+                    console.log("\nInserte el año de lanzamiento del album: ");
+                    let year: number = scanf('%S');
+                    console.log("\nInserte el nombre del creador del album: ");
+                    let creator: string = scanf('%S');
+                    
+                    console.log("\nInserte el número de canciones del album");
+                    let n: number = scanf('%d');
+                    let songs: string[] = [];
+                    for (let i: number = 0; i < n; ++i) {
+                        console.log("\nInserte el nombre de la canción ", i + 1, ": ");
+                        songs.push(scanf("%S"));
+                    }
+
+                    console.log("\nInserte el número de géneros del album");
+                    let m: number = scanf('%d');
+                    let genres: string[] = [];
+                    for (let i: number = 0; i < m; ++i) {
+                        console.log("\nInserte el nombre del género ", i + 1, ": ");
+                        genres.push(scanf("%S"));
+                    }
+
+
+                    let newAlbum: Album = new Album(name, creator, year, songs, genres);
+                    myDataBase.addAlbum(newAlbum);
+                    console.log('Artista añadido correctamente :)');
+                    console.log("Pulse enter para continuar...");
+                    let q = scanf('%s');
+                    managementAlbum();
+                    break;
+                }
+                
+                case 'Ver albumes por año de lanzamiento (creciente)': {
+                    let albums: Album[] = myDataBase.albumSort(2);
+                    albums.map((album) => {
+                        album.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementAlbum();
+                    break;
+                }
+
+                case 'Ver albumes por año de lanzamiento (decreciente)': {
+                    let albums: Album[] = myDataBase.albumSort(3);
+                    albums.map((album) => {
+                        album.print()
+                    });
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementAlbum();
                     break;
                 }
 

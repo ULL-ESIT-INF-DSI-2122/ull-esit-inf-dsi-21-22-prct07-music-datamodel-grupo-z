@@ -110,8 +110,8 @@ export class Song {
         const mySongs: Song[] = [];
 
         songs.forEach((song) => {
-            const myArtist = new Song(song.getName(), song.getCreator(), song.getGenre(), 
-            song.getIsSingle(), song.getTimesListened(), song.getSeconds());
+            const myArtist = new Song(song.name, song.creator, song.genre, 
+            song.isSingle, song.timesListened, song.duration.seconds);
 
             mySongs.push(myArtist);
         });

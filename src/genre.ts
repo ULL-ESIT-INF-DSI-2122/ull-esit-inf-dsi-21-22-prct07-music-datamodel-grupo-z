@@ -137,7 +137,7 @@ export class Genre {
         const myGenres: Genre[] = [];
 
         genres.forEach((genre) => {
-        const myGenre = new Genre(genre.name);
+        const myGenre = new Genre(genre.name, genre.components, genre.albums, genre.songs);
         myGenres.push(myGenre);
         });
 

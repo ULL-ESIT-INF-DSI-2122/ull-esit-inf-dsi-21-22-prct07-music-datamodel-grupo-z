@@ -197,11 +197,12 @@ export class Group {
 
 
     public static deserialize(groups: Group[]): Group[] {
+
         const myGroups: Group[] = [];
 
         groups.forEach((group) => {
-            const myGroup = new Group(group.getName(), group.getYear(), group.getArtist(),
-            group.getListeners(), group.getGenres(), group.getAlbums(), group.getSongs());
+            const myGroup = new Group(group.name, group.year, group.artists,
+            group.listeners, group.genres, group.albums, group.songs);
 
             myGroups.push(myGroup);
         });

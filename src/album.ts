@@ -84,7 +84,7 @@ export class Album {
 
     public print() {
         console.log(`ALBUM: **${this.getName()}**`);
-        console.log(`\tAlbuma: ${this.getCreator()}`);
+        console.log(`\tCreador: ${this.getCreator()}`);
 
         console.log(`\tAño: ${this.getYear()}`);
 
@@ -122,8 +122,8 @@ export class Album {
         const myAlbums: Album[] = [];
 
         albums.forEach((album) => {
-            const myAlbum = new Album(album.getName(), album.getCreator(), 
-            album.getYear(), album.getSongs(), album.getGenres());
+            const myAlbum = new Album(album.name, album.creator, 
+            album.year, album.songs, album.genres);
 
             myAlbums.push(myAlbum);
         });

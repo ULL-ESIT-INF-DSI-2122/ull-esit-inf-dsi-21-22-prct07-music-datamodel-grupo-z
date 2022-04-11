@@ -58,16 +58,6 @@ export class MusicDataBase {
         if (this.db.get("playlists").value() === undefined) {
             this.db.set("playlists", []).write();
         }
-
-        this.db.defaults({ 
-            albums: [], 
-            artists: [],
-            groups: [],
-            genres:[],
-            songs: [],
-            playlists: [],
-        }).write();
-
     }
 
 
@@ -94,7 +84,7 @@ export class MusicDataBase {
 
     public getGroups(): Array<Group> {
         // Probando cosas: 
-        const serializedGroups = this.db.get('Group').value();
+        const serializedGroups = this.db.get('groups').value();
         const myGroups = Group.deserialize(serializedGroups);
         return myGroups;
     }
@@ -124,21 +114,15 @@ export class MusicDataBase {
     }
 
     public addGenre(newGenre: Genre) {
-        const genreValue: Array<Genre> = this.getGenres();
-        genreValue.push(newGenre);
-        this.db.set('genres', genreValue).write();
+        this.db.get('genres').push(newGenre).write();
     }
 
     public addArtist(newArtist: Artist) {
-        const artistValue: Array<Artist> = this.getArtists();
-        artistValue.push(newArtist);
-        this.db.set('artists', artistValue).write();
+        this.db.get('artists').push(newArtist).write();
     }
 
     public addGroup(newGroup: Group) {
-        //const groupValue: Array<Group> = this.getGroups();
-        //groupValue.push(newGroup);
-        this.db.set('groups', newGroup).write();
+        this.db.get('groups').push(newGroup).write();
 
         let artists: Array<string> = newGroup.getArtist();
         let dbArtists: Array<Artist> = this.getArtists();
@@ -154,7 +138,7 @@ export class MusicDataBase {
     }
 
     public addPlaylist(newPlaylist: Playlist) {
-        this.db.set('playlists', newPlaylist).write();
+        this.db.get('playlists').push(newPlaylist).write();
     }
 
     public addSong(newSong: Song) {
@@ -185,11 +169,10 @@ export class MusicDataBase {
         genresUpdated.forEach((genre) => {
             if(genre.getName() == newSong.getGenre()) {
                 genre.addSong(newSong);
-                genre.addArtist(newSong.getCreator())
+                genre.addArtist(newSong.getCreator());
             }
         });
-        this.db.set('genres', genresUpdated).write();
-        
+        this.db.set('genres', genresUpdated).write();  
     }
 
     public addAlbum(newAlbum: Album) {
@@ -239,9 +222,9 @@ export class MusicDataBase {
         sortedList.sort(function (a, b) {
             if (type === 0) {
                 return a.getName() > b.getName() ? 1 : -1;
-            } else if (type == 2) {
+            } else if (type == 1) {
                 return a.getName() > b.getName() ? -1 : 1;
-            } else if (type == 3) {
+            } else if (type == 2) {
                 return a.getTimesListened() - b.getTimesListened();
             } else {
                 return a.getTimesListened() > b.getTimesListened() ? -1 : 1;
@@ -252,11 +235,32 @@ export class MusicDataBase {
     }
 
 
-    public albumSort(asc: boolean = true): Array<Album> {
+    public albumSort(type: number = 0): Array<Album> {
         let sortedList: Array<Album> = Array.from(this.getAlbums());
 
         let a: Album;
         let b: Album;
+        
+        sortedList.sort(function (a, b) {
+            if (type === 0) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else if (type === 1) {
+                return a.getName() > b.getName() ? -1 : 1;
+            } else if (type === 2) {
+                return a.getYear() > b.getYear() ? 1 : -1;
+            } else {
+                return a.getYear() > b.getYear() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
+    public groupSort(asc: boolean = true): Array<Group> {
+        let sortedList: Array<Group> = Array.from(this.getGroups());
+
+        let a: Group;
+        let b: Group;
         
         sortedList.sort(function (a, b) {
             if (asc) {
@@ -269,17 +273,28 @@ export class MusicDataBase {
         return sortedList;
     }
 
-    public artistSort(asc: boolean = true): Array<Artist> {
+    /**
+     * Funcion que ordena los artistas
+     * En caso de que @type sea == 0 -> orden alfabetico ascentende
+     * En caso de que @type sea == 1 -> orden alfabetico descentente
+     * En caso de que @type sea == 2 -> orden por vistas ascentende
+     * En caso de que @type sea == 3 -> orden por vistas descendente
+     */
+    public artistSort(type: number = 0): Array<Artist> {
         let sortedList: Array<Artist> = Array.from(this.getArtists());
 
         let a: Artist;
         let b: Artist;
         
         sortedList.sort(function (a, b) {
-            if (asc) {
+            if (type == 0) {
                 return a.getName() > b.getName() ? 1 : -1;
-            } else {
+            } else if (type == 1) {
                 return a.getName() > b.getName() ? -1 : 1;
+            } else if (type == 2) {
+                return a.getListeners() - b.getListeners();
+            } else {
+                return a.getListeners() > b.getListeners() ? -1 : 1;
             }
         });
 

@@ -190,8 +190,8 @@ export class Artist {
         const myArtists: Artist[] = [];
 
         artists.forEach((artist) => {
-            const myArtist = new Artist(artist.getName(), artist.getGenres(), 
-            artist.getListeners(), artist.getGroups(), artist.getAlbums(), artist.getSongs());
+            const myArtist = new Artist(artist.name, artist.genres, 
+            artist.listeners, artist.groups, artist.albums, artist.songs);
 
             myArtists.push(myArtist);
         });
