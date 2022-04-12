@@ -97,9 +97,11 @@ export class MusicDataBase {
     }
 
     public getPlaylists():Array<Playlist> {
-        return this.db.get('playlists').value();
+        // Probando cosas: 
+        const serializedPlaylist = this.db.get('playlists').value();
+        const myPlaylist = Playlist.deserialize(serializedPlaylist);
+        return myPlaylist;
     }
-
 
     public addSongToPlaylist(user: string, playlist: string, song: Song) {
         let myPlaylists: Array<Playlist> = this.getPlaylists();

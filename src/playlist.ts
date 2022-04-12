@@ -6,12 +6,19 @@ import { Song } from "./song";
  * Clase que define una playlist con sus atributos y métodos
  */
 export class Playlist {
-    private songs: Set<string> = new Set<string>();
-    private duration: Time = {seconds: 0, minutes: 0, hours: 0}
-    private genres: Set<string> = new Set<string>();
 
+    /**
+     * 
+     * @param name 
+     * @param songs 
+     * @param duration 
+     * @param genres 
+     */
     constructor(
         private name: string,
+        private songs: Array<string> = [],
+        private duration: Time = {seconds: 0, minutes: 0, hours: 0},
+        private genres: Array<string> = []
     ) {}
 
     /**
@@ -22,8 +29,12 @@ export class Playlist {
         return this.name;
     }
 
-    public getSongs(): Set<string> {
+    public getSongs(): Array<string> {
         return this.songs;
+    }
+
+    public getDuration(): Time {
+        return this.duration;
     }
 
     /**
@@ -42,16 +53,29 @@ export class Playlist {
         return this.duration.minutes;
     }
 
-    public getGenres(): Set<string> {
+    public getGenres(): Array<string> {
         return this.genres;
     }
 
     public addSong(newSong: Song) {
-        this.songs.add(newSong.getName());
-        this.genres.add(newSong.getGenre())
+        this.songs.push(newSong.getName());
+        this.genres.push(newSong.getGenre())
         this.duration.seconds += newSong.getSeconds();
         this.duration.minutes += newSong.getMinutes();
         this.duration.hours += newSong.getMinutes() / 60;
     }
 
+
+    public static deserialize(playlists: Playlist[]): Playlist[] {
+        const myPlaylists: Playlist[] = [];
+
+        playlists.forEach((playlist) => {
+            const myPlaylist = new Playlist(playlist.name, playlist.songs, 
+                playlist.duration, playlist.genres);
+
+            myPlaylists.push(myPlaylist);
+        });
+
+        return myPlaylists;
+    }
 } 
