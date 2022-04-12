@@ -21,9 +21,13 @@ type schemaType = {
 export class MusicDataBase {
 
     private db: lowdb.LowdbSync<schemaType>;
-        
-    public clear() {
-    }
+        toDefault() {
+            this.defaultAlbums();
+            this.defaultArtists();
+            this.defaultGenres();
+            this.defaultGroups();
+            this.defaultSongs();
+        }
 
     constructor() {
         this.db = lowdb(new FileSync('database/db.json'));
