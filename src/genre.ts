@@ -81,10 +81,10 @@ export class Genre {
         if (this.getAlbums().length > 0) {
             console.log(`\tAlbumes: `)
             this.getAlbums().forEach(album => {
-                console.log(`\t  - ${album}}`);
+                console.log(`\t  - ${album}`);
             });
         } else {
-            console.log(`\tEste genero no tiene albumes relacionados`);
+            console.log(`\tEste genero aun no tiene albumes relacionados`);
         }
 
         if (this.getComponents().length > 0) {
@@ -93,7 +93,7 @@ export class Genre {
                 console.log(`\t  - ${component}`);
             });
         } else {
-            console.log(`\tEste genero no tiene artistas relacionados`);
+            console.log(`\tEste genero aun no tiene artistas relacionados`);
         }   
 
         if (this.getSongs().length > 0) {
@@ -102,7 +102,7 @@ export class Genre {
                 console.log(`\t  - ${song}`);
             });
         } else {
-            console.log(`\tEste genero no tiene canciones asociadas`);
+            console.log(`\tEste genero aun no tiene canciones asociadas`);
         }
 
         console.log();

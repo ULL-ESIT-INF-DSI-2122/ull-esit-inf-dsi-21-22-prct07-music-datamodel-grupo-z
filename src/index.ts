@@ -277,9 +277,9 @@ export function managementSongs() {
                     console.log("\nIndique si la cancion es un Single (0 - es un single // 1 - no es un single): ");
                     let aux: number = scanf("%d");
                     let isSingle: boolean = aux === 0 ? true : false;
-                    console.log("Inserte el numero de veces que ha sido escuchada:");
+                    console.log("\nInserte el numero de veces que ha sido escuchada:");
                     let timesListened: number = scanf('%d');
-                    console.log("Inserte la duracion de la cancion en segundos: ");
+                    console.log("\nInserte la duracion de la cancion en segundos: ");
                     let duration: number = scanf('%d');
 
                     let newSong: Song = new Song(name, creator, genre, isSingle, timesListened, duration);

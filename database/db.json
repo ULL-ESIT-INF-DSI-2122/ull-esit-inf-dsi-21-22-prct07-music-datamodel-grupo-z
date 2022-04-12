@@ -9,8 +9,7 @@
       ],
       "albums": [
         "Real Hasta La Muerte",
-        "Odisea",
-        "Nibiru"
+        "Odisea"
       ],
       "songs": [
         "China",
@@ -102,9 +101,13 @@
     },
     {
       "name": "Reggae",
-      "components": [],
+      "components": [
+        "Bob Marley"
+      ],
       "albums": [],
-      "songs": []
+      "songs": [
+        "Three Little Birds"
+      ]
     },
     {
       "name": "Trap",
@@ -117,16 +120,26 @@
       "songs": [
         "El farsante"
       ]
+    },
+    {
+      "name": "Drill",
+      "components": [],
+      "albums": [],
+      "songs": []
     }
   ],
   "artists": [
     {
       "name": "Bob Marley",
-      "genres": [],
-      "listeners": 0,
+      "genres": [
+        "Reggae"
+      ],
+      "listeners": 1222300,
       "groups": [],
       "albums": [],
-      "songs": []
+      "songs": [
+        "Three Little Birds"
+      ]
     },
     {
       "name": "Avicii",
@@ -270,8 +283,7 @@
       "listeners": 460880000,
       "groups": [],
       "albums": [
-        "Odisea",
-        "Nibiru"
+        "Odisea"
       ],
       "songs": [
         "El farsante",
@@ -613,6 +625,18 @@
         "minutes": 3.6666666666666665,
         "seconds": 220
       }
+    },
+    {
+      "name": "Three Little Birds",
+      "creator": "Bob Marley",
+      "genre": "Reggae",
+      "isSingle": true,
+      "timesListened": 1222300,
+      "duration": {
+        "hours": 0.056666666666666664,
+        "minutes": 3.4,
+        "seconds": 204
+      }
     }
   ],
   "albums": [
@@ -652,17 +676,6 @@
       ],
       "genres": [
         "Electronica"
-      ]
-    },
-    {
-      "name": "Nibiru",
-      "creator": "Ozuna",
-      "year": "2020",
-      "songs": [
-        "Fuego"
-      ],
-      "genres": [
-        "Reggeton"
       ]
     }
   ],

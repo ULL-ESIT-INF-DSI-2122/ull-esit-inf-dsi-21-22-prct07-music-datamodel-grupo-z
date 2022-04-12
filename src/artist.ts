@@ -153,6 +153,8 @@ export class Artist {
         } else {
             console.log(`\tEste artista no tiene generos relacionados aun`);
         }
+
+        console.log('');
     }
 
     public has(element: Genre | Group | Album | Song): boolean {
