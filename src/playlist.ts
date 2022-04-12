@@ -16,10 +16,10 @@ export class Playlist {
      */
     constructor(
         private name: string,
+        private user: string = '',
         private songs: Array<string> = [],
         private duration: Time = {seconds: 0, minutes: 0, hours: 0},
         private genres: Array<string> = [],
-        private user: string = '',
     ) {}
 
     /**
@@ -75,8 +75,8 @@ export class Playlist {
         const myPlaylists: Playlist[] = [];
 
         playlists.forEach((playlist) => {
-            const myPlaylist = new Playlist(playlist.name, playlist.songs, 
-                playlist.duration, playlist.genres, playlist.user);
+            const myPlaylist = new Playlist(playlist.name,  playlist.user, playlist.songs, 
+                playlist.duration, playlist.genres);
 
             myPlaylists.push(myPlaylist);
         });

@@ -3,6 +3,7 @@ import { Artist } from "./artist";
 import { Genre } from "./genre";
 import { Group } from "./group";
 import { MusicDataBase } from "./musicDataBase";
+import { Playlist } from "./playlist";
 import { Song } from "./song";
 
 const inquirer = require('inquirer');
@@ -29,12 +30,12 @@ export function promptUser() {
         switch(answers['election']) {
             case 'Mi base de datos musical':
                 console.log("Mi base de datos musical")
-                managementDB()
+                managementDB();
                 break;
 
             case 'Mis playlists':
                 console.log("Mis playlists")
-                //managementPlaylists()
+                managementPlaylists();
                 break;
 
             case 'Salir':
@@ -491,4 +492,71 @@ export function managementAlbum() {
                 }
             }
         });
+}
+
+
+function managementPlaylists() {
+    console.clear();
+    console.log('Bienvenido a SPOTY-DSI');
+    
+    const questions = [
+      {
+          type: 'list',
+          name: 'election',
+          message: '¿Dónde desea acceder?',
+          choices: ['Ver mis playlists', 'Crear playlist'],
+      },
+    ];
+
+    inquirer.prompt(questions).then((answers: any) => {
+        switch(answers['election']) {
+            case 'Ver mis playlists':
+                console.log("Nombre de usuario: ");
+                let user: string = scanf("%s");
+                searchPlaylist(user);
+                managementPlaylists();
+                break;
+
+            case 'Crear playlist':
+                console.log("Nombre de usuario: ");
+                let myuser: string = scanf("%s");
+                console.log("Nombre de la playlist: ");
+                let name: string = scanf("%S");
+
+                let newPlaylist: Playlist = new Playlist(name, myuser);
+                myDataBase.addPlaylist(newPlaylist);
+                managementPlaylists();
+                break;
+
+            case 'Salir':
+                console.log("Adios... :(");
+                break;
+
+        }
+    });
+}
+
+
+function searchPlaylist(user: string) {
+    console.clear();
+    console.log('Bienvenido a SPOTY-DSI');
+    let namePlaylists: string[] = [];
+    myDataBase.getPlaylists().map((playlist: Playlist) => {
+        if (playlist.getName() == user)
+            namePlaylists.push(playlist.getName());
+    });
+    
+    const questions = [
+      {
+          type: 'list',
+          name: 'election',
+          message: '¿Dónde desea acceder?',
+          choices: namePlaylists,
+      },
+    ];
+
+    inquirer.prompt(questions).then((answers: any) => {
+        console.log(answers['election']);
+        let a: string = scanf("%S");
+    });
 }
