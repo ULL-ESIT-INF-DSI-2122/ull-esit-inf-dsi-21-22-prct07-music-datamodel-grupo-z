@@ -21,18 +21,28 @@ type schemaType = {
 export class MusicDataBase {
 
     private db: lowdb.LowdbSync<schemaType>;
+        
         toDefault() {
-            this.defaultAlbums();
-            this.defaultArtists();
+            this.db.set("genres", []).write();
             this.defaultGenres();
+        
+            this.db.set("artists", []).write();
+            this.defaultArtists();
+
+            this.db.set("groups", []).write();
             this.defaultGroups();
+
+            this.db.set("songs", []).write();
             this.defaultSongs();
+
+            this.db.set("albums", []).write();
+            this.defaultAlbums();
+
+            this.db.set("playlists", []).write();
         }
 
     constructor() {
         this.db = lowdb(new FileSync('database/db.json'));
-
-
         
         if (this.db.get("genres").value() === undefined) {
             this.db.set("genres", []).write();
@@ -100,11 +110,21 @@ export class MusicDataBase {
         return myGenre;
     }
 
-    public getPlaylists():Array<Playlist> {
-        // Probando cosas: 
+    public getPlaylists(user: string = ''):Array<Playlist> {
         const serializedPlaylist = this.db.get('playlists').value();
         const myPlaylist = Playlist.deserialize(serializedPlaylist);
-        return myPlaylist;
+        // Probando cosas: 
+        if (user === '') {
+            return myPlaylist;
+        } else {
+            let userPlaylist: Array<Playlist> = [];
+            myPlaylist.forEach(playlist => {
+                if (playlist.getUser() === user) {
+                    userPlaylist.push(playlist);
+                }
+            });
+            return userPlaylist;
+        }
     }
 
     public addSongToPlaylist(user: string, playlist: string, song: Song) {
@@ -322,8 +342,9 @@ export class MusicDataBase {
         return sortedList;
     }
 
-    public playListSort(asc: boolean = true): Array<Playlist> {
-        let sortedList: Array<Playlist> = Array.from(this.getPlaylists());
+
+    public playListSort(asc: boolean = true, user: string = ''): Array<Playlist> {
+        let sortedList: Array<Playlist> = Array.from(this.getPlaylists(user));
 
         let a: Playlist;
         let b: Playlist;

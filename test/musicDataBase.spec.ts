@@ -10,6 +10,7 @@ import { areEqual } from '../src/compareSet';
 
 describe("CARGA DE LA BASE DE DATOS TESTS", () => {
     let myDataBase: MusicDataBase = new MusicDataBase();
+    myDataBase.toDefault();
 
     it("Se espera que la base de datos se cargue con los géneros por defecto", () => {
 

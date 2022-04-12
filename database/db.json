@@ -101,13 +101,9 @@
     },
     {
       "name": "Reggae",
-      "components": [
-        "Bob Marley"
-      ],
+      "components": [],
       "albums": [],
-      "songs": [
-        "Three Little Birds"
-      ]
+      "songs": []
     },
     {
       "name": "Trap",
@@ -120,26 +116,16 @@
       "songs": [
         "El farsante"
       ]
-    },
-    {
-      "name": "Drill",
-      "components": [],
-      "albums": [],
-      "songs": []
     }
   ],
   "artists": [
     {
       "name": "Bob Marley",
-      "genres": [
-        "Reggae"
-      ],
-      "listeners": 1222300,
+      "genres": [],
+      "listeners": 0,
       "groups": [],
       "albums": [],
-      "songs": [
-        "Three Little Birds"
-      ]
+      "songs": []
     },
     {
       "name": "Avicii",
@@ -624,18 +610,6 @@
         "hours": 0.06111111111111111,
         "minutes": 3.6666666666666665,
         "seconds": 220
-      }
-    },
-    {
-      "name": "Three Little Birds",
-      "creator": "Bob Marley",
-      "genre": "Reggae",
-      "isSingle": true,
-      "timesListened": 1222300,
-      "duration": {
-        "hours": 0.056666666666666664,
-        "minutes": 3.4,
-        "seconds": 204
       }
     }
   ],

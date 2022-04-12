@@ -18,7 +18,8 @@ export class Playlist {
         private name: string,
         private songs: Array<string> = [],
         private duration: Time = {seconds: 0, minutes: 0, hours: 0},
-        private genres: Array<string> = []
+        private genres: Array<string> = [],
+        private user: string = '',
     ) {}
 
     /**
@@ -57,6 +58,10 @@ export class Playlist {
         return this.genres;
     }
 
+    public getUser(): string {
+        return this.user;
+    }
+
     public addSong(newSong: Song) {
         this.songs.push(newSong.getName());
         this.genres.push(newSong.getGenre())
@@ -71,7 +76,7 @@ export class Playlist {
 
         playlists.forEach((playlist) => {
             const myPlaylist = new Playlist(playlist.name, playlist.songs, 
-                playlist.duration, playlist.genres);
+                playlist.duration, playlist.genres, playlist.user);
 
             myPlaylists.push(myPlaylist);
         });
