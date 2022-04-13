@@ -542,21 +542,29 @@ function searchPlaylist(user: string) {
     console.log('Bienvenido a SPOTY-DSI');
     let namePlaylists: string[] = [];
     myDataBase.getPlaylists().map((playlist: Playlist) => {
-        if (playlist.getName() == user)
+        if (playlist.getUser() == user)
             namePlaylists.push(playlist.getName());
     });
-    
+
+    if (namePlaylists.length === 0) {
+        console.log("El usuario: ", user, " aun no ha creado ninguna playlist");
+        console.log("Pulse enter para continuar...");
+        let e = scanf('%s');
+        managementPlaylists();
+    }
+
     const questions = [
       {
           type: 'list',
           name: 'election',
-          message: '¿Dónde desea acceder?',
-          choices: namePlaylists,
+          message: 'Selecciona tu playlist',
+          choices: namePlaylists
       },
     ];
 
     inquirer.prompt(questions).then((answers: any) => {
-        console.log(answers['election']);
+        console.log(answers['election'])
         let a: string = scanf("%S");
+
     });
 }
