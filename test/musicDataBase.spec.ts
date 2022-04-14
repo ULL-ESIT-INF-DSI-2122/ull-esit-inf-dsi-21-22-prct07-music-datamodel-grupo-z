@@ -240,5 +240,153 @@ describe("CARGA DE LA BASE DE DATOS TESTS", () => {
             "Trap"
         ]);
     });
+
+    it("Se pueden ordenar los géneros inveramente", () => {
+        let myGenres: Array<Genre> = myDataBase.genreSort(false);
+        let myGenresNames: Array<string> = [];
+
+        myGenres.forEach((genre: Genre) => {
+            myGenresNames.push(genre.getName());
+        });
+
+        expect(myGenresNames).to.be.eql([
+            "Trap",
+            "Salsa",
+            "Rock",
+            "Reggeton",
+            "Reggae",
+            "Rap",
+            "Pop",
+            "Heavy Metal",
+            "Electronica",
+            "Bachata",
+        ]);
+    });
+
+    it("Se pueden ordenar las canciones alfabeticamente", () => {
+        let mySongs: Array<Song> = myDataBase.songSort(0);
+        let mySongsName: Array<string> = [];
+
+        mySongs.forEach((song: Song) => {
+            mySongsName.push(song.getName());
+        });
+
+        expect(mySongsName).to.be.eql([
+            "Abusadora",
+            "Bohemian Raphsody",
+            "China",
+            "Diamonds",
+            "Dile que tú me quieres",
+            "El farsante",
+            "La negra tiene tumbao",
+            "La vida es un carnaval",
+            "Lose Yourself",
+            "Play Hard",
+            "Smack that",
+            "Sobredosis",
+            "Sola",
+            "Stan",
+            "The days",
+            "The nights",
+            "Waka Waka",
+            "Wake me Up",
+            "We are the Champions",
+            "Without me",
+            "Work",
+        ]);
+    });
+
+    it("Se pueden ordenar las canciones inversamente", () => {
+        let mySongs: Array<Song> = myDataBase.songSort(1);
+        let mySongsName: Array<string> = [];
+
+        mySongs.forEach((song: Song) => {
+            mySongsName.push(song.getName());
+        });
+
+        expect(mySongsName).to.be.eql([
+            "Work",
+            "Without me",
+            "We are the Champions",
+            "Wake me Up",
+            "Waka Waka",
+            "The nights",
+            "The days",
+            "Stan",
+            "Sola",
+            "Sobredosis",
+            "Smack that",
+            "Play Hard",
+            "Lose Yourself",
+            "La vida es un carnaval",
+            "La negra tiene tumbao",
+            "El farsante",
+            "Dile que tú me quieres",
+            "Diamonds",
+            "China",
+            "Bohemian Raphsody",
+            "Abusadora"
+        ]);
+    });
+
+    it("Se pueden ordenar los albums alfabeticamente", () => {
+        let myAlbums: Array<Album> = myDataBase.albumSort(0);
+        let myAlbumsName: Array<string> = [];
+
+        myAlbums.forEach((album: Album) => {
+            myAlbumsName.push(album.getName());
+        });
+
+        expect(myAlbumsName).to.be.eql([
+            "Odisea",
+            "Real Hasta La Muerte",
+            "True",
+        ]);
+    });
+
+    it("Se pueden ordenar los albums inversamente", () => {
+        let myAlbums: Array<Album> = myDataBase.albumSort(1);
+        let myAlbumsName: Array<string> = [];
+
+        myAlbums.forEach((album: Album) => {
+            myAlbumsName.push(album.getName());
+        });
+
+        expect(myAlbumsName).to.be.eql([
+            "True",
+            "Real Hasta La Muerte",
+            "Odisea",
+        ]);
+    });
+
+    it("Se pueden ordenar los grupos alfabeticamente", () => {
+        let myGroups: Array<Group> = myDataBase.groupSort(true);
+        let myGroupsName: Array<string> = [];
+
+        myGroups.forEach((group: Group) => {
+            myGroupsName.push(group.getName());
+        });
+
+        expect(myGroupsName).to.be.eql([
+            "Estopa",
+            "Queen",
+            "Wisin & Yandel",
+        ]);
+    });
+
+    it("Se pueden ordenar los grupos alfabeticamente", () => {
+        let myGroups: Array<Group> = myDataBase.groupSort(false);
+        let myGroupsName: Array<string> = [];
+
+        myGroups.forEach((group: Group) => {
+            myGroupsName.push(group.getName());
+        });
+
+        expect(myGroupsName).to.be.eql([
+            "Wisin & Yandel",
+            "Queen",
+            "Estopa",
+        ]);
+    });
 });
  

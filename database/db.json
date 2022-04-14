@@ -653,28 +653,5 @@
       ]
     }
   ],
-  "playlists": [
-    {
-      "name": "mis temitas buenos",
-      "user": "sergio",
-      "songs": [],
-      "duration": {
-        "seconds": 0,
-        "minutes": 0,
-        "hours": 0
-      },
-      "genres": []
-    },
-    {
-      "name": "full temones",
-      "user": "sergio",
-      "songs": [],
-      "duration": {
-        "seconds": 0,
-        "minutes": 0,
-        "hours": 0
-      },
-      "genres": []
-    }
-  ]
+  "playlists": []
 }
