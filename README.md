@@ -283,4 +283,133 @@ Para añadir un nuevo grupo, usamos el método addGroup(), se recibe un grupo po
             });
         });
         this.db.set('artists', dbArtists).write();
-    }6
+    }
+
+Para añadir un album, tenemos la función addAlbum(), al igual que con el método anterior hay que actualizar la información de los artistas, géneros y grupos relacionados con el album para añadirles este album dentro de sus atributos internos. En el caso de los 3, se les añade el nombre del nuevo album a los atributos albums de cada clase.
+
+    public addAlbum(newAlbum: Album) {
+        this.db.get('albums').push(newAlbum).write();
+
+        let artistsUpdated: Array<Artist> = this.getArtists();
+        artistsUpdated.forEach((artist: Artist) => {
+            if(artist.getName() === newAlbum.getCreator()) {
+                artist.addAlbum(newAlbum);
+            }
+        });
+        this.db.set('artists', artistsUpdated).write();
+
+
+        let groupsUpdated: Array<Group> = this.getGroups();
+        groupsUpdated.forEach((group) => {
+            if(group.getName() == newAlbum.getCreator()) {
+                group.addAlbum(newAlbum);
+            }
+        });
+        this.db.set('groups', groupsUpdated).write();
+
+        let genresUpdated: Array<Genre> = this.getGenres();
+        genresUpdated.forEach((genre) => {
+            if(newAlbum.getGenres().includes(genre.getName())) {
+                genre.addAlbum(newAlbum.getName());
+            }
+        });
+        this.db.set('genres', genresUpdated).write();
+    }
+
+
+Por último para añadir una canción usamos el método addSong(), y ocurre igual que antes. Hay que acceder al artista o grupo creador de la canción y actualizar sus atributos de canciones, géneros relacionados y oyentes. También hay que añadir la canción al género para que se guarde en su atributo songs.
+
+    public addSong(newSong: Song) {
+        this.db.get('songs').push(newSong).write();
+
+        let artistsUpdated: Array<Artist> = this.getArtists();
+        artistsUpdated.forEach((artist) => {
+            if(artist.getName() == newSong.getCreator()) {
+                artist.addSong(newSong);
+                artist.addGenre(newSong.getGenre());
+                artist.updateListeners(newSong.getTimesListened())
+            }
+        });
+        this.db.set('artists', artistsUpdated).write();
+
+
+        let groupsUpdated: Array<Group> = this.getGroups();
+        groupsUpdated.forEach((group: Group) => {
+            if(group.getName() == newSong.getCreator()) {
+                group.addSong(newSong);
+                group.addGenre(newSong.getGenre());
+                group.updateListeners(newSong.getTimesListened())
+            }
+        });
+        this.db.set('groups', groupsUpdated).write();
+
+        let genresUpdated: Array<Genre> = this.getGenres();
+        genresUpdated.forEach((genre) => {
+            if(genre.getName() == newSong.getGenre()) {
+                genre.addSong(newSong);
+                genre.addArtist(newSong.getCreator());
+            }
+        });
+        this.db.set('genres', genresUpdated).write();  
+    }
+
+
+A la hora de imprimir por pantalla las canciones, albumes etc. Hemos implementado unas funciones que permiten ordenar alfabeticamente e inversamente los elementos de la base de datos. Por ejemplo con la función genreSort(), pasándole un true si queremos que se ordene alfabeticamente y un false en caso contrario, se nos devuelve un array de Genres ordenados correctamente.
+
+    public genreSort(asc: boolean = true): Array<Genre> {
+        let sortedList: Array<Genre> = this.getGenres();
+
+        sortedList.sort(function (a: Genre, b: Genre) {
+            if (asc) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else {
+                return a.getName() > b.getName() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
+Para grupos la función groupSort(), trabaja de la misma manera que la anterior
+
+    public groupSort(asc: boolean = true): Array<Group> {
+        let sortedList: Array<Group> = Array.from(this.getGroups());
+
+        let a: Group;
+        let b: Group;
+        
+        sortedList.sort(function (a, b) {
+            if (asc) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else {
+                return a.getName() > b.getName() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
+Para las canciones, a parte de las ordenaciones vistas en la funciones anteriores, también se puede ordenar de la mas popular a la menos, por número de reproducciones y al revés. En este caso la función recibe un number. 0 en caso alfabetico, 1 en caso inverso, 2 por popularidad creciente y 3 por popularidad decreciente.
+
+    public artistSort(type: number = 0): Array<Artist> {
+        let sortedList: Array<Artist> = Array.from(this.getArtists());
+
+        let a: Artist;
+        let b: Artist;
+        
+        sortedList.sort(function (a, b) {
+            if (type == 0) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else if (type == 1) {
+                return a.getName() > b.getName() ? -1 : 1;
+            } else if (type == 2) {
+                return a.getListeners() - b.getListeners();
+            } else {
+                return a.getListeners() > b.getListeners() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
+En cuanto a los albumes igual que con las canciones se recibe un number. 0 en caso alfabetico, 1 en caso inverso, 2 por fecha de lanzamiento creciente, 3 por orden de lanzamiento decreciente.

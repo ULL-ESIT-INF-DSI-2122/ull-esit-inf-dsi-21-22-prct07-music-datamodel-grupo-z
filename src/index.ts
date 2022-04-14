@@ -587,11 +587,42 @@ function searchSong(dbFuntion: Function, playlist: string) {
 
         
     inquirer.prompt(questions).then((answers: any) => {
-        console.log(answers);
-        let a: string = scanf("%S"); 
-        dbFuntion();
-    });
+        let myPlaylist: string = answers['election'];
+        const questions = [
+            {
+                type: 'list',
+                name: 'election',
+                message: 'Qué desea hacer',
+                choices: ['Ver playlist ordenada alfabeticamente', 'Ver playlist ordenada alfabeticamente',
+                    'Añadir canción', 'Borrar canción', 'Atras'
+            ]
+            },
+        ];
 
-    let e = scanf('%s');
+        inquirer.prompt(questions).then((answers: any) => {
+            switch(answers['election']) {
+                case 'Ver playlist ordenada alfabeticamente': 
+
+                    break;
+                
+                case 'Ver playlist ordenada alfabeticamente':
+
+                    break;
+
+                case 'Añadir canción': 
+
+                    break;
+
+                case 'Borrar canción':
+
+                    break;
+
+                case 'Atras':
+
+                    break;
+            }
+        })
+
+    });
 
 }

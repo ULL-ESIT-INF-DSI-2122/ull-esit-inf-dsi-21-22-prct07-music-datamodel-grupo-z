@@ -205,7 +205,6 @@ export class MusicDataBase {
         this.db.get('albums').push(newAlbum).write();
 
         let artistsUpdated: Array<Artist> = this.getArtists();
-
         artistsUpdated.forEach((artist: Artist) => {
             if(artist.getName() === newAlbum.getCreator()) {
                 artist.addAlbum(newAlbum);
@@ -215,14 +214,12 @@ export class MusicDataBase {
 
 
         let groupsUpdated: Array<Group> = this.getGroups();
-
-        
         groupsUpdated.forEach((group) => {
             if(group.getName() == newAlbum.getCreator()) {
                 group.addAlbum(newAlbum);
             }
         });
-        this.db.set('artists', artistsUpdated).write();
+        this.db.set('groups', groupsUpdated).write();
 
         let genresUpdated: Array<Genre> = this.getGenres();
         genresUpdated.forEach((genre) => {
@@ -230,7 +227,7 @@ export class MusicDataBase {
                 genre.addAlbum(newAlbum.getName());
             }
         });
-        this.db.set('artists', artistsUpdated).write();
+        this.db.set('genres', genresUpdated).write();
     }
 
     /**
