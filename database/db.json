@@ -655,53 +655,8 @@
   ],
   "playlists": [
     {
-      "name": "mis temitas buenos",
-      "user": "sergio",
-      "songs": [],
-      "duration": {
-        "seconds": 0,
-        "minutes": 0,
-        "hours": 0
-      },
-      "genres": []
-    },
-    {
-      "name": "full temones",
-      "user": "sergio",
-      "songs": [],
-      "duration": {
-        "seconds": 0,
-        "minutes": 0,
-        "hours": 0
-      },
-      "genres": []
-<<<<<<< HEAD
-    },
-    {
-      "name": "aa",
-      "user": "a",
-      "songs": [],
-      "duration": {
-        "seconds": 0,
-        "minutes": 0,
-        "hours": 0
-      },
-      "genres": []
-    },
-    {
-      "name": "asdfas",
-      "user": "aa",
-      "songs": [],
-      "duration": {
-        "seconds": 0,
-        "minutes": 0,
-        "hours": 0
-      },
-      "genres": []
-    },
-    {
-      "name": "afadsf",
-      "user": "aa",
+      "name": "Fiesta",
+      "user": "chompo",
       "songs": [],
       "duration": {
         "seconds": 0,
@@ -712,7 +667,7 @@
     },
     {
       "name": "",
-      "user": "a",
+      "user": "\u001b[",
       "songs": [],
       "duration": {
         "seconds": 0,
@@ -720,8 +675,17 @@
         "hours": 0
       },
       "genres": []
-=======
->>>>>>> 6013cd9294030d5a81b3851527d7a3bdf882da90
+    },
+    {
+      "name": "Fiesta",
+      "user": "Chompo",
+      "songs": [],
+      "duration": {
+        "seconds": 0,
+        "minutes": 0,
+        "hours": 0
+      },
+      "genres": []
     }
   ]
 }

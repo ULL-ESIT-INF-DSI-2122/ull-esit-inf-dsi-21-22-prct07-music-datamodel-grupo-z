@@ -514,12 +514,7 @@ function managementPlaylists() {
                 console.log("Nombre de usuario: ");
                 let user: string = scanf("%S");
                 searchPlaylist(managementPlaylists, user);
-                /*
-                console.log();
-                console.log("Pulse enter para continuar...");
-                let e = scanf('%s');
-                managementPlaylists();
-                */break;
+                break;
             }
 
             case 'Crear playlist':
@@ -564,7 +559,29 @@ function searchPlaylist(dbFuntion: Function, user: string) {
           type: 'list',
           name: 'election',
           message: 'Selecciona tu playlist',
-          choices: Object.values(namePlaylists)
+          choices: Object.values(namePlaylists),
+      },
+    ];
+
+        
+    inquirer.prompt(questions).then((answers: any) => {
+        console.log(answers);
+        let a: string = scanf("%S"); 
+        dbFuntion();
+    });
+}
+
+function searchSong(dbFuntion: Function, playlist: string) {
+    console.clear();
+    console.log('Bienvenido a SPOTY-DSI');
+
+    
+
+    const questions = [
+      {
+          type: 'list',
+          name: 'election',
+          message: 'Selecciona tu playlist',
       },
     ];
 
