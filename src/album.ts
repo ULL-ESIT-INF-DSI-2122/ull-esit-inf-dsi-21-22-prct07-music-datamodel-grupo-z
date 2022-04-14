@@ -82,6 +82,9 @@ export class Album {
         return false;
     }
 
+    /**
+     * Imprime una cadena correctamente formateada con la información del album
+     */
     public print() {
         console.log(`ALBUM: **${this.getName()}**`);
         console.log(`\tCreador: ${this.getCreator()}`);
