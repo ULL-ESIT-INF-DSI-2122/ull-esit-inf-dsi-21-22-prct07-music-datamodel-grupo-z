@@ -567,4 +567,7 @@ function searchPlaylist(user: string) {
         let a: string = scanf("%S");
 
     });
+
+    let e = scanf('%s');
+
 }
