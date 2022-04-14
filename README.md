@@ -253,4 +253,34 @@ En el constructor, únicamente indicamos el fichero en el que se encuentra el .j
             }
         }
 
+//EXPLICAR LOS GETTERS DE LA BASE DE DATOS. JOSE HAZLO TU Q USA DESERIALIZE
 
+Cada atributo de la base de datos tiene un método para añadir información. Para añadir un género tenemos la función addGenre(), la cual recibe un objeto de la clase Genre por parámetro y la añade a la base de datos de la siguiente manera
+
+    public addGenre(newGenre: Genre) {
+        this.db.get('genres').push(newGenre).write();
+    }
+
+Para añadir un artista, el método addArtist() funciona de una manera similar
+
+    public addArtist(newArtist: Artist) {
+        this.db.get('artists').push(newArtist).write();
+    }
+
+Para añadir un nuevo grupo, usamos el método addGroup(), se recibe un grupo por parámetro y se añade a la base de datos pero además, se realiza una búsqueda entre los artistas de la base de datos y a los que pertenezcan al nuevo grupo, se les actualiza su información para que el propio artista guarde en su atributo albums su pertenencia al nuevo grupo.
+
+    public addGroup(newGroup: Group) {
+        this.db.get('groups').push(newGroup).write();
+
+        let artists: Array<string> = newGroup.getArtist();
+        let dbArtists: Array<Artist> = this.getArtists();
+
+        dbArtists.forEach((artist1: Artist) => {
+            artists.forEach((artist2: string) => {
+                if (artist1.getName() === artist2) {
+                    artist1.addGroup(newGroup);
+                }
+            });
+        });
+        this.db.set('artists', dbArtists).write();
+    }6
