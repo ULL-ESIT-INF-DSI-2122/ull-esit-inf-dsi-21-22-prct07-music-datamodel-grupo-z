@@ -352,3 +352,64 @@ Por último para añadir una canción usamos el método addSong(), y ocurre igua
         });
         this.db.set('genres', genresUpdated).write();  
     }
+
+
+A la hora de imprimir por pantalla las canciones, albumes etc. Hemos implementado unas funciones que permiten ordenar alfabeticamente e inversamente los elementos de la base de datos. Por ejemplo con la función genreSort(), pasándole un true si queremos que se ordene alfabeticamente y un false en caso contrario, se nos devuelve un array de Genres ordenados correctamente.
+
+    public genreSort(asc: boolean = true): Array<Genre> {
+        let sortedList: Array<Genre> = this.getGenres();
+
+        sortedList.sort(function (a: Genre, b: Genre) {
+            if (asc) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else {
+                return a.getName() > b.getName() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
+Para grupos la función groupSort(), trabaja de la misma manera que la anterior
+
+    public groupSort(asc: boolean = true): Array<Group> {
+        let sortedList: Array<Group> = Array.from(this.getGroups());
+
+        let a: Group;
+        let b: Group;
+        
+        sortedList.sort(function (a, b) {
+            if (asc) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else {
+                return a.getName() > b.getName() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
+Para las canciones, a parte de las ordenaciones vistas en la funciones anteriores, también se puede ordenar de la mas popular a la menos, por número de reproducciones y al revés. En este caso la función recibe un number. 0 en caso alfabetico, 1 en caso inverso, 2 por popularidad creciente y 3 por popularidad decreciente.
+
+    public artistSort(type: number = 0): Array<Artist> {
+        let sortedList: Array<Artist> = Array.from(this.getArtists());
+
+        let a: Artist;
+        let b: Artist;
+        
+        sortedList.sort(function (a, b) {
+            if (type == 0) {
+                return a.getName() > b.getName() ? 1 : -1;
+            } else if (type == 1) {
+                return a.getName() > b.getName() ? -1 : 1;
+            } else if (type == 2) {
+                return a.getListeners() - b.getListeners();
+            } else {
+                return a.getListeners() > b.getListeners() ? -1 : 1;
+            }
+        });
+
+        return sortedList;
+    }
+
+En cuanto a los albumes igual que con las canciones se recibe un number. 0 en caso alfabetico, 1 en caso inverso, 2 por fecha de lanzamiento creciente, 3 por orden de lanzamiento decreciente.
