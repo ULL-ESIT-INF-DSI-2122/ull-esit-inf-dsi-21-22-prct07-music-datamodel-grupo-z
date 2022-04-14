@@ -115,9 +115,8 @@ La clase Artist tiene los siguientes atributos privados:
   - songs, de tipos Array<Song> donde se guardan todas las canciones que ha sacado el artista.
   - name, un string con el nombre del artista.
   
- Desde el constructor de la función únicamente se recibe el nombre del artista ya que el resto de atributos se van actualizando a medida se añaden canciones, grupos etc. a la base de datos mediante los métodos de actualización comentados previamente.
+Desde el constructor de la función únicamente se recibe el nombre del artista ya que el resto de atributos se van actualizando a medida se añaden canciones, grupos etc. a la base de datos mediante los métodos de actualización comentados previamente.
   
-
   export class Artist {
     constructor(
       private name: string,
