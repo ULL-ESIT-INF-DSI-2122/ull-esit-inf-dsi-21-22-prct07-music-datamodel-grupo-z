@@ -29,21 +29,21 @@ Desde el constructor solo se recibe el nombre del género ya que los albums, can
 Cada uno de los atributos privados comentados previamente tiene un getter donde se devuelve el atributo especificado. 
 
 
-  public getName(): string {
-      return this.name;
-  }
+    public getName(): string {
+        return this.name;
+    }
 
-  public getComponents(): Array<string> {
-      return this.components;
-  }
+    public getComponents(): Array<string> {
+        return this.components;
+    }
 
-  public getAlbums(): Array<string> {
-      return this.albums;
-  }
+    public getAlbums(): Array<string> {
+        return this.albums;
+    }
 
-  public getSongs(): Array<string> {
-      return this.songs
-  }
+    public getSongs(): Array<string> {
+        return this.songs
+    }
 
 También tiene una funcion add para añadir una cancion, album y artista, en este último se comprueba que el artista no esté previamente relacionado al género para que no se guarde en la base de datos dos veces el mismo artista
 
