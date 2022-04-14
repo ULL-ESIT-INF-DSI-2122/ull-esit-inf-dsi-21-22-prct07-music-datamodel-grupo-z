@@ -514,12 +514,7 @@ function managementPlaylists() {
                 console.log("Nombre de usuario: ");
                 let user: string = scanf("%S");
                 searchPlaylist(managementPlaylists, user);
-                /*
-                console.log();
-                console.log("Pulse enter para continuar...");
-                let e = scanf('%s');
-                managementPlaylists();
-                */break;
+                break;
             }
 
             case 'Crear playlist':
@@ -570,11 +565,14 @@ function searchPlaylist(dbFuntion: Function, user: string) {
 
         
     inquirer.prompt(questions).then((answers: any) => {
-        console.log(answers);
+        let myPlaylist: string = answers['election'];
+        myDataBase.getPlaylists().map((playlist: Playlist) => {
+            if (playlist.getName() == myPlaylist)
+                playlist.print();
+        })
+        console.log("Pulse enter para continuar...");
         let a: string = scanf("%S"); 
         dbFuntion();
     });
-
-    let e = scanf('%s');
 
 }

@@ -283,4 +283,5 @@ Para añadir un nuevo grupo, usamos el método addGroup(), se recibe un grupo po
             });
         });
         this.db.set('artists', dbArtists).write();
-    }6
+    }
+
