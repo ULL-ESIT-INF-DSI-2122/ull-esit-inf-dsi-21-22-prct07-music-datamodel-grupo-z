@@ -139,8 +139,19 @@ La clase tiene los siguientes atributos privados:
   
 El constructor de esta clase recibe todos sus atributos excepto duration, en vez de el, se recibe un number con la duración en segundos y a partir de el se calcula el resto de parámetros del tipo time.
   
-//código de constructor y los atributos de artist 
+    export class Song {
+        private duration: Time;
 
+        constructor(
+            private name: string,
+            private creator: string,
+            private genre: string,
+            private isSingle: boolean,
+            private timesListened: number,
+            durationInSeconds: number,
+        ) {
+            this.duration = {hours: durationInSeconds / 3600, minutes: durationInSeconds / 60, seconds: durationInSeconds}
+        }
   
 ### Clase Group
 La clase Group, tiene los siguientes atribustos privados:
@@ -155,8 +166,17 @@ La clase Group, tiene los siguientes atribustos privados:
   
 En el constructor de esta clase, se reciben los parámeteros name, year, artist y listeners. El resto de atributos, se van actualizando a medida que se añaden nuevas canciones, ábunes etc. a la base de datos. 
 
-// Código del constructor y los atributos privados de group. 
-  
+    export class Group {
+
+        constructor(
+            private name: string,
+            private year: number,
+            private artists: Array<string>,
+            private listeners: number,
+            private genres: Array<string> = [],
+            private albums: Array<string> = [],
+            private songs: Array<string> = [],
+        ) {}  
   
 ### Clase Album
 La clase álbum, tiene los siguientes atributos privados:
@@ -166,11 +186,18 @@ La clase álbum, tiene los siguientes atributos privados:
   - genres, de tipo Array<Genre> donde se guardan todos los géneros del álbum. 
   - year, de tipo number donde se almacena el año de lanzamiento del disco. 
   - songs, de tipo Array<Songs> que guarda todas las canciones del álbum. 
-  
-El constructor de esta clase recibe los parámetros name, creator, year y songs. El atributo genres, se calcula a partir de los géneros de las canciones.
-                                
-                                
-                        
+                                  
+    export class Group {
+        constructor(
+            private name: string,
+            private year: number,
+            private artists: Array<string>,
+            private listeners: number,
+            private genres: Array<string> = [],
+            private albums: Array<string> = [],
+            private songs: Array<string> = [],
+        ) {}         
+                            
 
 
 

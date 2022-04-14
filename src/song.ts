@@ -1,6 +1,4 @@
 import { Time } from './durationType';
-import { Genre } from './genre';
-import { Group } from './group';
 
 /**
  * Clase que define una canción con sus atributos y métodos
@@ -98,6 +96,9 @@ export class Song {
         return false;
     }
 
+    /**
+     * Imprime por pantalla una cadena correctamente formateada con la información de la canción
+     */
     public print() {
         console.log(`CANCION: **${this.getName()}**`);
         console.log(`\tAutor: ${this.getCreator()}`);
@@ -118,8 +119,6 @@ export class Song {
 
         return mySongs;
     }
-
-
 }
 
 

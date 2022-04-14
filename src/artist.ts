@@ -122,6 +122,9 @@ export class Artist {
         return this.getName() === artist.getName();
     }
 
+    /**
+     * Imprime por pantalla una cadena correctamente formateada con la canción del artista
+     */
     public print() {
         console.log(`ARTISTA: **${this.getName()}**`);
         if (this.getAlbums().length > 0) {

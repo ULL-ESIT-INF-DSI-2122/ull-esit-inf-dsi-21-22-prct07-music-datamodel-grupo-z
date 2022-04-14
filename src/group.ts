@@ -138,6 +138,9 @@ export class Group {
         return false;
     }
     
+    /**
+     * Imprime una cadena correctamente formateada con la información del grupo
+     */
     public print() {
         console.log(`GRUPO: **${this.getName()}**`);
         console.log('\tComponentes:')
