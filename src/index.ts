@@ -509,24 +509,33 @@ function managementPlaylists() {
     ];
 
     inquirer.prompt(questions).then((answers: any) => {
+        console.clear();
         switch(answers['election']) {
-            case 'Ver mis playlists':
+            case 'Ver mis playlists': {
                 console.log("Nombre de usuario: ");
-                let user: string = scanf("%s");
+                let user: string = scanf("%S");
                 searchPlaylist(user);
+                console.log();
+                console.log("Pulse enter para continuar...");
+                let e = scanf('%s');
                 managementPlaylists();
                 break;
+            }
 
-            case 'Crear playlist':
+            case 'Crear playlist': {
                 console.log("Nombre de usuario: ");
-                let myuser: string = scanf("%s");
-                console.log("Nombre de la playlist: ");
+                let myuser: string = scanf("%S");
+                console.log("\nNombre de la playlist: ");
                 let name: string = scanf("%S");
+                console.log();
 
                 let newPlaylist: Playlist = new Playlist(name, myuser);
                 myDataBase.addPlaylist(newPlaylist);
+                console.log("Playlist añadida correctamente, pulse enter para continuar...");
+                let e = scanf('%s');
                 managementPlaylists();
                 break;
+            }
 
             case 'Salir':
                 console.log("Adios... :(");

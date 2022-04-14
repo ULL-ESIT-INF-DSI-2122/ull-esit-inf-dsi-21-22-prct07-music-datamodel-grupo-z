@@ -83,4 +83,24 @@ export class Playlist {
 
         return myPlaylists;
     }
+
+    public print() {
+        console.log(`PLAYLIST: **${this.getName()}**`);
+        console.log('\tAdministrador: ', this.getUser());
+        console.log('\tDuracion: ', this.getDuration());
+
+        console.log('\tCanciones:')
+        this.getSongs().forEach((song) => {
+            console.log(`\t   - ${song}`);
+  
+        });
+
+        console.log('\tGeneros:')
+        this.getGenres().forEach((genre) => {
+            console.log(`\t   - ${genre}`);
+  
+        });
+
+        console.log('\n');
+    }
 } 
