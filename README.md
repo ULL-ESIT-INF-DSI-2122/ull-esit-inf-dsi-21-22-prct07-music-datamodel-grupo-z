@@ -18,20 +18,91 @@ Desde la clase Genre, se gestiona toda la información necesaria para un género
 
 Desde el constructor solo se recibe el nombre del género ya que los albums, canciones, grupos y artistas relacionados se irán añadiendo posteriormente a la clase. 
 
-//codigo del constructor
+```
+constructor(
+  private name: string,
+  private components: Array<string> = [],
+  private albums: Array<string> = [],
+  private songs: Array<string> = [],
+) {}```
 
 Cada uno de los atributos privados comentados previamente tiene un getter donde se devuelve el atributo especificado. 
 
-//codigo de los getters 
+```
+public getName(): string {
+    return this.name;
+}
 
-Cada uno de ellos también tiene una funcion add para añadir una cancion, album... 
 
-//código de los add
+public getComponents(): Array<string> {
+    return this.components;
+}
+
+public getAlbums(): Array<string> {
+    return this.albums;
+}
+
+public getSongs(): Array<string> {
+    return this.songs
+}```
+
+También tiene una funcion add para añadir una cancion, album y artista, en este último se comprueba que el artista no esté previamente relacionado al género para que no se guarde en la base de datos dos veces el mismo artista
+
+```
+public addAlbum(newAlbum: string) {
+    this.albums.push(newAlbum)
+}
+
+public addArtist(newArtist: string) {
+    if (!this.components.includes(newArtist))
+        this.components.push(newArtist)
+}
+
+public addSong(newSong: Song) {
+    this.songs.push(newSong.getName());
+}```
+
 
 También se tiene un método publico llamado same() que sirve para comparar dos géneros, devuelve true en caso afirmativo, false en el contrario. Este método es necesario mas adelante cuando es necesario comparar si dos géneros son el mismo. Por último con el método print(), se imprime por pantalla toda la información del género formateada correctamente
 
-//same() y print()
+```
+public same(genre: Genre) {
+  return this.getName() === genre.getName();
+}
 
+public print() {
+  console.log(`GENERO: **${this.getName()}**`);
+  if (this.getAlbums().length > 0) {
+      console.log(`\tAlbumes: `)
+      this.getAlbums().forEach(album => {
+          console.log(`\t  - ${album}`);
+      });
+  } else {
+      console.log(`\tEste genero aun no tiene albumes relacionados`);
+  }
+
+  if (this.getComponents().length > 0) {
+      console.log(`\tArtistas Relacionados: `);
+      this.getComponents().forEach(component => {
+          console.log(`\t  - ${component}`);
+      });
+  } else {
+      console.log(`\tEste genero aun no tiene artistas relacionados`);
+  }   
+
+  if (this.getSongs().length > 0) {
+      console.log(`\tCanciones: `);
+      this.getSongs().forEach(song => {
+          console.log(`\t  - ${song}`);
+      });
+  } else {
+      console.log(`\tEste genero aun no tiene canciones asociadas`);
+  }
+
+  console.log();
+}```
+
+// comentar has y deserialize 
 
 Con intención de sintetizar este informe, de las clases Artist, Group, Song y Album únicamente vamos a comentar sus atributos privados que si son exclusivos de cada clase, ya sus métodos siguen el mismo esquema que en la clase Genre. Un getter para cada uno de ellos y métodos para actualizarlos, además de los métodos print y same que tienen la misma función que la descrita en la clase Genre. 
 
@@ -47,7 +118,16 @@ La clase Artist tiene los siguientes atributos privados:
   
  Desde el constructor de la función únicamente se recibe el nombre del artista ya que el resto de atributos se van actualizando a medida se añaden canciones, grupos etc. a la base de datos mediante los métodos de actualización comentados previamente.
   
-//código de constructor y los atributos de artist 
+```
+export class Artist {
+  constructor(
+    private name: string,
+    private genres: Array<string> = [],
+    private listeners: number = 0,
+    private groups: Array<string> = [],
+    private albums: Array<string> = [],
+    private songs: Array<string> = [],
+  ) {} ```
   
 ### Clase Song
   

@@ -72,10 +72,18 @@ export class Genre {
         this.songs.push(newSong.getName());
     }
     
-    public same(genre: Genre) {
+    /**
+     * Compara dos géneros por su nombre. Devuelve true en caso que sean iguales y false en el contrario
+     * @param genre Genre
+     * @returns boolean
+     */
+    public same(genre: Genre): boolean {
         return this.getName() === genre.getName();
     }
 
+    /**
+     * Imprime por pantalla una cadena correctamente formateada en la que se muestra toda la información relativa a un género
+     */
     public print() {
         console.log(`GENERO: **${this.getName()}**`);
         if (this.getAlbums().length > 0) {
