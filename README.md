@@ -48,58 +48,58 @@ Cada uno de los atributos privados comentados previamente tiene un getter donde 
 También tiene una funcion add para añadir una cancion, album y artista, en este último se comprueba que el artista no esté previamente relacionado al género para que no se guarde en la base de datos dos veces el mismo artista
 
 
-  public addAlbum(newAlbum: string) {
-      this.albums.push(newAlbum)
-  }
+    public addAlbum(newAlbum: string) {
+        this.albums.push(newAlbum)
+    }
 
-  public addArtist(newArtist: string) {
-      if (!this.components.includes(newArtist))
-          this.components.push(newArtist)
-  }
+    public addArtist(newArtist: string) {
+        if (!this.components.includes(newArtist))
+            this.components.push(newArtist)
+    }
 
-  public addSong(newSong: Song) {
-      this.songs.push(newSong.getName());
-  }
+    public addSong(newSong: Song) {
+        this.songs.push(newSong.getName());
+    }
 
 
 También se tiene un método publico llamado same() que sirve para comparar dos géneros, devuelve true en caso afirmativo, false en el contrario. Este método es necesario mas adelante cuando es necesario comparar si dos géneros son el mismo. Por último con el método print(), se imprime por pantalla toda la información del género formateada correctamente
 
 
-  public same(genre: Genre) {
-    return this.getName() === genre.getName();
-  }
-
-  public print() {
-    console.log(`GENERO: **${this.getName()}**`);
-    if (this.getAlbums().length > 0) {
-        console.log(`\tAlbumes: `)
-        this.getAlbums().forEach(album => {
-            console.log(`\t  - ${album}`);
-        });
-    } else {
-        console.log(`\tEste genero aun no tiene albumes relacionados`);
+    public same(genre: Genre) {
+      return this.getName() === genre.getName();
     }
 
-    if (this.getComponents().length > 0) {
-        console.log(`\tArtistas Relacionados: `);
-        this.getComponents().forEach(component => {
-            console.log(`\t  - ${component}`);
-        });
-    } else {
-        console.log(`\tEste genero aun no tiene artistas relacionados`);
-    }   
+    public print() {
+      console.log(`GENERO: **${this.getName()}**`);
+      if (this.getAlbums().length > 0) {
+          console.log(`\tAlbumes: `)
+          this.getAlbums().forEach(album => {
+              console.log(`\t  - ${album}`);
+          });
+      } else {
+          console.log(`\tEste genero aun no tiene albumes relacionados`);
+      }
 
-    if (this.getSongs().length > 0) {
-        console.log(`\tCanciones: `);
-        this.getSongs().forEach(song => {
-            console.log(`\t  - ${song}`);
-        });
-    } else {
-        console.log(`\tEste genero aun no tiene canciones asociadas`);
+      if (this.getComponents().length > 0) {
+          console.log(`\tArtistas Relacionados: `);
+          this.getComponents().forEach(component => {
+              console.log(`\t  - ${component}`);
+          });
+      } else {
+          console.log(`\tEste genero aun no tiene artistas relacionados`);
+      }   
+
+      if (this.getSongs().length > 0) {
+          console.log(`\tCanciones: `);
+          this.getSongs().forEach(song => {
+              console.log(`\t  - ${song}`);
+          });
+      } else {
+          console.log(`\tEste genero aun no tiene canciones asociadas`);
+      }
+
+      console.log();
     }
-
-    console.log();
-  }
 
 // comentar has y deserialize 
 
@@ -117,15 +117,15 @@ La clase Artist tiene los siguientes atributos privados:
   
 Desde el constructor de la función únicamente se recibe el nombre del artista ya que el resto de atributos se van actualizando a medida se añaden canciones, grupos etc. a la base de datos mediante los métodos de actualización comentados previamente.
   
-  export class Artist {
-    constructor(
-      private name: string,
-      private genres: Array<string> = [],
-      private listeners: number = 0,
-      private groups: Array<string> = [],
-      private albums: Array<string> = [],
-      private songs: Array<string> = [],
-    ) {} 
+    export class Artist {
+      constructor(
+        private name: string,
+        private genres: Array<string> = [],
+        private listeners: number = 0,
+        private groups: Array<string> = [],
+        private albums: Array<string> = [],
+        private songs: Array<string> = [],
+      ) {} 
 
 ### Clase Song
   
