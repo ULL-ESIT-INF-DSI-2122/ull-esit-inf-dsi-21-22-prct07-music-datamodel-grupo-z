@@ -199,7 +199,58 @@ La clase álbum, tiene los siguientes atributos privados:
         ) {}         
                             
 
+Para almacenar toda la información hemos creado la clase musicDataBase. Esta clase contiene un objeto LowdbSync, el cual almacena en un fichero .json la información que indiquemos. En nuestro caso este fichero json se almacena en el directorio /database de nuestro proyecto. A esta base de datos hay que declararle un esquema, nosotros tenemos un array para cada elemento que vamos a almacenar alli, canciones, albums, artistas, grupos, géneros y playlists
+
+    type schemaType = {
+        albums: Array<Album>,
+        artists: Array<Artist>,
+        groups: Array<Group>,
+        genres: Array<Genre>,
+        songs: Array <Song>,
+        playlists: Array<Playlist>
+    }
 
 
+    export class MusicDataBase {
+
+        private db: lowdb.LowdbSync<schemaType>;
+        
+    ...
+    }
+
+En el constructor, únicamente indicamos el fichero en el que se encuentra el .json y hemos hecho que si la base de datos está vacía se inicialice con vectores vacíos y rellenar estos con información por defecto. Esta información por defecto se carga a través de unas funciones llamadas defaultX y añade a la base de datos una serie de géneros, canciones, artistas... para que no esté vacía.
+
+    constructor() {
+            this.db = lowdb(new FileSync('database/db.json'));
+            
+            if (this.db.get("genres").value() === undefined) {
+                this.db.set("genres", []).write();
+                this.defaultGenres();
+            }
+
+            if (this.db.get("artists").value() === undefined) {
+                this.db.set("artists", []).write();
+                this.defaultArtists();
+            }
+
+            if (this.db.get("groups").value() === undefined) {
+                this.db.set("groups", []).write();
+                this.defaultGroups();
+            }
+
+            if (this.db.get("songs").value() === undefined) {
+                this.db.set("songs", []).write();
+                this.defaultSongs();
+            }
+
+            if (this.db.get("albums").value() === undefined) {
+                this.db.set("albums", []).write();
+                this.defaultAlbums();
+            }
+
+            if (this.db.get("playlists").value() === undefined) {
+                this.db.set("playlists", []).write();
+            }
+        }
 
 
