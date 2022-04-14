@@ -566,13 +566,41 @@ function searchPlaylist(dbFuntion: Function, user: string) {
         
     inquirer.prompt(questions).then((answers: any) => {
         let myPlaylist: string = answers['election'];
-        myDataBase.getPlaylists().map((playlist: Playlist) => {
-            if (playlist.getName() == myPlaylist)
-                playlist.print();
+        const questions = [
+            {
+                type: 'list',
+                name: 'election',
+                message: 'Qué desea hacer',
+                choices: ['Ver playlist ordenada alfabeticamente', 'Ver playlist ordenada alfabeticamente',
+                    'Añadir canción', 'Borrar canción', 'Atras'
+            ]
+            },
+        ];
+
+        inquirer.prompt(questions).then((answers: any) => {
+            switch(answers['election']) {
+                case 'Ver playlist ordenada alfabeticamente': 
+
+                    break;
+                
+                case 'Ver playlist ordenada alfabeticamente':
+
+                    break;
+
+                case 'Añadir canción': 
+
+                    break;
+
+                case 'Borrar canción':
+
+                    break;
+
+                case 'Atras':
+
+                    break;
+            }
         })
-        console.log("Pulse enter para continuar...");
-        let a: string = scanf("%S"); 
-        dbFuntion();
+
     });
 
 }
