@@ -285,3 +285,70 @@ Para añadir un nuevo grupo, usamos el método addGroup(), se recibe un grupo po
         this.db.set('artists', dbArtists).write();
     }
 
+Para añadir un album, tenemos la función addAlbum(), al igual que con el método anterior hay que actualizar la información de los artistas, géneros y grupos relacionados con el album para añadirles este album dentro de sus atributos internos. En el caso de los 3, se les añade el nombre del nuevo album a los atributos albums de cada clase.
+
+    public addAlbum(newAlbum: Album) {
+        this.db.get('albums').push(newAlbum).write();
+
+        let artistsUpdated: Array<Artist> = this.getArtists();
+        artistsUpdated.forEach((artist: Artist) => {
+            if(artist.getName() === newAlbum.getCreator()) {
+                artist.addAlbum(newAlbum);
+            }
+        });
+        this.db.set('artists', artistsUpdated).write();
+
+
+        let groupsUpdated: Array<Group> = this.getGroups();
+        groupsUpdated.forEach((group) => {
+            if(group.getName() == newAlbum.getCreator()) {
+                group.addAlbum(newAlbum);
+            }
+        });
+        this.db.set('groups', groupsUpdated).write();
+
+        let genresUpdated: Array<Genre> = this.getGenres();
+        genresUpdated.forEach((genre) => {
+            if(newAlbum.getGenres().includes(genre.getName())) {
+                genre.addAlbum(newAlbum.getName());
+            }
+        });
+        this.db.set('genres', genresUpdated).write();
+    }
+
+
+Por último para añadir una canción usamos el método addSong(), y ocurre igual que antes. Hay que acceder al artista o grupo creador de la canción y actualizar sus atributos de canciones, géneros relacionados y oyentes. También hay que añadir la canción al género para que se guarde en su atributo songs.
+
+    public addSong(newSong: Song) {
+        this.db.get('songs').push(newSong).write();
+
+        let artistsUpdated: Array<Artist> = this.getArtists();
+        artistsUpdated.forEach((artist) => {
+            if(artist.getName() == newSong.getCreator()) {
+                artist.addSong(newSong);
+                artist.addGenre(newSong.getGenre());
+                artist.updateListeners(newSong.getTimesListened())
+            }
+        });
+        this.db.set('artists', artistsUpdated).write();
+
+
+        let groupsUpdated: Array<Group> = this.getGroups();
+        groupsUpdated.forEach((group: Group) => {
+            if(group.getName() == newSong.getCreator()) {
+                group.addSong(newSong);
+                group.addGenre(newSong.getGenre());
+                group.updateListeners(newSong.getTimesListened())
+            }
+        });
+        this.db.set('groups', groupsUpdated).write();
+
+        let genresUpdated: Array<Genre> = this.getGenres();
+        genresUpdated.forEach((genre) => {
+            if(genre.getName() == newSong.getGenre()) {
+                genre.addSong(newSong);
+                genre.addArtist(newSong.getCreator());
+            }
+        });
+        this.db.set('genres', genresUpdated).write();  
+    }
