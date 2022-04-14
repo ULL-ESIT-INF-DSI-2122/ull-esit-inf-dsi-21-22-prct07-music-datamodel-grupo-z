@@ -504,7 +504,7 @@ function managementPlaylists() {
           type: 'list',
           name: 'election',
           message: '¿Dónde desea acceder?',
-          choices: ['Ver mis playlists', 'Crear playlist'],
+          choices: ['Ver mis playlists', 'Crear playlist', 'Volver atrás'],
       },
     ];
 
@@ -514,12 +514,13 @@ function managementPlaylists() {
             case 'Ver mis playlists': {
                 console.log("Nombre de usuario: ");
                 let user: string = scanf("%S");
-                searchPlaylist(user);
+                searchPlaylist(managementPlaylists, user);
+                /*
                 console.log();
                 console.log("Pulse enter para continuar...");
                 let e = scanf('%s');
                 managementPlaylists();
-                break;
+                */break;
             }
 
             case 'Crear playlist': {
@@ -528,7 +529,6 @@ function managementPlaylists() {
                 console.log("\nNombre de la playlist: ");
                 let name: string = scanf("%S");
                 console.log();
-
                 let newPlaylist: Playlist = new Playlist(name, myuser);
                 myDataBase.addPlaylist(newPlaylist);
                 console.log("Playlist añadida correctamente, pulse enter para continuar...");
@@ -537,29 +537,29 @@ function managementPlaylists() {
                 break;
             }
 
-            case 'Salir':
-                console.log("Adios... :(");
-                break;
+            case 'Volver atrás': {
+                    promptUser();
+                    break;
+            }
 
         }
     });
 }
 
 
-function searchPlaylist(user: string) {
+function searchPlaylist(dbFuntion: Function, user: string) {
     console.clear();
     console.log('Bienvenido a SPOTY-DSI');
     let namePlaylists: string[] = [];
-    myDataBase.getPlaylists().map((playlist: Playlist) => {
-        if (playlist.getUser() == user)
-            namePlaylists.push(playlist.getName());
+    myDataBase.playListSort(true, user).map((playlist: Playlist) => {
+        namePlaylists.push(playlist.getName());
     });
 
     if (namePlaylists.length === 0) {
         console.log("El usuario: ", user, " aun no ha creado ninguna playlist");
         console.log("Pulse enter para continuar...");
         let e = scanf('%s');
-        managementPlaylists();
+        dbFuntion();
     }
 
     const questions = [
@@ -567,13 +567,14 @@ function searchPlaylist(user: string) {
           type: 'list',
           name: 'election',
           message: 'Selecciona tu playlist',
-          choices: namePlaylists
+          choices: Object.values(namePlaylists)
       },
     ];
 
+        
     inquirer.prompt(questions).then((answers: any) => {
-        console.log(answers['election'])
-        let a: string = scanf("%S");
-
+        console.log(answers);
+        let a: string = scanf("%S"); 
+        dbFuntion();
     });
 }

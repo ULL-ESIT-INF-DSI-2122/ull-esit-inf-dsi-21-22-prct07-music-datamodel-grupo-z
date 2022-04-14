@@ -686,6 +686,39 @@
         "hours": 0
       },
       "genres": []
+    },
+    {
+      "name": "asdfas",
+      "user": "aa",
+      "songs": [],
+      "duration": {
+        "seconds": 0,
+        "minutes": 0,
+        "hours": 0
+      },
+      "genres": []
+    },
+    {
+      "name": "afadsf",
+      "user": "aa",
+      "songs": [],
+      "duration": {
+        "seconds": 0,
+        "minutes": 0,
+        "hours": 0
+      },
+      "genres": []
+    },
+    {
+      "name": "",
+      "user": "a",
+      "songs": [],
+      "duration": {
+        "seconds": 0,
+        "minutes": 0,
+        "hours": 0
+      },
+      "genres": []
     }
   ]
 }
