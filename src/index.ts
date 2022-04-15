@@ -562,7 +562,116 @@ function searchPlaylist(dbFuntion: Function, user: string) {
           type: 'list',
           name: 'election',
           message: 'Selecciona tu playlist',
-          choices: Object.values(namePlaylists)
+          choices: Object.values(namePlaylists),
+      },
+    ];
+
+        
+    inquirer.prompt(questions).then((answers: any) => {
+        let myPlaylistName: string = answers['election'];
+        let myPlaylist: Playlist;
+
+        const questions = [
+            {
+                type: 'list',
+                name: 'election',
+                message: 'Qué desea hacer',
+                choices: ['Ver playlist ordenada alfabeticamente', 'Ver playlist ordenada alfabeticamente',
+                    'Añadir canción', 'Borrar canción', 'Atras'
+            ]
+            },
+        ];
+
+        inquirer.prompt(questions).then((answers: any) => {
+            switch(answers['election']) {
+                case 'Ver playlist ordenada alfabeticamente': {
+                    myDataBase.getPlaylists().forEach(pl => {
+                        if (myPlaylistName === pl.getName()) {
+                            myPlaylist = pl;
+                        }
+                    });
+
+                    const plSong: string[] = myPlaylist.songSort(true);
+
+                    if (plSong.length > 0) {
+                        plSong.forEach(song => {
+                            console.log(song);
+                        });
+                    } else {
+                        console.log("Esta playlist no tiene canciones todavia ...");
+                    }
+
+                    console.log("\nPresione enter para continuar ...");
+                    let e = scanf("%s"); 
+                    dbFuntion();
+                    break; 
+                }
+
+                
+                case 'Ver playlist ordenada alfabeticamente': {
+                    myDataBase.getPlaylists().forEach(pl => {
+                        if (myPlaylistName === pl.getName()) {
+                            myPlaylist = pl;
+                        }
+                    });
+
+                    const plSong: string[] = myPlaylist.songSort(true);
+
+                    if (plSong.length > 0) {
+                        plSong.forEach(song => {
+                            console.log(song);
+                        });
+                    } else {
+                        console.log("Esta playlist no tiene canciones todavia ...");
+                    }
+
+                    console.log("\nPresione enter para continuar ...");
+                    let e = scanf("%s"); 
+                    dbFuntion();
+                    break;
+                }
+
+                case 'Añadir canción': 
+                    console.log("Nombre de canción: ");
+                    let song: string = scanf("%S");
+
+                    myDataBase.getPlaylists().map((playlist: Playlist) => {
+                        if (myPlaylistName == playlist.getName())
+                            myDataBase.addSongToPlaylist(playlist.getName(), song);
+                    });
+                    managementPlaylists();
+                    break;
+
+                case 'Borrar canción':
+                    console.log("Nombre de canción: ");
+                    let rsong: string = scanf("%S");
+
+                    myDataBase.getPlaylists().map((playlist: Playlist) => {
+                        if (myPlaylistName == playlist.getName())
+                            myDataBase.removeSongFromPlaylist(playlist.getName(), rsong);
+                    });
+                    managementPlaylists();
+                    break;
+
+                case 'Atras':
+                    managementPlaylists();
+                    break;
+            }
+        })
+    });
+}
+
+function searchSong(dbFuntion: Function, playlist: string) {
+    console.clear();
+    console.log('Bienvenido a SPOTY-DSI');
+
+    
+
+    const questions = [
+      {
+          type: 'list',
+          name: 'election',
+          message: 'Selecciona tu playlist',
       },
     ];
 

@@ -5,6 +5,8 @@ import { Group } from "./group";
 import { Song } from "./song";
 import { Playlist } from "./playlist";
 
+const scanf = require('scanf');
+
 import * as lowdb from 'lowdb';
 import * as FileSync from 'lowdb/adapters/FileSync';
 
@@ -129,10 +131,30 @@ export class MusicDataBase {
 
     public addSongToPlaylist(playlist: string, newsong: string) {
         let mySong: Song;
+        let newOne: boolean = true;
         this.getSongs().map((song: Song) => {
-            if (song.getName() == newsong)
+            if (song.getName() == newsong) {
                 mySong = song
+                newOne = false;
+            }
         })
+
+        if (newOne) {
+            console.log("Introduzca el nombre del creador: ")
+            let creator: string = scanf("%S");
+            console.log("Introduzca el genero de la cancion: ");
+            let songGenre:string = scanf("%S");
+            console.log("\nIntroduzca la duracion de la cancion en segundos: ")
+            let duration: number = scanf("%d");
+            console.log("\nIntroduzca el numero de veces que se ha escuchado la cancion: ")
+            let timesListened: number = scanf("%d");
+            console.clear();
+            console.log("Introduzca si es un single: (pulse 1 si es un single):")
+            let aux: number = scanf("%d");
+            let isSingle = aux === 1 ? true : false;
+            mySong = new Song(newsong, creator, songGenre,
+             isSingle, timesListened, duration);
+        }
 
         let myPlaylists: Array<Playlist> = this.getPlaylists();
         myPlaylists.forEach((pl) => {

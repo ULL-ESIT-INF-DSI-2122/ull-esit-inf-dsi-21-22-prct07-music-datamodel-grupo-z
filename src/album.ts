@@ -1,3 +1,4 @@
+import { Artist } from "./artist";
 import { Genre } from "./genre";
 import { Group } from "./group";
 import { Song } from "./song";
@@ -10,11 +11,10 @@ export class Album {
      * Constructor de la clase album. Recibe el nombre, creador, año y canciones. Los géneros asociados
      * se calculan a partir de las canciones
      * @param name string
-     * @param creator Album | Group
+     * @param creator Artist | Group
      * @param year number
      * @param songs Array<Song>
-     */
-    
+     */ 
     constructor(
         private name: string,
         private creator: string,
@@ -77,6 +77,11 @@ export class Album {
                     return false;
                 }
             });
+
+            if (album.getCreator() != this.getCreator()) {
+                return false;
+            }
+
             return true;
         }
         return false;
@@ -99,14 +104,14 @@ export class Album {
         console.log();
     }
 
-    public has(element: Genre | Album | Group | Song): boolean {
+    public has(element: Genre | Artist | Group | Song): boolean {
         if (element instanceof Genre) {
             this.getGenres().forEach(genre => {
                 if (genre == element.getName()) {
                     return true;
                 }
             });
-        } else if (element instanceof (Album || Group)) {
+        } else if (element instanceof (Artist || Group)) {
             if (this.getCreator() == element.getName()) {
                     return true;
             }
@@ -116,7 +121,7 @@ export class Album {
                     return true;
                 }
             });
-        }
+        } 
 
         return false;
     }

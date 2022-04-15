@@ -111,4 +111,21 @@ export class Playlist {
 
         console.log('\n');
     }
+
+    public songSort(asc: boolean): Array<string> {
+        let sortedList: Array<string> = this.getSongs();
+
+        let a: Song;
+        let b: Song;
+        
+        sortedList.sort(function (a, b) {
+            if (asc) {
+                return a > b ? 1 : -1;
+            } else {
+                return a > b ? -1 : 1;
+            } 
+        });
+
+        return sortedList;
+    }
 } 
