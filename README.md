@@ -101,7 +101,46 @@ También se tiene un método publico llamado same() que sirve para comparar dos 
       console.log();
     }
 
-// comentar has y deserialize 
+
+A parte de la funcion de comparacion same, se ha añadido otra funcion que compruebe si un elemento ya forma parte de la clase antes de añadirlo. La funcion `has` en la clase genero, comprueba si el creador, el album o la cancion que se le quiere añadir ya se encontraba añadida o no. Para llevar a cabo esta funcion, primero se comprueba el tipo de objeto que se introduce, y en funcion del tipo de objeto, se comprueba si coincide con alguno de los elementos que la clase posee.
+  
+  
+    public has(element: Artist | Group | Album | Song): boolean {
+        if (element instanceof (Artist || Group)) {
+            this.getComponents().forEach(component => {
+                if(component == element.getName()) {
+                    return true;
+                }
+            });
+        } else if (element instanceof Album) {
+            this.getAlbums().forEach(album => {
+                if (album == element.getName()) {
+                    return true;
+                }
+            });
+        } else if (element instanceof Song) {
+            this.getSongs().forEach(song => {
+                if (song == element.getName()) {
+                    return true;
+                }
+            });
+        }
+        
+        return false;
+    }
+  
+Por otra parete, para permitir la conversión de los datos de la base de datos con el formato json, al tipo de objeto de nuestra clase, se implementa la función `deserialize`. Esta función recibe por parametros un conjunto de objetos de tipo género, pero, para evitar errores, la funcion construye nuevamente cada objeto, devolviendo así, un array de tipo género puro.
+  
+  public static deserialize(genres: Genre[]): Genre[] {
+        const myGenres: Genre[] = [];
+
+        genres.forEach((genre) => {
+        const myGenre = new Genre(genre.name, genre.components, genre.albums, genre.songs);
+        myGenres.push(myGenre);
+        });
+
+        return myGenres;
+    } 
 
 Con intención de sintetizar este informe, de las clases Artist, Group, Song y Album únicamente vamos a comentar sus atributos privados que si son exclusivos de cada clase, ya sus métodos siguen el mismo esquema que en la clase Genre. Un getter para cada uno de ellos y métodos para actualizarlos, además de los métodos print y same que tienen la misma función que la descrita en la clase Genre. 
 
@@ -253,7 +292,59 @@ En el constructor, únicamente indicamos el fichero en el que se encuentra el .j
             }
         }
 
-//EXPLICAR LOS GETTERS DE LA BASE DE DATOS. JOSE HAZLO TU Q USA DESERIALIZE
+Para poder obtener cada uno de los atributos guardados en la base de datos se han desarrollado las siguientes funciones, que a traves de la funcion deserialize propia de cada clase devuelve el objeto correspondiente.
+   
+Para obtener las canciones, albumes, artistas, generos y grupos, se lleva a cabo el mismo protocolo, en el que se almacena la informacion de la base de datos en una variable. Luego, empleamos la funcion deserialize, que transforma los datos del tipo json al objeto que necesitamos. Y finalmente, se devuelve este objeto deserializado.
+  
+    public getSongs(): Array<Song> {
+        const serializedSongs = this.db.get('songs').value();
+        const mySongs = Song.deserialize(serializedSongs);
+        return mySongs;
+    }
+  
+  
+
+    public getAlbums(): Array<Album> {
+        const serializedAlbums = this.db.get('albums').value();
+        const myAlbums = Album.deserialize(serializedAlbums);
+        return myAlbums;
+    }
+
+    public getArtists(): Array<Artist> {
+        const serializedArtists = this.db.get('artists').value();
+        const myArtists = Artist.deserialize(serializedArtists);
+        return myArtists;
+    }
+
+    public getGroups(): Array<Group> {
+        const serializedGroups = this.db.get('groups').value();
+        const myGroups = Group.deserialize(serializedGroups);
+        return myGroups;
+    }
+
+    public getGenres(): Array<Genre> {
+        const serializedGenres = this.db.get('genres').value();
+        const myGenre = Genre.deserialize(serializedGenres);
+        return myGenre;
+    }
+
+Por otra parte, para las playlist, tenemos en cuenta el usuario. Por lo tanto, además, se realiza un filtrado de los datos de tipo playlist en caso de que sea necesario.
+  
+    public getPlaylists(user: string = ''):Array<Playlist> {
+        const serializedPlaylist = this.db.get('playlists').value();
+        const myPlaylist = Playlist.deserialize(serializedPlaylist);
+        if (user === '') {
+            return myPlaylist;
+        } else {
+            let userPlaylist: Array<Playlist> = [];
+            myPlaylist.forEach(playlist => {
+                if (playlist.getUser() === user) {
+                    userPlaylist.push(playlist);
+                }
+            });
+            return userPlaylist;
+        }
+    }
 
 Cada atributo de la base de datos tiene un método para añadir información. Para añadir un género tenemos la función addGenre(), la cual recibe un objeto de la clase Genre por parámetro y la añade a la base de datos de la siguiente manera
 
@@ -413,3 +504,6 @@ Para las canciones, a parte de las ordenaciones vistas en la funciones anteriore
     }
 
 En cuanto a los albumes igual que con las canciones se recibe un number. 0 en caso alfabetico, 1 en caso inverso, 2 por fecha de lanzamiento creciente, 3 por orden de lanzamiento decreciente.
+  
+  
+  
