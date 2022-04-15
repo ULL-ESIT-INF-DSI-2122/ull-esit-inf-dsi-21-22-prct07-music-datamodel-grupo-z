@@ -610,15 +610,29 @@ function searchSong(dbFuntion: Function, playlist: string) {
                     break;
 
                 case 'Añadir canción': 
+                    console.log("Nombre de canción: ");
+                    let song: string = scanf("%S");
 
+                    myDataBase.getPlaylists().map((playlist: Playlist) => {
+                        if (myPlaylist == playlist.getName())
+                            myDataBase.addSongToPlaylist(playlist.getName(), song);
+                    });
+                    managementPlaylists();
                     break;
 
                 case 'Borrar canción':
+                    console.log("Nombre de canción: ");
+                    let rsong: string = scanf("%S");
 
+                    myDataBase.getPlaylists().map((playlist: Playlist) => {
+                        if (myPlaylist == playlist.getName())
+                            myDataBase.removeSongFromPlaylist(playlist.getName(), rsong);
+                    });
+                    managementPlaylists();
                     break;
 
                 case 'Atras':
-
+                    managementPlaylists();
                     break;
             }
         })
