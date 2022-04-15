@@ -1,6 +1,15 @@
 {
     "entryPoints": [
-        "./src/primeNumber.ts"
+        "./src/album.ts",
+        "./src/artist.ts",
+        "./src/compareSet.ts",
+        "./src/durationType.ts",
+        "./src/genre.ts",
+        "./src/group.ts",
+        "./src/index.ts",
+        "./src/musicDataBase.ts",
+        "./src/playlist.ts",
+        "./src/song.ts"
     ],
     "out": "./docs"
 }
