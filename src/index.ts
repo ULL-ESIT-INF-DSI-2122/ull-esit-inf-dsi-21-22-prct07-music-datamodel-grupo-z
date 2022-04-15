@@ -11,8 +11,10 @@ const scanf = require('scanf');
 
 let myDataBase: MusicDataBase = new MusicDataBase();
 
+/**
+ * Menú principal del programa
+ */
 promptUser()
-
 export function promptUser() {
     console.clear();
     console.log('Bienvenido a SPOTY-DSI');
@@ -92,8 +94,9 @@ export function managementDB() {
     });
 }
 
-
-
+/**
+ * Función para e
+ */
 export function managementGenres() {
     console.clear();
     const questions = [
