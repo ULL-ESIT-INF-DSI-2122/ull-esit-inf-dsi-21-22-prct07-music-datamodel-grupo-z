@@ -83,8 +83,12 @@ export class Playlist {
      * @param newSong 
      */
     public addSong(newSong: Song) {
-        this.songs.push(newSong.getName());
-        this.genres.push(newSong.getGenre())
+        if (!this.has(newSong)) {
+            this.songs.push(newSong.getName());
+        }
+        if (!this.has(new Genre(newSong.getGenre()))) {
+            this.genres.push(newSong.getGenre())
+        }
         this.duration.seconds += newSong.getSeconds();
         this.duration.minutes += newSong.getMinutes();
         this.duration.hours += newSong.getMinutes() / 60;
@@ -159,5 +163,29 @@ export class Playlist {
         });
 
         return sortedList;
+    }
+
+
+    /**
+     * Comprueba si el elemento se encuentra ya en la playlist antes de añadirlo
+     * @param element 
+     * @returns 
+     */
+    public has(element: Song | Genre): boolean {
+        if (element instanceof Song) {
+            this.songs.forEach(song => {
+                if (song == element.getName()) {
+                    return true;
+                }
+            });
+        } else if (element instanceof Genre) {
+            this.genres.forEach(genre => {
+                if (genre == element.getName()) {
+                    return true;
+                }
+            })
+        }
+
+        return false;
     }
 } 

@@ -530,7 +530,15 @@ function managementPlaylists() {
             case 'Ver mis playlists': {
                 console.log("Nombre de usuario: ");
                 let user: string = scanf("%S");
-                searchPlaylist(managementPlaylists, user);
+                let aux: Playlist[] = myDataBase.playListSort(true, user)
+                if (aux.length > 0) {
+                    searchPlaylist(managementPlaylists, user);
+                } else {
+                    console.log("El usuario: ", user, " aun no ha creado ninguna playlist");
+                    console.log("Pulse enter para continuar...");
+                    let e = scanf('%s');
+                    managementPlaylists();
+                }
                 break;
             }
 
