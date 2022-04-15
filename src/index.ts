@@ -48,6 +48,9 @@ export function promptUser() {
     });
 }
 
+/**
+ * Función para el manejo de la base de datos musical
+ */
 export function managementDB() {
     console.clear();
     console.log('Mi base de datos musical');
@@ -95,7 +98,7 @@ export function managementDB() {
 }
 
 /**
- * Función para e
+ * Función para el manejo de los géneros en la base de datos
  */
 export function managementGenres() {
     console.clear();
@@ -153,7 +156,9 @@ export function managementGenres() {
         });
 }
 
-
+/**
+ * Función para gestionar los artistas
+ */
 export function managementArtist() {
     console.clear();
     const questions = [
@@ -233,6 +238,9 @@ export function managementArtist() {
         });
 }
 
+/**
+ * Función para el manejo de canciones de la base de datos
+ */
 export function managementSongs() {
     console.clear();
     const questions = [
@@ -325,7 +333,9 @@ export function managementSongs() {
         });
 }
 
-
+/**
+ * Función para el manejo de los grupos en la base de datos
+ */
 export function managementGroups() {
     console.clear();
     const questions = [
@@ -395,7 +405,9 @@ export function managementGroups() {
 }
 
 
-
+/**
+ * Función para el manejo de albums en la base de datos
+ */
 export function managementAlbum() {
     console.clear();
     const questions = [
@@ -497,7 +509,9 @@ export function managementAlbum() {
         });
 }
 
-
+/**
+ * Función para el manejo de las playlists
+ */
 function managementPlaylists() {
     console.clear();
     console.log('Bienvenido a SPOTY-DSI');
@@ -540,7 +554,11 @@ function managementPlaylists() {
     });
 }
 
-
+/**
+ * Función para manejar la playlist de un usuario
+ * @param dbFuntion 
+ * @param user 
+ */
 function searchPlaylist(dbFuntion: Function, user: string) {
     console.clear();
     console.log('Bienvenido a SPOTY-DSI');
@@ -576,9 +594,7 @@ function searchPlaylist(dbFuntion: Function, user: string) {
                 type: 'list',
                 name: 'election',
                 message: 'Qué desea hacer',
-                choices: ['Ver playlist ordenada alfabeticamente', 'Ver playlist ordenada alfabeticamente',
-                    'Añadir canción', 'Borrar canción', 'Atras'
-            ]
+                choices: ['Añadir canción', 'Borrar canción', 'Atras']
             },
         ];
 
@@ -615,7 +631,7 @@ function searchPlaylist(dbFuntion: Function, user: string) {
                         }
                     });
 
-                    const plSong: string[] = myPlaylist.songSort(true);
+                    const plSong: string[] = myPlaylist.songSort(false);
 
                     if (plSong.length > 0) {
                         plSong.forEach(song => {
@@ -659,74 +675,4 @@ function searchPlaylist(dbFuntion: Function, user: string) {
             }
         })
     });
-}
-
-function searchSong(dbFuntion: Function, playlist: string) {
-    console.clear();
-    console.log('Bienvenido a SPOTY-DSI');
-
-    
-
-    const questions = [
-      {
-          type: 'list',
-          name: 'election',
-          message: 'Selecciona tu playlist',
-      },
-    ];
-
-        
-    inquirer.prompt(questions).then((answers: any) => {
-        let myPlaylist: string = answers['election'];
-        const questions = [
-            {
-                type: 'list',
-                name: 'election',
-                message: 'Qué desea hacer',
-                choices: ['Ver playlist ordenada alfabeticamente', 'Ver playlist ordenada alfabeticamente',
-                    'Añadir canción', 'Borrar canción', 'Atras'
-            ]
-            },
-        ];
-
-        inquirer.prompt(questions).then((answers: any) => {
-            switch(answers['election']) {
-                case 'Ver playlist ordenada alfabeticamente': 
-
-                    break;
-                
-                case 'Ver playlist ordenada alfabeticamente':
-
-                    break;
-
-                case 'Añadir canción': 
-                    console.log("Nombre de canción: ");
-                    let song: string = scanf("%S");
-
-                    myDataBase.getPlaylists().map((playlist: Playlist) => {
-                        if (myPlaylist == playlist.getName())
-                            myDataBase.addSongToPlaylist(playlist.getName(), song);
-                    });
-                    managementPlaylists();
-                    break;
-
-                case 'Borrar canción':
-                    console.log("Nombre de canción: ");
-                    let rsong: string = scanf("%S");
-
-                    myDataBase.getPlaylists().map((playlist: Playlist) => {
-                        if (myPlaylist == playlist.getName())
-                            myDataBase.removeSongFromPlaylist(playlist.getName(), rsong);
-                    });
-                    managementPlaylists();
-                    break;
-
-                case 'Atras':
-                    managementPlaylists();
-                    break;
-            }
-        })
-
-    });
-
 }

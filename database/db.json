@@ -658,16 +658,17 @@
       "name": "temitas",
       "user": "sergio",
       "songs": [
-        "Sola"
+        "Waka Waka"
       ],
       "duration": {
-        "seconds": 100,
-        "minutes": 1.6666666666666667,
-        "hours": 0.02777777777777778
+        "seconds": 110,
+        "minutes": 1.8333333333333333,
+        "hours": 0.030555555555555555
       },
       "genres": [
         "Reggeton",
-        "Reggeton"
+        "Reggeton",
+        "Pop"
       ]
     },
     {

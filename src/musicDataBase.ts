@@ -24,25 +24,31 @@ export class MusicDataBase {
 
     private db: lowdb.LowdbSync<schemaType>;
         
-        toDefault() {
-            this.db.set("genres", []).write();
-            this.defaultGenres();
-        
-            this.db.set("artists", []).write();
-            this.defaultArtists();
+    /**
+    * Devuelve la base de datos a su estado por defecto
+    */
+    toDefault() {
+        this.db.set("genres", []).write();
+        this.defaultGenres();
+    
+        this.db.set("artists", []).write();
+        this.defaultArtists();
 
-            this.db.set("groups", []).write();
-            this.defaultGroups();
+        this.db.set("groups", []).write();
+        this.defaultGroups();
 
-            this.db.set("songs", []).write();
-            this.defaultSongs();
+        this.db.set("songs", []).write();
+        this.defaultSongs();
 
-            this.db.set("albums", []).write();
-            this.defaultAlbums();
+        this.db.set("albums", []).write();
+        this.defaultAlbums();
 
-            this.db.set("playlists", []).write();
-        }
+        this.db.set("playlists", []).write();
+    }
 
+    /**
+     * Constructor de la clase musicDataBase
+     */
     constructor() {
         this.db = lowdb(new FileSync('database/db.json'));
         
@@ -76,46 +82,64 @@ export class MusicDataBase {
         }
     }
 
-
+    /**
+     * Devuelve las canciones de la base de datos
+     * @returns Array<Song>
+     */
     public getSongs(): Array<Song> {
-        // Probando cosas: 
         const serializedSongs = this.db.get('songs').value();
         const mySongs = Song.deserialize(serializedSongs);
         return mySongs;
     }
 
+    /**
+     * Devuelve los albums de la base de datos
+     * @returns Array<Album>
+     */
     public getAlbums(): Array<Album> {
-        // Probando cosas: 
         const serializedAlbums = this.db.get('albums').value();
         const myAlbums = Album.deserialize(serializedAlbums);
         return myAlbums;
     }
 
+    /**
+     * Devuelve los artistas de la base de datos
+     * @returns Array<Artist>
+     */
     public getArtists(): Array<Artist> {
-        // Probando cosas: 
         const serializedArtists = this.db.get('artists').value();
         const myArtists = Artist.deserialize(serializedArtists);
         return myArtists;
     }
 
+    /**
+     * Devuelve los grupos de la base de datos
+     * @returns Array<Group>
+     */
     public getGroups(): Array<Group> {
-        // Probando cosas: 
         const serializedGroups = this.db.get('groups').value();
         const myGroups = Group.deserialize(serializedGroups);
         return myGroups;
     }
 
+    /**
+     * Devuelve los géneros de la base de datos
+     * @returns Array<Genre>
+     */
     public getGenres(): Array<Genre> {
-        // Probando cosas: 
         const serializedGenres = this.db.get('genres').value();
         const myGenre = Genre.deserialize(serializedGenres);
         return myGenre;
     }
 
+    /**
+     * Devuelve las playlists de la base de datos
+     * @param user 
+     * @returns 
+     */
     public getPlaylists(user: string = ''):Array<Playlist> {
         const serializedPlaylist = this.db.get('playlists').value();
         const myPlaylist = Playlist.deserialize(serializedPlaylist);
-        // Probando cosas: 
         if (user === '') {
             return myPlaylist;
         } else {
@@ -129,6 +153,11 @@ export class MusicDataBase {
         }
     }
 
+    /**
+     * Añade una canción a la base de datos 
+     * @param playlist 
+     * @param newsong 
+     */
     public addSongToPlaylist(playlist: string, newsong: string) {
         let mySong: Song;
         let newOne: boolean = true;
@@ -166,6 +195,11 @@ export class MusicDataBase {
         this.db.set('playlists', myPlaylists).write();   
     }
 
+    /**
+     * Elimina una canción de la base de datos
+     * @param playlist 
+     * @param newsong 
+     */
     public removeSongFromPlaylist(playlist: string, newsong: string) {
         let mySong: Song;
         this.getSongs().map((song: Song) => {
@@ -183,14 +217,26 @@ export class MusicDataBase {
         this.db.set('playlists', myPlaylists).write();   
     }
 
+    /**
+     * Añade un género a la base de datos
+     * @param newGenre 
+     */
     public addGenre(newGenre: Genre) {
         this.db.get('genres').push(newGenre).write();
     }
 
+    /**
+     * Añade un artista a la base de datos
+     * @param newArtist 
+     */
     public addArtist(newArtist: Artist) {
         this.db.get('artists').push(newArtist).write();
     }
 
+    /**
+     * Añade un grupo a la base de datos
+     * @param newGroup 
+     */
     public addGroup(newGroup: Group) {
         this.db.get('groups').push(newGroup).write();
 
@@ -207,10 +253,18 @@ export class MusicDataBase {
         this.db.set('artists', dbArtists).write();
     }
 
+    /**
+     * Añade una playlist a la base de datos
+     * @param newPlaylist 
+     */
     public addPlaylist(newPlaylist: Playlist) {
         this.db.get('playlists').push(newPlaylist).write();
     }
 
+    /**
+     * Añade una canción a la base de datos
+     * @param newSong 
+     */
     public addSong(newSong: Song) {
         this.db.get('songs').push(newSong).write();
 
@@ -245,6 +299,10 @@ export class MusicDataBase {
         this.db.set('genres', genresUpdated).write();  
     }
 
+    /**
+     * Añade un album a la base de datos
+     * @param newAlbum 
+     */
     public addAlbum(newAlbum: Album) {
         this.db.get('albums').push(newAlbum).write();
 
@@ -275,10 +333,9 @@ export class MusicDataBase {
     }
 
     /**
-     * Si el tipo == 0 se ordena por nombre de cancion ascendentemente
-     * Si el tipo == 1 se ordena por nombre de cancion descententemente
-     * Si el tipo == 2 se ordena por numero de reproducciones totales ascententemente
-     * Si el tipo == 3 se ordena por numero de reproducciones totales descendentemente
+     * Devuelve un array con las canciones ordenadas
+     * @param type 
+     * @returns 
      */
     public songSort(type: number): Array<Song> {
         let sortedList: Array<Song> = Array.from(this.getSongs());
@@ -301,7 +358,11 @@ export class MusicDataBase {
         return sortedList;
     }
 
-
+    /**
+     * Devuelve un array con los albumes ordenados
+     * @param type 
+     * @returns 
+     */
     public albumSort(type: number = 0): Array<Album> {
         let sortedList: Array<Album> = Array.from(this.getAlbums());
 
@@ -323,6 +384,11 @@ export class MusicDataBase {
         return sortedList;
     }
 
+    /**
+     * Devuelve un array con los grupos ordenados
+     * @param asc 
+     * @returns 
+     */
     public groupSort(asc: boolean = true): Array<Group> {
         let sortedList: Array<Group> = Array.from(this.getGroups());
 
@@ -341,11 +407,9 @@ export class MusicDataBase {
     }
 
     /**
-     * Funcion que ordena los artistas
-     * En caso de que @type sea == 0 -> orden alfabetico ascentende
-     * En caso de que @type sea == 1 -> orden alfabetico descentente
-     * En caso de que @type sea == 2 -> orden por vistas ascentende
-     * En caso de que @type sea == 3 -> orden por vistas descendente
+     * Devuelve un array con los artistas ordenados
+     * @param type 
+     * @returns 
      */
     public artistSort(type: number = 0): Array<Artist> {
         let sortedList: Array<Artist> = Array.from(this.getArtists());
@@ -383,7 +447,12 @@ export class MusicDataBase {
         return sortedList;
     }
 
-
+    /**
+     * Devuelve un array con las playlists ordenadas
+     * @param asc 
+     * @param user 
+     * @returns 
+     */
     public playListSort(asc: boolean = true, user: string = ''): Array<Playlist> {
         let sortedList: Array<Playlist> = Array.from(this.getPlaylists(user));
 
@@ -401,7 +470,9 @@ export class MusicDataBase {
         return sortedList;
     }
 
-
+    /**
+     * Carga en la base de datos los géneros por defecto
+     */
     public defaultGenres() {
         let Reggeton: Genre = new Genre("Reggeton");
         let Electronica: Genre = new Genre("Electronica");
@@ -423,6 +494,9 @@ export class MusicDataBase {
         });
     }
 
+    /**
+     * Añade a la base de datos los artistas por defecto
+     */
     public defaultArtists() {
         let defaultArtists: Array<Artist> = [
             new Artist("Bob Marley"),
@@ -450,6 +524,9 @@ export class MusicDataBase {
         });
     }
 
+    /**
+     * Añade a la base de datos los grupos por defecto
+     */
     public defaultGroups() {
         let defaultGroups: Array<Group> = [
             new Group("Wisin & Yandel", 2001, ["Wisin", "Yandel"], 12563),
@@ -462,6 +539,9 @@ export class MusicDataBase {
         });
     }
 
+    /**
+     * Añade a la base de datos las canciones por defecto
+     */
     public defaultSongs() {
         let defaultSongs: Array<Song> = [
             new Song("China", "Anuel", "Reggeton", true, 10000000, 120),
@@ -492,7 +572,9 @@ export class MusicDataBase {
         });
     }
     
-
+    /**
+     * Añade a la base de datos los albums por defecto
+     */
     public defaultAlbums() {
         let defaultAlbums: Array<Album> = [
             new Album("Real Hasta La Muerte", "Anuel", 100, ["Sola", "China"], ["Reggeton"]),

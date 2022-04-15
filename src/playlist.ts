@@ -30,10 +30,18 @@ export class Playlist {
         return this.name;
     }
 
+    /**
+     * Devuelve las canciones de la playlist
+     * @returns Array<string>
+     */
     public getSongs(): Array<string> {
         return this.songs;
     }
 
+    /**
+     * Devuelve la duración de la playlist
+     * @returns Time
+     */
     public getDuration(): Time {
         return this.duration;
     }
@@ -54,14 +62,26 @@ export class Playlist {
         return this.duration.minutes;
     }
 
+    /**
+     * Devuelve los géneros de la playlist
+     * @returns Array<string>
+     */
     public getGenres(): Array<string> {
         return this.genres;
     }
 
+    /**
+     * Devuelve el usuario propietario de la playlist
+     * @returns string
+     */
     public getUser(): string {
         return this.user;
     }
 
+    /**
+     * Añade una canción a la playlist
+     * @param newSong 
+     */
     public addSong(newSong: Song) {
         this.songs.push(newSong.getName());
         this.genres.push(newSong.getGenre())
@@ -70,6 +90,10 @@ export class Playlist {
         this.duration.hours += newSong.getMinutes() / 60;
     }
 
+    /**
+     * Elimina una canción de la playlist
+     * @param newSong 
+     */
     public removeSong(newSong: Song) {
         let n: number = this.getSongs().indexOf(newSong.getName())
         this.songs.splice(n, 1);
@@ -92,6 +116,9 @@ export class Playlist {
         return myPlaylists;
     }
 
+    /**
+     * Imprime por pantalla la información de la playlist correctamente formateada
+     */
     public print() {
         console.log(`PLAYLIST: **${this.getName()}**`);
         console.log('\tAdministrador: ', this.getUser());
@@ -112,6 +139,11 @@ export class Playlist {
         console.log('\n');
     }
 
+    /**
+     * Devuelve las canciones ordenadas
+     * @param asc 
+     * @returns 
+     */
     public songSort(asc: boolean): Array<string> {
         let sortedList: Array<string> = this.getSongs();
 
