@@ -602,7 +602,7 @@ Para la realizacion del menu se requirio de varias funciones.
   
 Para evitar la aglomeracion de funciones similares con pequeños cambios en el diseño, se procedera a mostrar la funcion que gestiona los artistas, y se omitiran los generos, albumes, grupos y canciones, ya que siguen el mismo patron de diseño, con pequeños cambios en las opciones.
   
- En esta funcion se presentan cuatro opciones de ordenacion que emplean la funcion de la base de datos `artistSont`, una opcion que permite añadir artistas a la base de datos y otra opcion de salida. Tras las opciones que no son de salida se vuelve a acceder de nuevo al mismo menu. 
+ En esta funcion se presentan cuatro opciones de ordenacion que emplean la funcion de la base de datos `artistSort`, una opcion que permite añadir artistas a la base de datos y otra opcion de salida. Tras las opciones que no son de salida se vuelve a acceder de nuevo al mismo menu. 
 
     export function managementArtist() {
         console.clear();
