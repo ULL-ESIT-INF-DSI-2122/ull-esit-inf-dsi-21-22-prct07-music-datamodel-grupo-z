@@ -116,7 +116,11 @@ export class Genre {
         console.log();
     }
 
-
+    /**
+     * Comprueba si uno de los elementos pertenece al genero
+     * @param element 
+     * @returns 
+     */
     public has(element: Artist | Group | Album | Song): boolean {
         if (element instanceof (Artist || Group)) {
             this.getComponents().forEach(component => {
@@ -141,6 +145,11 @@ export class Genre {
         return false;
     }
 
+    /**
+     * Convierte un conjunto de generos con formato json a un conjunto de generos objeto
+     * @param genres 
+     * @returns 
+     */
     public static deserialize(genres: Genre[]): Genre[] {
         const myGenres: Genre[] = [];
 

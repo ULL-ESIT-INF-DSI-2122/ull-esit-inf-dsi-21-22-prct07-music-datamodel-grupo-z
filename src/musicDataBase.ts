@@ -432,7 +432,11 @@ export class MusicDataBase {
         return sortedList;
     }
 
-
+    /**
+     * Devuelve un array con los generos ordenados
+     * @param asc 
+     * @returns 
+     */
     public genreSort(asc: boolean = true): Array<Genre> {
         let sortedList: Array<Genre> = this.getGenres();
 

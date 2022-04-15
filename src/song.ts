@@ -82,6 +82,11 @@ export class Song {
         return this.duration.minutes;
     }
 
+    /**
+     * Compara dos canciones, devuelve true en caso que sean iguales y false en el contrario
+     * @param song 
+     * @returns 
+     */
     public same(song: Song): boolean {
         if ((this.getName() === song.getName()) && (this.getIsSingle() === song.getIsSingle())) {
             if ((this.getTimesListened() === song.getTimesListened()) && (this.getMinutes() === song.getMinutes())) {
@@ -107,6 +112,9 @@ export class Song {
         console.log(`\tNumero de reproducciones: ${this.getTimesListened()}\n`);
     }
 
+    /**
+     * Convierte un conjunto de canciones con formato json a un conjunto de canciones objeto
+     */
     public static deserialize(songs: Song[]): Song[] {
         const mySongs: Song[] = [];
 

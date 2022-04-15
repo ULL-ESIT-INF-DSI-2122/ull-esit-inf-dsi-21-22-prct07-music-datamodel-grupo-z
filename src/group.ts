@@ -116,6 +116,11 @@ export class Group {
         this.listeners += newData;
     }
 
+    /**
+     * Comprueba si this.group es igual al grupo introducido por parametros
+     * @param group 
+     * @returns 
+     */
     public same(group: Group | Artist) {
         if (group instanceof Artist) {
             return false;
@@ -168,6 +173,11 @@ export class Group {
         console.log('\n');
     }
 
+    /**
+     * Comprueba si uno de los elementos pertenece al grupo
+     * @param element 
+     * @returns 
+     */
     public has(element: Genre | Artist | Album | Song): boolean {
         if (element instanceof Genre) {
             this.getGenres().forEach(genre => {
@@ -199,6 +209,11 @@ export class Group {
     }
 
 
+    /**
+     * Convierte un conjunto de grupos con formato json a un conjunto de grupos objeto
+     * @param groups 
+     * @returns 
+     */
     public static deserialize(groups: Group[]): Group[] {
 
         const myGroups: Group[] = [];

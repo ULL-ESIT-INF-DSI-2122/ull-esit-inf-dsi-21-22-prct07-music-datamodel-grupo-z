@@ -64,6 +64,11 @@ export class Album {
         return this.songs;
     }
 
+    /**
+     * Comprueba si this.album es igual al album introducido por parametros
+     * @param album 
+     * @returns 
+     */
     public same(album: Album): boolean {
         if ((this.getName() === album.getName()) && (this.getYear() === album.getYear())) { 
             this.getSongs().forEach(song1 => {
@@ -104,6 +109,11 @@ export class Album {
         console.log();
     }
 
+    /**
+     * Comprueba si uno de los elementos pertenece al album
+     * @param element 
+     * @returns 
+     */
     public has(element: Genre | Artist | Group | Song): boolean {
         if (element instanceof Genre) {
             this.getGenres().forEach(genre => {
@@ -126,6 +136,11 @@ export class Album {
         return false;
     }
 
+    /**
+     * Convierte un conjunto de albumes con formato json a un conjunto de albumes objeto
+     * @param albums 
+     * @returns 
+     */
     public static deserialize(albums: Album[]): Album[] {
         const myAlbums: Album[] = [];
 

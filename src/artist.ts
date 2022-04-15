@@ -115,6 +115,11 @@ export class Artist {
         this.albums.push(newAlbum.getName())
     }
 
+    /**
+     * Comprueba si this.artist es igual al artista introducido por parametros
+     * @param artist 
+     * @returns 
+     */
     public same(artist: Artist | Group): boolean {
         if (artist instanceof Group) {
             return false;
@@ -160,6 +165,11 @@ export class Artist {
         console.log('');
     }
 
+    /**
+     * Comprueba si uno de los elementos pertenece al artista
+     * @param element 
+     * @returns 
+     */
     public has(element: Genre | Group | Album | Song): boolean {
         if (element instanceof Genre) {
             this.getGenres().forEach(genre => {
@@ -191,6 +201,11 @@ export class Artist {
     }
 
 
+    /**
+     * Convierte un conjunto de artistas con formato json a un conjunto de artistas objeto
+     * @param artists 
+     * @returns 
+     */
     public static deserialize(artists: Artist[]): Artist[] {
         const myArtists: Artist[] = [];
 
