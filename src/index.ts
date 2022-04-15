@@ -594,13 +594,28 @@ function searchPlaylist(dbFuntion: Function, user: string) {
                 type: 'list',
                 name: 'election',
                 message: 'Qué desea hacer',
-                choices: ['Añadir canción', 'Borrar canción', 'Atras']
+                choices: ['Datos de la playlist', 'Ver canciones de la playlist ordenadas alfabeticamente', 
+                'Ver canciones de la playlist ordenadas inversamente',
+                'Añadir canción', 'Borrar canción', 'Atras']
             },
         ];
 
         inquirer.prompt(questions).then((answers: any) => {
             switch(answers['election']) {
-                case 'Ver playlist ordenada alfabeticamente': {
+                case 'Datos de la playlist': {
+                    myDataBase.getPlaylists().forEach(pl => {
+                        if (myPlaylistName === pl.getName()) {
+                            myPlaylist = pl;
+                        }
+                    });
+                    myPlaylist.print();
+                    console.log("Pulse enter para continuar ...");
+                    let e = scanf("%s");
+                    dbFuntion();
+                    break;
+                }
+
+                case 'Ver canciones de la playlist ordenadas alfabeticamente': {
                     myDataBase.getPlaylists().forEach(pl => {
                         if (myPlaylistName === pl.getName()) {
                             myPlaylist = pl;
@@ -624,7 +639,7 @@ function searchPlaylist(dbFuntion: Function, user: string) {
                 }
 
                 
-                case 'Ver playlist ordenada alfabeticamente': {
+                case 'Ver canciones de la playlist ordenadas inversamente': {
                     myDataBase.getPlaylists().forEach(pl => {
                         if (myPlaylistName === pl.getName()) {
                             myPlaylist = pl;
