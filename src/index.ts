@@ -565,8 +565,27 @@ function searchPlaylist(dbFuntion: Function, user: string) {
 
         
     inquirer.prompt(questions).then((answers: any) => {
-        console.log(answers);
-        let a: string = scanf("%S"); 
+        let plName:string = answers.election;
+        let playList: Playlist;
+
+        myDataBase.getPlaylists().forEach(pl => {
+            if (plName === pl.getName()) {
+                playList = pl;
+            }
+        })
+        
+        const plSong: string[] = playList.songSort(true);
+
+        if (plSong.length > 0) {
+            plSong.forEach(song => {
+                console.log(song);
+            });
+        } else {
+            console.log("Esta playlist no tiene canciones todavia ...");
+        }
+
+        console.log("\nPresione enter para continuar ...");
+        let e = scanf("%s"); 
         dbFuntion();
     });
 }

@@ -666,6 +666,17 @@
       "genres": [
         "Reggeton"
       ]
+    },
+    {
+      "name": "a",
+      "user": "a",
+      "songs": [],
+      "duration": {
+        "seconds": 0,
+        "minutes": 0,
+        "hours": 0
+      },
+      "genres": []
     }
   ]
 }
