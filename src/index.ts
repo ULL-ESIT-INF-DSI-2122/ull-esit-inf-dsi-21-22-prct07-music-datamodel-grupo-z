@@ -608,10 +608,9 @@ function searchPlaylist(dbFuntion: Function, user: string) {
                     });
                     managementPlaylists();
                     break;
-                    break;
 
                 case 'Atras':
-
+                    managementPlaylists();
                     break;
             }
         })
