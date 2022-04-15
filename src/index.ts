@@ -619,7 +619,7 @@ function searchPlaylist(dbFuntion: Function, user: string) {
                     myPlaylist.print();
                     console.log("Pulse enter para continuar ...");
                     let e = scanf("%s");
-                    dbFuntion();
+                    searchPlaylist(dbFuntion, user);
                     break;
                 }
 
@@ -642,7 +642,7 @@ function searchPlaylist(dbFuntion: Function, user: string) {
 
                     console.log("\nPresione enter para continuar ...");
                     let e = scanf("%s"); 
-                    dbFuntion();
+                    searchPlaylist(dbFuntion, user);
                     break; 
                 }
 
@@ -666,7 +666,7 @@ function searchPlaylist(dbFuntion: Function, user: string) {
 
                     console.log("\nPresione enter para continuar ...");
                     let e = scanf("%s"); 
-                    dbFuntion();
+                    searchPlaylist(dbFuntion, user);
                     break;
                 }
 
@@ -678,7 +678,7 @@ function searchPlaylist(dbFuntion: Function, user: string) {
                         if (myPlaylistName == playlist.getName())
                             myDataBase.addSongToPlaylist(playlist.getName(), song);
                     });
-                    managementPlaylists();
+                    searchPlaylist(dbFuntion, user);
                     break;
 
                 case 'Borrar canción':
@@ -689,7 +689,7 @@ function searchPlaylist(dbFuntion: Function, user: string) {
                         if (myPlaylistName == playlist.getName())
                             myDataBase.removeSongFromPlaylist(playlist.getName(), rsong);
                     });
-                    managementPlaylists();
+                    searchPlaylist(dbFuntion, user);
                     break;
 
                 case 'Atras':

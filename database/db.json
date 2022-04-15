@@ -653,31 +653,5 @@
       ]
     }
   ],
-  "playlists": [
-    {
-      "name": "temitas",
-      "user": "sergio",
-      "songs": [
-        "Sola",
-        "Sola",
-        "Sola",
-        "Sola",
-        "Waka Waka",
-        "Waka Waka"
-      ],
-      "duration": {
-        "seconds": 720,
-        "minutes": 12.000000000000002,
-        "hours": 0.2
-      },
-      "genres": [
-        "Reggeton",
-        "Reggeton",
-        "Reggeton",
-        "Reggeton",
-        "Pop",
-        "Pop"
-      ]
-    }
-  ]
+  "playlists": []
 }
