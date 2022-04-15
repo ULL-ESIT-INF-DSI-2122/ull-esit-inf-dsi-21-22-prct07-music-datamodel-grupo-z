@@ -70,6 +70,14 @@ export class Playlist {
         this.duration.hours += newSong.getMinutes() / 60;
     }
 
+    public removeSong(newSong: Song) {
+        let n: number = this.getSongs().indexOf(newSong.getName())
+        this.songs.splice(n, 1);
+        this.duration.seconds -= newSong.getSeconds();
+        this.duration.minutes -= newSong.getMinutes();
+        this.duration.hours -= newSong.getMinutes() / 60;
+    }
+
 
     public static deserialize(playlists: Playlist[]): Playlist[] {
         const myPlaylists: Playlist[] = [];

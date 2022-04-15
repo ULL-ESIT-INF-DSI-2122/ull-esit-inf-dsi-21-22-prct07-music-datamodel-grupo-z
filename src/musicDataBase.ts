@@ -127,12 +127,34 @@ export class MusicDataBase {
         }
     }
 
-    public addSongToPlaylist(user: string, playlist: string, song: Song) {
-        let myPlaylists: Array<Playlist> = this.getPlaylists();
+    public addSongToPlaylist(playlist: string, newsong: string) {
+        let mySong: Song;
+        this.getSongs().map((song: Song) => {
+            if (song.getName() == newsong)
+                mySong = song
+        })
 
+        let myPlaylists: Array<Playlist> = this.getPlaylists();
         myPlaylists.forEach((pl) => {
             if (playlist === pl.getName()) {
-                pl.addSong(song);
+                pl.addSong(mySong);
+            }
+        });
+        
+        this.db.set('playlists', myPlaylists).write();   
+    }
+
+    public removeSongFromPlaylist(playlist: string, newsong: string) {
+        let mySong: Song;
+        this.getSongs().map((song: Song) => {
+            if (song.getName() == newsong)
+                mySong = song
+        })
+
+        let myPlaylists: Array<Playlist> = this.getPlaylists();
+        myPlaylists.forEach((pl) => {
+            if (playlist === pl.getName()) {
+                pl.removeSong(mySong);
             }
         });
         
