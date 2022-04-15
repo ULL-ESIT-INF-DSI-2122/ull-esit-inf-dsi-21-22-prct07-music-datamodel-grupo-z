@@ -657,13 +657,16 @@
     {
       "name": "temitas",
       "user": "sergio",
-      "songs": [],
+      "songs": [
+        "Sola"
+      ],
       "duration": {
-        "seconds": 0,
-        "minutes": 0,
-        "hours": 0
+        "seconds": 100,
+        "minutes": 1.6666666666666667,
+        "hours": 0.02777777777777778
       },
       "genres": [
+        "Reggeton",
         "Reggeton"
       ]
     },
