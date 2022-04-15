@@ -6,7 +6,13 @@ En esta práctica vamos a desarrollar un sistema de información de música. Des
 
 Hemos desarrollado 6 clases principales: Song, Artist, Genre, Album, Group y Playlist. Cada una de ella gestiona un elemento del sistema por separado. 
 
-// cokentar el tipo time. 
+Para el control del tiempo, se ha empleado un tipo de dato llamado Time, que almacena las horas, minutos y segundos.
+
+    export type Time = {
+        hours: number
+        minutes: number,
+        seconds: number
+    }
 
 ### Clase Genre
 
@@ -226,16 +232,15 @@ La clase álbum, tiene los siguientes atributos privados:
   - year, de tipo number donde se almacena el año de lanzamiento del disco. 
   - songs, de tipo Array<Songs> que guarda todas las canciones del álbum. 
                                   
-    export class Group {
-        constructor(
-            private name: string,
-            private year: number,
-            private artists: Array<string>,
-            private listeners: number,
-            private genres: Array<string> = [],
-            private albums: Array<string> = [],
-            private songs: Array<string> = [],
-        ) {}         
+   export class Album {
+    constructor(
+        private name: string,
+        private creator: string,
+        private year: number,
+        private songs: Array<string>,
+        private genres: Array<string>,
+    ) {}
+ 
                             
 
 Para almacenar toda la información hemos creado la clase musicDataBase. Esta clase contiene un objeto LowdbSync, el cual almacena en un fichero .json la información que indiquemos. En nuestro caso este fichero json se almacena en el directorio /database de nuestro proyecto. A esta base de datos hay que declararle un esquema, nosotros tenemos un array para cada elemento que vamos a almacenar alli, canciones, albums, artistas, grupos, géneros y playlists
@@ -505,5 +510,365 @@ Para las canciones, a parte de las ordenaciones vistas en la funciones anteriore
 
 En cuanto a los albumes igual que con las canciones se recibe un number. 0 en caso alfabetico, 1 en caso inverso, 2 por fecha de lanzamiento creciente, 3 por orden de lanzamiento decreciente.
   
+ 
+### Menu 
   
+Para la realizacion del menu se requirio de varias funciones. 
+  La funcion promtp user tiene la funcion de ser el menu principal del que derivan el resto de menus. Se puede acceder a la base de datos general o la personal.
+  
+    promptUser()
+      export function promptUser() {
+          console.clear();
+          console.log('Bienvenido a SPOTY-DSI');
+
+          const questions = [
+            {
+                type: 'list',
+                name: 'election',
+                message: '¿Dónde desea acceder?',
+                choices: ['Mi base de datos musical', 'Mis playlists', 'Salir'],
+            },
+          ];
+
+          inquirer.prompt(questions).then((answers: any) => {
+              switch(answers['election']) {
+                  case 'Mi base de datos musical':
+                      console.log("Mi base de datos musical")
+                      managementDB();
+                      break;
+
+                  case 'Mis playlists':
+                      console.log("Mis playlists")
+                      managementPlaylists();
+                      break;
+
+                  case 'Salir':
+                      console.log("Adios... :(");
+                      break;
+
+              }
+          });
+      }
+
+  A continuacion, se muestra la funcion que se encarga del manejo de la base de datos general. En esta funcion se permite gestionar las canciones, los artistas, los albumes, los generos y los grupos. Ademas, permite volver al menu inicial. Esta funcion sirve como puente a funciones mas especificas.
+  
+ 
+    export function managementDB() {
+        console.clear();
+        console.log('Mi base de datos musical');
+
+        const questions = [
+          {
+              type: 'list',
+              name: 'election',
+              message: 'Que desea hacer',
+              choices: ['Gestionar canciones', 'Gestionar artistas', 'Gestionar albums', 'Gestionar generos', 'Gestionar grupos', 'Volver atras'],
+          },
+        ];
+
+        inquirer.prompt(questions).then((answers: any) => {
+            switch(answers['election']) {
+                case 'Gestionar canciones':
+                    managementSongs()
+                    break;
+
+                case 'Gestionar artistas':
+                    managementArtist();
+                    break;
+
+                case 'Gestionar generos':
+                    console.log("Mi base de datos musical")
+                    managementGenres();
+                    break;
+
+                case 'Gestionar grupos':
+                    console.log("Mi base de datos musical")
+                    managementGroups();
+                    break;
+
+                case 'Gestionar albums':
+                    console.log("Mi base de datos musical")
+                    managementAlbum();
+                    break;
+
+                case 'Volver atras': {
+                    promptUser();
+                    break;
+                }
+            }
+        });
+    }
+  
+  
+Para evitar la aglomeracion de funciones similares con pequeños cambios en el diseño, se procedera a mostrar la funcion que gestiona los artistas, y se omitiran los generos, albumes, grupos y canciones, ya que siguen el mismo patron de diseño, con pequeños cambios en las opciones.
+  
+ En esta funcion se presentan cuatro opciones de ordenacion que emplean la funcion de la base de datos `artistSont`, una opcion que permite añadir artistas a la base de datos y otra opcion de salida. Tras las opciones que no son de salida se vuelve a acceder de nuevo al mismo menu. 
+
+    export function managementArtist() {
+        console.clear();
+        const questions = [
+            {
+                type: 'list',
+                name: 'election',
+                message: 'Gestión de artistas',
+                choices: ['Ver artistas ordenados alfabeticamente', 'Ver artistas ordenados inversamente', 
+                'Ver artistas por popularidad (oyentes creciente)', 'Ver artistas por popularidad (oyentes decreciente)', 'Añadir artista', 'Volver atrás'],
+            },
+          ];
+
+            inquirer.prompt(questions).then((answers: any) => {
+                console.clear();
+                switch(answers['election']) {
+                    case 'Ver artistas ordenados alfabeticamente': {
+                        let artists: Artist[] = myDataBase.artistSort(0);
+                        artists.map((artist) => {
+                            artist.print()
+                        });
+                        console.log("Pulse enter para continuar...");
+                        let e = scanf('%s');
+                        managementArtist();
+                        break;
+                    }
+
+                    case 'Ver artistas ordenados inversamente': {
+                        let artists: Artist[] = myDataBase.artistSort(1);
+                        artists.map((artist) => {
+                            artist.print()
+                        });
+                        console.log("Pulse enter para continuar...");
+                        let e = scanf('%s');
+                        managementArtist();
+                        break;
+                    }
+
+                    case 'Añadir artista': {
+                        console.log("Inserte el nombre del nuevo artista: ");
+                        let name: string = scanf('%S');
+                        let newArtist: Artist = new Artist(name);
+                        myDataBase.addArtist(newArtist);
+                        console.log('Artista añadido correctamente :)');
+                        console.log("Pulse enter para continuar...");
+                        let q = scanf('%s');
+                        managementArtist();
+                        break;
+                    }
+
+                    case 'Ver artistas por popularidad (oyentes creciente)': {
+                        let artists: Artist[] = myDataBase.artistSort(2);
+                        artists.map((artist) => {
+                            artist.print()
+                        });
+                        console.log("Pulse enter para continuar...");
+                        let e = scanf('%s');
+                        managementArtist();
+                        break;
+                    }
+
+                    case 'Ver artistas por popularidad (oyentes decreciente)': {
+                        let artists: Artist[] = myDataBase.artistSort(3);
+                        artists.map((artist) => {
+                            artist.print()
+                        });
+                        console.log("Pulse enter para continuar...");
+                        let e = scanf('%s');
+                        managementArtist();
+                        break;
+                    }
+
+                    case 'Volver atrás': {
+                        managementDB();
+                        break;
+                    }
+                }
+            });
+    }
+  
+ 
+Por otra parte, para el manejo de las playlist personalizadas, se necesita de la funcion `managementPlaylist`. En esta funcion se permite ver las playlist de un usuario, crear la playlist para un usuario y volver al menu inicial. Se emplean las funciones de la clase playlist para manejar los usuarios y las playlist en la base de datos.
+  
+
+    function managementPlaylists() {
+        console.clear();
+        console.log('Bienvenido a SPOTY-DSI');
+
+        const questions = [
+          {
+              type: 'list',
+              name: 'election',
+              message: '¿Dónde desea acceder?',
+              choices: ['Ver mis playlists', 'Crear playlist', 'Volver atrás'],
+          },
+        ];
+
+        inquirer.prompt(questions).then((answers: any) => {
+            switch(answers['election']) {
+                case 'Ver mis playlists': {
+                    console.log("Nombre de usuario: ");
+                    let user: string = scanf("%S");
+                    let aux: Playlist[] = myDataBase.playListSort(true, user)
+                    if (aux.length > 0) {
+                        searchPlaylist(managementPlaylists, user);
+                    } else {
+                        console.log("El usuario: ", user, " aun no ha creado ninguna playlist");
+                        console.log("Pulse enter para continuar...");
+                        let e = scanf('%s');
+                        managementPlaylists();
+                    }
+                    break;
+                }
+
+                case 'Crear playlist':
+                    console.log("Nombre de usuario: ");
+                    let myuser: string = scanf("%s");
+                    console.log("Nombre de la playlist: ");
+                    let name: string = scanf("%S");
+                    console.log();
+                    let newPlaylist: Playlist = new Playlist(name, myuser);
+                    myDataBase.addPlaylist(newPlaylist);
+                    managementPlaylists();
+                    break;
+
+                case 'Volver atrás': {
+                        promptUser();
+                        break;
+                }
+
+            }
+        });
+    }
+
+Para este manejo de las playlist, se implemento la funcion searchPlaylist, que se encarga de manejar las opciones especificas de las playlist de un usuario. Primero require de la seleccion de una playlist, y luego, permite observar los datos de una playlist, como pueden ser sus grupos y generos, permite ver las canciones ordenadas y en orden inverso haciendo uso de la funcion playlistSort() de la base de datos, y añadir y elminar canciones de la base de datos, empleando sus respectivas funciones definidas en la clase `MusicDataBase()`.
+  
+    function searchPlaylist(dbFuntion: Function, user: string) {
+        console.clear();
+        console.log('Bienvenido a SPOTY-DSI');
+        let namePlaylists: string[] = [];
+        myDataBase.playListSort(true, user).map((playlist: Playlist) => {
+            namePlaylists.push(playlist.getName());
+        });
+
+        if (namePlaylists.length === 0) {
+            console.log("El usuario: ", user, " aun no ha creado ninguna playlist");
+            console.log("Pulse enter para continuar...");
+
+            let e = scanf('%s');
+            dbFuntion();
+        }
+
+        const questions = [
+          {
+              type: 'list',
+              name: 'election',
+              message: 'Selecciona tu playlist',
+              choices: Object.values(namePlaylists),
+          },
+        ];
+
+
+        inquirer.prompt(questions).then((answers: any) => {
+            let myPlaylistName: string = answers['election'];
+            let myPlaylist: Playlist;
+
+            const questions = [
+                {
+                    type: 'list',
+                    name: 'election',
+                    message: 'Qué desea hacer',
+                    choices: ['Datos de la playlist', 'Ver canciones de la playlist ordenadas alfabeticamente', 
+                    'Ver canciones de la playlist ordenadas inversamente',
+                    'Añadir canción', 'Borrar canción', 'Atras']
+                },
+            ];
+
+            inquirer.prompt(questions).then((answers: any) => {
+                switch(answers['election']) {
+                    case 'Datos de la playlist': {
+                        myDataBase.getPlaylists().forEach(pl => {
+                            if (myPlaylistName === pl.getName()) {
+                                myPlaylist = pl;
+                            }
+                        });
+                        myPlaylist.print();
+                        console.log("Pulse enter para continuar ...");
+                        let e = scanf("%s");
+                        searchPlaylist(dbFuntion, user);
+                        break;
+                    }
+
+                    case 'Ver canciones de la playlist ordenadas alfabeticamente': {
+                        myDataBase.getPlaylists().forEach(pl => {
+                            if (myPlaylistName === pl.getName()) {
+                                myPlaylist = pl;
+                            }
+                        });
+
+                        const plSong: string[] = myPlaylist.songSort(true);
+
+                        if (plSong.length > 0) {
+                            plSong.forEach(song => {
+                                console.log(song);
+                            });
+                        } else {
+                            console.log("Esta playlist no tiene canciones todavia ...");
+                        }
+
+                        console.log("\nPresione enter para continuar ...");
+                        let e = scanf("%s"); 
+                        searchPlaylist(dbFuntion, user);
+                        break; 
+                    }
+
+
+                    case 'Ver canciones de la playlist ordenadas inversamente': {
+                        myDataBase.getPlaylists().forEach(pl => {
+                            if (myPlaylistName === pl.getName()) {
+                                myPlaylist = pl;
+                            }
+                        });
+
+                        const plSong: string[] = myPlaylist.songSort(false);
+
+                        if (plSong.length > 0) {
+                            plSong.forEach(song => {
+                                console.log(song);
+                            });
+                        } else {
+                            console.log("Esta playlist no tiene canciones todavia ...");
+                        }
+
+                        console.log("\nPresione enter para continuar ...");
+                        let e = scanf("%s"); 
+                        searchPlaylist(dbFuntion, user);
+                        break;
+                    }
+
+                    case 'Añadir canción': 
+                        console.log("Nombre de canción: ");
+                        let song: string = scanf("%S");
+
+                        myDataBase.getPlaylists().map((playlist: Playlist) => {
+                            if (myPlaylistName == playlist.getName())
+                                myDataBase.addSongToPlaylist(playlist.getName(), song);
+                        });
+                        searchPlaylist(dbFuntion, user);
+                        break;
+
+                    case 'Borrar canción':
+                        console.log("Nombre de canción: ");
+                        let rsong: string = scanf("%S");
+
+                        myDataBase.getPlaylists().map((playlist: Playlist) => {
+                            if (myPlaylistName == playlist.getName())
+                                myDataBase.removeSongFromPlaylist(playlist.getName(), rsong);
+                        });
+                        searchPlaylist(dbFuntion, user);
+                        break;
+
+                    case 'Atras':
+                        managementPlaylists();
+                        break;
+                }
+            })
+        });
+    }
   
