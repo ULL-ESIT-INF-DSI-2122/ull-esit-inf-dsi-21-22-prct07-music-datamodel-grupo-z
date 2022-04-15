@@ -653,43 +653,5 @@
       ]
     }
   ],
-<<<<<<< HEAD
-  "playlists": [
-    {
-      "name": "Fiesta",
-      "user": "chompo",
-      "songs": [],
-      "duration": {
-        "seconds": 0,
-        "minutes": 0,
-        "hours": 0
-      },
-      "genres": []
-    },
-    {
-      "name": "",
-      "user": "\u001b[",
-      "songs": [],
-      "duration": {
-        "seconds": 0,
-        "minutes": 0,
-        "hours": 0
-      },
-      "genres": []
-    },
-    {
-      "name": "Fiesta",
-      "user": "Chompo",
-      "songs": [],
-      "duration": {
-        "seconds": 0,
-        "minutes": 0,
-        "hours": 0
-      },
-      "genres": []
-    }
-  ]
-=======
   "playlists": []
->>>>>>> 55c0048bac0385c1c42f446a33a0a150039748f1
 }
